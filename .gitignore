@@ -1,0 +1,4 @@
+# Ignore all __pycache__ directories at any level
+__pycache__/
+my_bm25_index/
+chroma_db/

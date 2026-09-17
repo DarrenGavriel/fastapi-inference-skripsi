@@ -1,0 +1,7 @@
+chromadb
+sentence-transformers
+bm25s
+codecarbon
+pydantic
+transformers 
+huggingface-hub
