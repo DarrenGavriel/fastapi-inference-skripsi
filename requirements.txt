@@ -6,6 +6,6 @@ pydantic
 transformers 
 huggingface-hub
 ngrok
-"fastapi[standard]"
+fastapi[standard]
 nest-asyncio
 uvicorn
