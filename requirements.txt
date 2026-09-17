@@ -6,3 +6,4 @@ pydantic
 transformers 
 huggingface-hub
 ngrok
+"fastapi[standard]"
