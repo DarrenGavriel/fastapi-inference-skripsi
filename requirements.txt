@@ -7,3 +7,5 @@ transformers
 huggingface-hub
 ngrok
 "fastapi[standard]"
+nest-asyncio
+uvicorn
