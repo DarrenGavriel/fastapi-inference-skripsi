@@ -32,7 +32,7 @@ def load_embedding_model() -> SentenceTransformer:
     Menggunakan cache lokal jika tersedia untuk mempercepat proses.
     """
     print(f"[*] Memuat model {EMBEDDING_MODEL} (harap tunggu)...")
-    model = SentenceTransformer(EMBEDDING_MODEL, cache_folder=MODEL_CACHE_DIR)
+    model = SentenceTransformer(EMBEDDING_MODEL, cache_folder=MODEL_CACHE_DIR, device="cpu")
     return model
 
 def connect_chromadb() -> chromadb.Collection:

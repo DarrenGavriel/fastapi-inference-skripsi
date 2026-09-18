@@ -7,7 +7,7 @@ def load_model_and_tokenizer():
     try:
         max_seq_length = 4056
         model, tokenizer = FastLanguageModel.from_pretrained(
-            model_name = "Qwen/Qwen3.5-9B",
+            model_name = "Qwen/Qwen3.5-0.8B",
             max_seq_length = max_seq_length,
             dtype = None,
             load_in_4bit = True,
@@ -107,6 +107,10 @@ def generate_rag_query_rewrite(model, tokenizer, chat_history, current_query, an
         # Bersihkan juga sisa spasi kosong atau tag sistem lainnya jika ada
         clean_response = clean_response.replace('<|im_end|>', '').strip()
         print(clean_response)
+        del inputs, outputs
+        import gc
+        gc.collect()
+        torch.cuda.empty_cache()
         return True, clean_response
     except Exception as e:
         message = f"Terjadi kesalahan saat merumuskan ulang kueri: {e}"
