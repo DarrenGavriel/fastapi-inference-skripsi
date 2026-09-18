@@ -8,9 +8,12 @@ import connect_model.model as model_module
 import uvicorn
 import nest_asyncio
 
-def connect_ngrok():
-    forwarder = ngrok.forward("localhost:8000", authtoken_from_env=True, domain="plating-ambition-mammal.ngrok-free.dev")
-    print(f"🌍 API kamu sudah online di: {forwarder.url()}")
+listener = None
+
+async def connect_ngrok():
+    global listener
+    listener = await ngrok.connect(8000, authtoken_from_env=True, domain="plating-ambition-mammal.ngrok-free.dev")
+    print(f"🌍 API kamu sudah online di: {listener.url()}")
 
 model = model_module.load_model_and_tokenizer()
 
@@ -20,9 +23,10 @@ query_rewrite_history = []
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    connect_ngrok()
+    await connect_ngrok()
     yield 
-    ngrok.disconnect()
+    if listener:
+        await listener.close()
 
 app = FastAPI(lifespan=lifespan)
 
