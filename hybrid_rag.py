@@ -281,7 +281,6 @@ def main(question: str = None):
             if rata_rata_semantic < 0.50 and not has_exact_meta:
                 print("    -> ⚠️ Rata-rata di bawah 50%, hasil Semantic tidak digunakan.")
                 semantic_results = []  
-                status = False
             else:
                 print("    -> ✅ Hasil Semantic diterima untuk RRF.")
         # ---------------------------------
@@ -292,6 +291,7 @@ def main(question: str = None):
             # Output default jika tidak ada hasil
             fallback_msg = 'Terima kasih atas pertanyaannya. Mohon maaf, saya hanya dapat membantu menjawab pertanyaan seputar perpajakan Indonesia, khususnya terkait Undang-Undang KUP dan penggunaan aplikasi CoreTax. Untuk pertanyaan di luar topik tersebut, saya belum bisa membantu.'
             # print(fallback_msg)
+            status = False
             return fallback_msg, status
         print("\n[*] Melakukan Reciprocal Rank Fusion (RRF)...")
         hybrid_results = rrf_fusion(bm25_results, semantic_results, top_k=top_k_search)
