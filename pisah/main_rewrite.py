@@ -1,4 +1,6 @@
 import os
+
+from requests import Request
 import ngrok
 from fastapi import FastAPI
 from pydantic import BaseModel
@@ -11,7 +13,7 @@ listener = None
 
 async def connect_ngrok():
     global listener
-    listener = await ngrok.connect(8000, authtoken_from_env=True, domain="plating-ambition-mammal.ngrok-free.dev")
+    listener = await ngrok.connect(8000, authtoken_from_env=True)
     print(f"🌍 API kamu sudah online di: {listener.url()}")
 
 model = model_module.load_model_and_tokenizer()
@@ -30,6 +32,10 @@ class queryRequest(BaseModel):
     history_query: list
     history_answer: list
 
+class answerRequest(BaseModel):
+    query: str
+    RAG: str
+
 @app.get("/")
 def read_root():
     return {"Hello": "World"}
@@ -45,6 +51,18 @@ def process_query(query: queryRequest):
         return {"status": False, "message": rewrite_query[1]}
     return {"status": True, "result": rewrite_query[1]}
 
+@app.post("/answer")
+def process_answer(query: answerRequest):
+    if not model[0]:
+        return {"status": False, "message": "Gagal memuat model dan tokenizer."}
+    if query.query.strip() == "":
+        return {"status": False, "message": "Query tidak boleh kosong."}
+    if query.RAG.strip() == "":
+        return {"status": False, "message": "RAG tidak boleh kosong."}
+    answer_query = model_module.generate_answer(model[1], model[2], query.query, query.RAG)
+    if answer_query[0] == False:
+        return {"status": False, "message": answer_query[1]}
+    return {"status": True, "result": answer_query[1]}
 
 if __name__ == "__main__":
     nest_asyncio.apply()
