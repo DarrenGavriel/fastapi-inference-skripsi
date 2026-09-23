@@ -3,12 +3,33 @@ from unsloth.chat_templates import get_chat_template
 import re
 import torch
 
-def load_model_and_tokenizer():
+def load_model_and_tokenizer_lora():
     try:
         max_seq_length = 26680
         model, tokenizer = FastLanguageModel.from_pretrained(
             # model_name = "Qwen/Qwen3.5-9B",
             model_name = "qwen_lora_model_9b",
+            max_seq_length = max_seq_length,
+            dtype = None,
+            load_in_4bit = True,
+        )
+        FastLanguageModel.for_inference(model)
+        tokenizer = get_chat_template(
+            tokenizer,
+            chat_template = "chatml",
+        )
+        return True, model, tokenizer
+    except Exception as e:
+        message = f"Terjadi kesalahan saat memuat model dan tokenizer: {e}"
+        print(message)
+        return False, None, None
+    
+def load_model_and_tokenizer():
+    try:
+        max_seq_length = 26680
+        model, tokenizer = FastLanguageModel.from_pretrained(
+            model_name = "Qwen/Qwen3.5-9B",
+            # model_name = "qwen_lora_model_9b",
             max_seq_length = max_seq_length,
             dtype = None,
             load_in_4bit = True,

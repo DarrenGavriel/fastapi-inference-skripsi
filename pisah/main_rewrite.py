@@ -16,6 +16,7 @@ async def connect_ngrok():
     listener = await ngrok.connect(8000, authtoken_from_env=True)
     print(f"🌍 API kamu sudah online di: {listener.url()}")
 
+model_lora = model_module.load_model_and_tokenizer_lora()
 model = model_module.load_model_and_tokenizer()
 
 @asynccontextmanager
@@ -53,7 +54,7 @@ def process_query(query: queryRequest):
 
 @app.post("/answer")
 def process_answer(query: answerRequest):
-    if not model[0]:
+    if not model_lora[0]:
         return {"status": False, "message": "Gagal memuat model dan tokenizer."}
     if query.query.strip() == "":
         return {"status": False, "message": "Query tidak boleh kosong."}
