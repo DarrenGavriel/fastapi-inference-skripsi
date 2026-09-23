@@ -7,7 +7,8 @@ def load_model_and_tokenizer():
     try:
         max_seq_length = 26680
         model, tokenizer = FastLanguageModel.from_pretrained(
-            model_name = "Qwen/Qwen3.5-9B",
+            # model_name = "Qwen/Qwen3.5-9B",
+            model_name = "qwen_lora_model_9b",
             max_seq_length = max_seq_length,
             dtype = None,
             load_in_4bit = True,

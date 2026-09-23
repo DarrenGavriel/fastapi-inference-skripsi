@@ -49,7 +49,7 @@ def process_query(query: queryRequest):
     rewrite_query = model_module.generate_rag_query_rewrite(model[1], model[2], query.history_query, query.query, query.history_answer)
     if rewrite_query[0] == False:
         return {"status": False, "message": rewrite_query[1]}
-    return {"status": True, "result": rewrite_query[1]}
+    return {"status": True, "message": rewrite_query[1]}
 
 @app.post("/answer")
 def process_answer(query: answerRequest):
@@ -62,7 +62,7 @@ def process_answer(query: answerRequest):
     answer_query = model_module.generate_answer(model[1], model[2], query.query, query.RAG)
     if answer_query[0] == False:
         return {"status": False, "message": answer_query[1]}
-    return {"status": True, "result": answer_query[1]}
+    return {"status": True, "message": answer_query[1]}
 
 if __name__ == "__main__":
     nest_asyncio.apply()
