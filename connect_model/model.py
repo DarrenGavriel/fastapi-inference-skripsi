@@ -5,7 +5,7 @@ import torch
 
 def load_model_and_tokenizer():
     try:
-        max_seq_length = 4056
+        max_seq_length = 26680
         model, tokenizer = FastLanguageModel.from_pretrained(
             model_name = "Qwen/Qwen3.5-9B",
             max_seq_length = max_seq_length,
@@ -87,7 +87,7 @@ def generate_answer(model, tokenizer, query, RAG):
         banned_token_ids = tokenizer(text="<think>", add_special_tokens=False)["input_ids"]
         outputs = model.generate(
             input_ids = inputs["input_ids"],
-            max_new_tokens = 200,
+            max_new_tokens = 2000,
             use_cache = True,
             eos_token_id = tokenizer.eos_token_id,
             pad_token_id = tokenizer.eos_token_id,
@@ -123,15 +123,15 @@ def generate_answer(model, tokenizer, query, RAG):
 def generate_rag_query_rewrite(model, tokenizer, chat_history, current_query, answer_history):
     try:
         tokenizer.chat_template = "{% set enable_thinking = false %}\n" + tokenizer.chat_template
-        system_prompt = """Anda adalah sistem AI ahli dalam merumuskan ulang kueri pencarian dokumen.
-        Tugas Anda: Ubah "Pertanyaan Saat Ini" menjadi SATU kalimat pertanyaan yang baku, formal, jelas, dan mandiri (standalone).
+        system_prompt = """Anda adalah sistem AI ahli dalam merumuskan ulang kueri pencarian dokumen hukum dan perpajakan. 
+        Tugas Anda: Ubah "Pertanyaan Saat Ini" menjadi SATU kalimat pertanyaan yang baku, formal, jelas, dan mandiri (standalone) yang optimal untuk sistem pencarian (semantic search).
 
         Langkah Evaluasi (Kerjakan dalam hati):
         1. Cek apakah "Pertanyaan Saat Ini" sudah mandiri atau membutuhkan konteks (mengandung kata penunjuk atau implikasi kelanjutan seperti "terus", "kalau itu", "dendanya", dll).
-        2. Jika MANDIRI: Cukup perbaiki tata bahasanya menjadi baku dan formal. Abaikan riwayat.
-        3. Jika BUTUH KONTEKS: Analisis bagian <Riwayat Percakapan>.
-        4. FILTERING & RESOLUSI AMBIGUITAS: Cari riwayat yang paling relevan secara substansi dengan topik "Pertanyaan Saat Ini". Abaikan riwayat yang tidak berhubungan (Out of Topic). Pastikan kata ambigu seperti "telat" merujuk pada topik utama yang logis (pajak/pelaporan SPT, bukan kantin).
-        5. GABUNGKAN: Gunakan informasi dari riwayat yang relevan untuk melengkapi subjek, objek, dan konteks pada pertanyaan saat ini.
+        2. Jika MANDIRI: Perbaiki tata bahasanya menjadi baku dan formal.
+        3. EKSTRAKSI ENTITAS (WAJIB): Pastikan hasil rumusan ulang TETAP mempertahankan terminologi teknis, nama dokumen (misal: SKPKB, STP, SPT), jenis pajak (misal: PPh Badan, PPN), dan pemicu kejadian (misal: audit, pemeriksaan, pembetulan) dari pertanyaan asli. Jangan membuang kata kunci spesifik ini demi membuat kalimat yang lebih ringkas.
+        4. Jika BUTUH KONTEKS: Analisis bagian <Riwayat Percakapan>. Cari riwayat yang paling relevan secara substansi. Pastikan kata ambigu merujuk pada topik utama yang logis.
+        5. GABUNGKAN: Gunakan informasi dari riwayat yang relevan untuk melengkapi subjek, objek, dan konteks pada pertanyaan saat ini beserta entitas penting dari Langkah 3.
 
         Aturan Output:
         - Jawab LANGSUNG dengan hasil akhir berupa satu kalimat pertanyaan baku.
@@ -181,7 +181,7 @@ def generate_rag_query_rewrite(model, tokenizer, chat_history, current_query, an
         banned_token_ids = tokenizer(text="<think>", add_special_tokens=False)["input_ids"]
         outputs = model.generate(
             input_ids = inputs["input_ids"],
-            max_new_tokens = 200,
+            max_new_tokens = 500,
             use_cache = True,
             eos_token_id = tokenizer.eos_token_id,
             pad_token_id = tokenizer.eos_token_id,

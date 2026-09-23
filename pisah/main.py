@@ -11,7 +11,7 @@ listener = None
 
 async def connect_ngrok():
     global listener
-    listener = await ngrok.connect(8000, authtoken_from_env=True, domain="plating-ambition-mammal.ngrok-free.dev")
+    listener = await ngrok.connect(8000, authtoken_from_env=True)
     print(f"🌍 API kamu sudah online di: {listener.url()}")
 
 # model = model_module.load_model_and_tokenizer()
