@@ -32,7 +32,7 @@ def load_model_and_tokenizer():
             # model_name = "qwen_lora_model_9b",
             max_seq_length = max_seq_length,
             dtype = None,
-            load_in_4bit = True,
+            load_in_8bit = True,
         )
         FastLanguageModel.for_inference(model)
         tokenizer = get_chat_template(
