@@ -1,0 +1,485 @@
+contoh,flag
+"Berapa sanksi bunga kalau pajak kurang bayar saya Rp10.000.000 dan terlambat 3 bulan?", sanksi_bunga
+"Saya ada kurang bayar pajak sebesar 5 juta, kena bunga selama 4 bulan berapa?", sanksi_bunga
+"Kalau pajak yang kurang dibayar satu juta rupiah dan jumlah bulannya 2, berapa sanksinya?", sanksi_bunga
+"Hitung sanksi bunga untuk kurang bayar 25.000.000 selama 6 bulan.", sanksi_bunga
+"Pajak kurang bayar saya 7,5 juta, dendanya bunga selama 5 bulan jadi berapa?", sanksi_bunga
+"Kalau kurang bayar pajaknya Rp2.000.000 dan kena sanksi selama 10 bulan, hitung bunganya dong.", sanksi_bunga
+"Bisa hitung bunga sanksi dari pajak kurang bayar sebesar tiga juta rupiah untuk delapan bulan?", sanksi_bunga
+"Kurang bayar saya 12 juta, masa sanksinya 7 bulan. Berapa total bunga yang harus dibayar?", sanksi_bunga
+"Saya mau hitung sanksi bunga, kurang bayarnya 15.000.000 dan jumlah bulan 12.", sanksi_bunga
+"Berapa bunga sanksinya kalau pajak kurang bayar 5000000 selama sembilan bulan?", sanksi_bunga
+"Pajak saya kurang bayar sepuluh juta rupiah dan sudah 15 bulan, sanksi bunganya berapa?", sanksi_bunga
+"Tolong hitungkan sanksi bunga untuk Rp1.500.000 selama 3 bulan.", sanksi_bunga
+"Kurang bayar sebesar 40 juta, sanksi 5 bulan, total bunganya berapa?", sanksi_bunga
+"Kalau pajak kurang bayar saya 8 juta dan dikenakan bunga selama 1 bulan berapa?", sanksi_bunga
+"Hitung sanksi bunga dari kurang bayar sebesar Rp75.000.000 selama 20 bulan.", sanksi_bunga
+"Saya punya pajak kurang bayar dua puluh juta, terus kena bunga selama 11 bulan. Berapa sanksinya?", sanksi_bunga
+"Kalau kurang bayar pajak 3,25 juta dan jumlah bulannya 4, berapa bunga?", sanksi_bunga
+"Berapa sanksi bunga untuk kurang bayar Rp100.000.000 yang berlangsung 30 bulan?", sanksi_bunga
+"Saya kurang bayar pajak 9.000.000 dengan periode sanksi 24 bulan, tolong hitungkan.", sanksi_bunga
+"Pajak kurang bayar saya 6 juta dan terlambat 25 bulan, hitung sanksi bunganya.", sanksi_bunga
+"Kayaknya itu saya kurang bayar pajak 11 juta, dan sudah 18 bulan. Berapa sanksi bunganya?", sanksi_bunga
+"Aku kan ada yang kurang pas bayar pajak, kayaknya cuman dua ratus ribu, nah tapi udh setahun yang lalu, itu kena bunga berapa ya?", sanksi_bunga
+"Bisa hitungin ndak sangsi bunga yang harus aku bayarin, misalnya udh setahun 2 bulan yang lalu gitu tapi cuman 2 juta kok.", sanksi_bunga
+"Kalau aku kurang bayar pajak 3 juta, terus udah 6 bulan, kira-kira bunga sanksinya berapa ya?", sanksi_bunga
+"aku itu baru sadar kalau kurang bayar pajak 300 ribu dan udh 3 bulan, kira-kira bunga sanksinya berapa ya?", sanksi_bunga
+"oh iya aku keknya pas bayar pajak ada yang kurang, sekitar 500 ribu dan pas itu udh sebulan yang lalu itu bunganya berapa ya?", sanksi_bunga
+"hitungin dong sanksi saya bila bayar pajaknya kurang", sanksi_bunga
+"Aku sepertinya ada kurang bayar 4 bulan yang lalu deh, itu bunganya berapa ya?", sanksi_bunga
+"Bunga dari aku selisih bayar pajak 5 juta 100 ribu gitu berapa ya?", sanksi_bunga
+"aku baru sadar 2 hari lalu itu kurang bayar 400 ribu, itu kena sanksi berapa ya?", sanksi_bunga
+"kemarin itu aku salah hitung, jadinya bayarnya kurang ke pajak nominalnya 1,4 juta, itu sanksi bunganya berapa ya?", sanksi_bunga
+"aduh aku kelupaan kalau kurang bayar pajak 2,5 juta dan udah 7 bulan. bearti aku harus bayarnya berapa ya?", sanksi_bunga
+"kalau aku bayar pajaknya kurang 2 juta dan udh 2 bulan, itu saya nambahin bayarnya berapa?", sanksi_bunga
+"tiga bulan yang lalu kan aku bayar pajak, eh ternyata kurang 1 juta, itu kena sanksi berapa ya?", sanksi_bunga
+"Bulan lalu aku bayar pajak kurang 3,5 juta, itu sanksi bunganya berapa ya?", sanksi_bunga
+"sehari yang lalu aku lupa bahwa pajak ku bayarnya kurang 100 ribu bearti bunganya berapa ya?", sanksi_bunga
+"udah 20 bulan ni aku blm ngurus pajak yang bayarnya kurang, pas itu kurang bayar empat juta deh, sanksinya berapa?", sanksi_bunga
+"dua bulan yang lalu aku bayar pajak kurang tiga juta, itu sanksi bunganya berapa ya?", sanksi_bunga
+"aku baru inget tiga bulan yang lalu itu pajakku kurang bayar sekitar tiga jutaan, itu sanksi bunganya berapa ya?", sanksi_bunga
+"Aku baru sadar kalau kurang bayar pajak 1,5 juta dan udah 4 bulan, kira-kira bunga sanksinya berapa sih?", sanksi_bunga
+"aku tau aku kurang bayar kemaren dan pasti kena bunga, ini udh tiga bulan sih itu bunganya berapa sih?", sanksi_bunga
+"aku pas itu kurang bayar dua ratus ribu plus udh sepuluh bulan, itu sanksi yang aku terima berapa sih?", sanksi_bunga
+"saudaraku bilangnya kurang bayar pajak 1,2 juta itu kena sanksi berapa?", sanksi_bunga
+"udah sekitar empat bulan dan aku baru sadar kalau pas itu kurang bayar pajak 500 ribu, aku kena sanksi berapa?", sanksi_bunga
+"Aku kurang bayar pajak 3 juta pas setahun yang lalu, itu sanksi pajaknya berapa?", sanksi_bunga
+"kan aku kurang bayar pajak 2,5 juta dan udah 6 bulan, kira-kira sanksi bunganya berapa ya?", sanksi_bunga
+"kemarin aku udh bayar pajak tapi ternyata kurang 500 ribu gitu bunganya berapa ya?", sanksi_bunga
+"aku baru mendapatkan informasi kalau kurang bayar pajak 1,8 juta dan udah 5 bulan, sanksinya berapa si?", sanksi_bunga
+"Kurang bayar pajak 2.5 juta dan udah 3 bulan, kira-kira sanksi bunganya berapa ya?", sanksi_bunga
+"Berapa denda kalau SPT Tahunan Badan terlambat?", denda_spt
+"Denda telat lapor SPT Tahunan orang pribadi berapa ya?", denda_spt
+"Kalau SPT Masa PPN telat dilaporkan, dendanya berapa?", denda_spt
+"Denda SPT Masa selain PPN itu berapa?", denda_spt
+"Saya telat lapor SPT tahunan perusahaan, kena denda berapa?", denda_spt
+"Kalau WP orang pribadi telat lapor SPT Tahunan, harus bayar berapa?", denda_spt
+"SPT Masa PPN saya terlambat, dendanya satu berapa?", denda_spt
+"Berapa denda keterlambatan untuk SPT Masa lainnya?", denda_spt
+"Denda tahunan badan berapa?", denda_spt
+"Kalau SPT Tahunan OP terlambat, berapa dendanya?", denda_spt
+"Saya telat menyampaikan SPT Tahunan badan, hitung dendanya dong.", denda_spt
+"Berapa nominal denda untuk SPT Tahunan orang pribadi?", denda_spt
+"SPT PPN masa belum saya laporkan tepat waktu, denda berapa rupiah?", denda_spt
+"Kalau yang terlambat itu SPT Masa bukan PPN, dendanya berapa?", denda_spt
+"Perusahaan saya telat lapor SPT Tahunan, apakah dendanya sejuta?", denda_spt
+"Denda untuk orang pribadi yang terlambat lapor SPT Tahunan berapa, seratus ribu ya?", denda_spt
+"Tolong cek denda SPT Masa PPN yang terlambat.", denda_spt
+"Kalau saya telat lapor SPT Masa lainnya, kena seratus ribu bukan?", denda_spt
+"Berapa denda keterlambatan SPT Tahunan milik badan usaha?", denda_spt
+"Bisa kasih nominal denda untuk SPT Tahunan OP yang terlambat?", denda_spt
+"Berapa denda kalau SPT Tahunan perusahaan terlambat dilaporkan?", denda_spt
+"PT saya telat lapor SPT Tahunan, dendanya berapa?", denda_spt
+"Kalau badan usaha terlambat menyampaikan SPT Tahunan, kena denda berapa?", denda_spt
+"Denda keterlambatan SPT Tahunan badan berapa rupiah?", denda_spt
+"Perusahaan saya belum menyampaikan SPT Tahunan tepat waktu, berapa dendanya?", denda_spt
+"SPT tahunan milik perusahaan telat, apakah dendanya satu juta?", denda_spt
+"Kalau PT terlambat lapor SPT Tahunan, harus bayar berapa?", denda_spt
+"Berapa nominal denda untuk SPT Tahunan milik badan usaha yang terlambat?", denda_spt
+"Saya mewakili perusahaan dan SPT Tahunan kami terlambat dilaporkan, kena denda berapa?", denda_spt
+"SPT Tahunan badan saya telat lapor, dendanya berapa ya?", denda_spt
+"Berapa denda kalau SPT Tahunan orang pribadi terlambat?", denda_spt
+"Saya telat lapor SPT Tahunan pribadi, dendanya berapa?", denda_spt
+"Kalau WP orang pribadi terlambat menyampaikan SPT Tahunan, kena denda berapa?", denda_spt
+"Denda keterlambatan SPT Tahunan OP berapa rupiah?", denda_spt
+"Saya belum melaporkan SPT Tahunan pribadi tepat waktu, apakah kena denda?", denda_spt
+"Kalau orang pribadi telat lapor SPT Tahunan, dendanya seratus ribu ya?", denda_spt
+"Berapa nominal denda untuk SPT Tahunan milik orang pribadi?", denda_spt
+"Saya lupa lapor SPT Tahunan sebagai pribadi sampai lewat batas waktu, berapa dendanya?", denda_spt
+"SPT Tahunan saya terlambat, saya WP orang pribadi. Harus bayar denda berapa?", denda_spt
+"Kalau SPT tahunan pribadi terlambat satu tahun, berapa denda yang dikenakan?", denda_spt
+"Berapa denda kalau SPT Masa PPN terlambat dilaporkan?", denda_spt
+"SPT Masa PPN saya telat, kena sanksi kan ya?", denda_spt
+"Kalau terlambat lapor SPT Masa PPN, apakah kena sanksi?", denda_spt
+"Denda keterlambatan SPT Masa PPN berapa rupiah?", denda_spt
+"Kalau SPT PPN bulanan telat dilaporkan, kena sanksi berapa si?", denda_spt
+"Berapa denda untuk SPT Masa yang berkaitan dengan PPN?", denda_spt
+"SPT Masa PPN perusahaan saya belum dilaporkan tepat waktu, bayar berapa?", denda_spt
+"Saya lupa lapor SPT Masa PPN bulan ini, berapa denda keterlambatannya?", denda_spt
+"Berapa denda kalau SPT Masa selain PPN terlambat dilaporkan?", denda_spt
+"Kalau aku terlambat lapor SPT Masa selain PPN, itu kena bunga berapa?", denda_spt
+"SPT Masa saya terlambat dan bukan SPT PPN, kena denda?", denda_spt
+"Berapa denda keterlambatan untuk SPT Masa lainnya?", denda_spt
+"Saya terlambat menyampaikan SPT Masa selain PPN, berapa nominal dendanya?", denda_spt
+"Denda untuk SPT Masa non-PPN berapa rupiah?", denda_spt
+"Kalau jenis SPT saya SPT Masa tetapi bukan PPN dan terlambat, dendanya berapa?", denda_spt
+"Berapa denda kalau pelaporan SPT Masa lainnya melewati batas waktu?", denda_spt
+"Aku lupa Lapor SPT kategori lainnya, itu kena denda berapa ya?", denda_spt
+"Kalo SPT Masa selain PPN terlambat, denda-nya berapa?", ppn
+"Kalau DPP saya Rp6.000.000, PPN-nya berapa?", ppn
+"Hitung PPN dari DPP 10 juta dong.", ppn
+"DPP sebesar lima juta rupiah, PPN terutangnya berapa?", ppn
+"Berapa PPN untuk DPP Rp2.500.000?", ppn
+"Kalau nilai DPP saya 15 juta, berapa PPN?", ppn
+"Saya punya DPP tiga juta lima ratus ribu, PPN-nya berapa?", ppn
+"DPP Rp20.000.000 kalau dikenakan PPN jadi berapa?", ppn
+"Tolong hitungkan pajak pertambahan nilai dari DPP 7,5 juta.", ppn
+"Kalau DPP-nya satu juta, PPN yang harus dibayar berapa?", ppn
+"PPN dari DPP 12.000.000 berapa ya?", ppn
+"DPP saya 25 juta rupiah, bisa dihitung PPN-nya?", ppn
+"Berapa PPN kalau DPP sebesar Rp800.000?", ppn
+"Saya punya DPP sepuluh juta lima ratus ribu, berapa PPN?", ppn
+"Hitung PPN untuk DPP Rp1.250.000.", ppn
+"DPP 30 juta kena PPN berapa?", ppn
+"Kalau DPP saya tujuh juta, PPN-nya berapa?", ppn
+"Berapa nilai PPN atas DPP sebesar 4.500.000 rupiah?", ppn
+"Saya jual jasa dengan DPP Rp18.000.000, berapa PPN yang terutang?", ppn
+"Kalau DPP-nya empat puluh juta, tolong hitung PPN.", ppn
+"PPN untuk DPP dua juta dua ratus lima puluh ribu berapa?", ppn
+"Saya kemarin sudah hitung DPP tinggal ppnnya berapa ya?", ppn
+"Kemaren saya import barang dan sudah saya hitung dasar pengenaan pajaknya 50 juta, berapa PPN-nya?", ppn
+"Aku menjual barang terus hitung dasar pengenaan pajaknya sejuta, berapa PPN-nya?", ppn
+"Saya mau nerbitin faktur pajak nih, DPP transaksinya 10 juta pas, PPN-nya jadi berapa bos?", ppn
+"Kemarin beli laptop buat inventaris kantor, nilai DPP-nya kecatet 15.000.000, nah itu PPN-nya berapa?", ppn
+"Misal aku jualan baju grosiran, terus dapet DPP-nya 5 juta, tolong hitungin PPN yang harus disetor dong.", ppn
+"Bro, dpp barangnya 2,5 jt nih, ntar ppn nya kena brp ya?", ppn
+"Udah ketemu nih dasar pengenaan pajak buat penjualan bulan ini sebesar 120 juta, PPN terutangnya berapa?", ppn
+"Baru aja kelar ngitung DPP impor mesin dari luar, dapet di angka 125 juta, ini PPN-nya kena berapa ya?", ppn
+"Gan, kalau DPP impor barang dari China totalnya 15 juta, nilai PPN-nya berapa tuh?", ppn
+"Minggu lalu perusahaanku impor bahan baku, DPP-nya udah fix di angka 500 juta. Tolong dong hitungin PPN-nya.", ppn
+"Bea masuk udah kelar, nilai pabean dkk ditotal nemu DPP impor 80 juta. Kira-kira PPN-nya berapa jadinya?", ppn
+"Bos, ini tagihan jasa konsultan udah ketemu DPP-nya 25 juta, PPN-nya jadi berapa ya totalnya?", ppn
+"DPP sewa gedung buat acara kemarin 100 juta, itu beban PPN-nya berapa sih?", ppn
+"Saya pakai jasa pengiriman barang, DPP-nya cuma 500 ribu, PPN yang ditagihkan berapa?", ppn
+"Tolong bantuin ngitung dong, DPP udah ketemu nih 8 juta, PPN-nya brp?", ppn
+"DPP 3 juta, PPN berapa?", ppn
+"Min, kalau dasar pengenaannya 45 juta, ppn nya brp duit?", ppn
+"Udah capek ngitung DPP nemu 10 jeti, tolong kasih tau PPN-nya aja berapa.", ppn
+"Untuk tagihan jasa, dasar pengenaan pajaknya sudah disepakati, terus PPN-nya jadi berapa totalnya?", ppn
+"Misal dasar pengenaan pajak untuk sewa gedung acara sudah ada, itu beban PPN-nya berapa sih?", ppn
+"Saya pakai jasa pengiriman barang, dasar pengenaan pajaknya sudah dihitung, PPN yang ditagihkan berapa?", ppn
+"Kemarin saya impor barang dan sudah saya hitung dasar pengenaan pajaknya, berapa PPN-nya?", ppn
+"Kalau nilai dasar pengenaan pajak untuk barang impor dari luar negeri sudah ketemu, PPN impornya kena berapa?", ppn
+"Bea masuk dan nilai pabean sudah ditotal semua sampai ketemu dasar pengenaan pajak impornya, kira-kira PPN-nya jadinya berapa?", ppn
+"Baru saja selesai menghitung dasar pengenaan pajak impor mesin, ini PPN-nya dihitung gimana?", ppn
+"Dasar pengenaan pajaknya sudah ketemu nih, PPN-nya berapa?", ppn
+"Tolong bantu hitung dong, dasar pengenaan pajaknya sudah ada, PPN-nya berapa?", ppn
+"Kalau sudah tahu dasar pengenaan pajaknya, pajak pertambahan nilainya berapa?", ppn
+"Sudah selesai menghitung dasar pengenaan pajak, tolong kasih tahu PPN-nya saja berapa.", ppn
+"Kemaren saya sudah hitung dasar pengenaan pajak untuk jasa, PPN-nya berapa?", ppn
+"Kalau rumah berdiri di tanah 80 meter dan luas bangunannya 70 meter, berapa NJOP?", NJOP
+"Hitung NJOP untuk tanah seluas 250 meter dan bangunan 100 meter.", NJOP
+"Tanah saya 60 meter, bangunan 40 meter. Berapa nilai NJOP-nya?", NJOP
+"Luas tanah 500 meter dan bangunan 200 meter, tolong hitungkan NJOP.", NJOP
+"Saya punya tanah 110 meter dengan bangunan 90 meter, NJOP totalnya berapa?", NJOP
+"Kalau bumi 70 meter dan bangunan 55 meter, berapa NJOP?", NJOP
+"Hitung NJOP tanah 1.000 meter dengan bangunan 300 meter.", NJOP
+"Tanah 95 meter persegi dan bangunan 65 meter persegi, berapa NJOP totalnya?", NJOP
+"NJOP untuk tanah 180 meter persegi dan rumah 100 meter persegi berapa?", NJOP
+"Luas bumi saya 140 meter persegi, bangunannya 85 meter persegi. Tolong hitung NJOP.", NJOP
+"Tanah seluas dua ratus meter persegi dan bangunan seratus meter persegi, NJOP-nya berapa?", NJOP
+"Saya punya tanah 50 meter persegi dan bangunan 35 meter persegi, mau tahu total NJOP-nya.", NJOP
+"Bangunanku luasnya 60 m², terus tanahnya 100 m². Cara ngitung NJOP-nya gimana ya?", NJOP
+"Kalau punya tanah 120 m² sama ada rumah 70 m² di atasnya, total NJOP-nya berapa?", NJOP
+"Tanahku 90 m², bangunannya 45 m². Tolong bantu hitungin NJOP dong.", NJOP
+"Punya ruko, tanahnya 150 m² bangunannya 100 m², hitungin NJOP-nya dong.", NJOP
+"Min, mau tanya, luas tanah 80 m² terus bangunan 40 m², NJOP-nya kena berapa ya?", NJOP
+"Saya memiliki sebidang tanah dengan luas 250 m² dan bangunan seluas 150 m². Berapa estimasi total NJOP properti tersebut?", NJOP
+"Mohon informasinya, jika luas bumi adalah 300 m² dan luas bangunan 200 m², bagaimana detail perhitungan NJOP-nya?", NJOP
+"Berapa Nilai Jual Objek Pajak untuk sebuah properti dengan rincian luas tanah 100 m² dan bangunan 50 m²?", NJOP
+"Bantu saya menghitung NJOP. Data yang saya miliki: luas bumi 400 m² dan luas bangunan 250 m².", NJOP
+"Baru beli rumah nih, di sertifikat tertulis luas tanahnya 120 m² terus fisik bangunannya 80 m². Mau bayar PBB tapi bingung total NJOP-nya berapa, bisa bantu hitung?", NJOP
+"Saya lagi mau cek pajak rumah. Di SPPT ditulis luas bumi 75 m² dan bangunan 50 m². Itu cara dapat angka total NJOP-nya gimana ya?", NJOP
+"Kemarin habis ngukur ulang, ternyata luas tanah saya 110 m² dan bangunan yang berdiri itu 60 m². Kira-kira NJOP-nya jadi berapa sekarang?", NJOP
+"Luas tanah 80 m², bangunan 60 m², NJOP berapa?", NJOP
+"Tanah 200 m², rumah 120 m². Tolong hitung NJOP.", NJOP
+"Bumi 90 m², bangunan 55 m², total NJOP?", NJOP
+"Luas bumi saya 140, bangunannya 85. Tolong hitung NJOP.", NJOP
+"Tanah seluas dua ratus dan bangunan seratus, NJOP-nya berapa?", NJOP
+"Saya punya tanah 50 dan bangunan 35, mau tahu total NJOP-nya.", NJOP
+"Saya punya tanah dan bangunan, tolong hitungkan NJOP-nya dong.", NJOP
+"Kalau mau tahu nilai NJOP untuk bumi dan bangunan saya, cara hitungnya gimana?", NJOP
+"Misal luas tanahnya sekian dan bangunannya sekian, total NJOP-nya berapa?", NJOP
+"Saya punya tanah kosong aja, luasnya 200, NJOP-nya gimana?", NJOP
+"Kalau cuma ada bumi seluas 150 m² tanpa bangunan, tolong hitung NJOP-nya.", NJOP
+"Luas bumi saya 140, bangunannya 85. Tolong hitungin dasar buat pajaknya.", NJOP
+"Tanah seluas dua ratus dan bangunan seratus, patokan harga pajaknya jadi berapa?", NJOP
+"Saya punya tanah 50 dan bangunan 35, mau tahu total taksiran harga pemerintahnya.", NJOP
+"Saya punya tanah kosong aja, luasnya 200, harga jual buat pajaknya gimana ngitungnya?", NJOP
+"Kalau cuma ada bumi seluas 150 tanpa bangunan, tolong hitung nilai patokan pajaknya.", NJOP
+"Luas bumi saya 140, bangunannya 85. Tolong hitungin nilai dasar pajaknya.", NJOP
+"Tanah seluas dua ratus dan bangunan seratus, patokan harga dari pemerintahnya jadi berapa?", NJOP
+"Saya punya tanah 50 dan bangunan 35, mau tahu total taksiran harga propertinya.", NJOP
+"Min, rumahku luasnya 70 terus tanahnya 120, nilai jual resminya dapet berapa dong?", NJOP
+"Kalau bumi 90 sama bangunan 45 itu total harga patokan dasarnya kena berapa?", NJOP
+"Saya punya tanah dan bangunan, tolong hitungkan harga patokan pemerintahnya dong.", NJOP
+"Kalau mau tahu nilai jual tanah dan bangunan yang resmi, cara hitungnya gimana?", NJOP
+"Misal luas tanahnya sekian dan bangunannya sekian, total taksiran harganya berapa?", NJOP
+"Tolong bantu hitung total nilai dasar dari luas tanah sama bangunan milik saya.", NJOP
+"Kalau NJOP saya Rp360.000.000, PBB terutangnya berapa?", PBB
+"Hitung PBB dari NJOP 500 juta.", PBB
+"NJOP tanah dan bangunan saya totalnya satu miliar, PBB berapa?", PBB
+"Berapa PBB kalau NJOP total saya Rp750.000.000?", PBB
+"Saya punya NJOP sebesar 2.000.000.000, berapa PBB terutangnya?", PBB
+"Kalau NJOP totalnya 900 juta, PBB saya berapa?", PBB
+"NJOP saya tiga ratus juta rupiah, hitung PBB dong.", PBB
+"Berapa PBB kalau NJOP total 1,5 miliar?", PBB
+"Saya mau hitung PBB dengan NJOP Rp1.200.000.000.", PBB
+"Kalau NJOP saya 250 juta, berapa pajak bumi dan bangunannya?", PBB
+"NJOP rumah saya delapan ratus juta, PBB terutang berapa?", PBB
+"Hitungkan PBB untuk NJOP sebesar Rp50.000.000.", PBB
+"Kalau total NJOP-nya 1 miliar 100 juta, berapa PBB?", PBB
+"Saya punya NJOP 600 juta, tolong hitung PBB-nya.", PBB
+"Berapa PBB atas NJOP sebesar dua miliar lima ratus juta rupiah?", PBB
+"NJOP saya 950.000.000, PBB yang harus dibayar berapa?", PBB
+"Kalau NJOP total tiga juta rupiah, PBB-nya berapa?", PBB
+"Saya ingin tahu PBB dari NJOP 1,1 miliar.", PBB
+"NJOP objek pajak saya 400 juta, hitung PBB terutangnya.", PBB
+"Berapa PBB kalau NJOP-nya dua ratus lima puluh juta?", PBB
+"Kalau harga patokan rumahnya udah ada, pajaknya tiap tahun kena berapa ya?", PBB
+"Taksiran harga dari pemerintah sekian, nah itu bayar pajak rumahnya jadi berapa?", PBB
+"Nilai dasar tanahku udah ketemu nih, terus tagihan pajak tahunannya berapa duit?", PBB
+"Udah tau nih harga jual resminya, setoran pajaknya jatuhnya berapa ya?", PBB
+"Nilai propertinya sekian, kira-kira pajak yang harus dibayar ke negara berapa?", PBB
+"Kalau nilai asetnya udah ketahuan, tagihan pajaknya keluarnya berapa?", PBB
+"Harga patokan tanah dan bangunan udah ada, terus bayar pajaknya kena berapa dong?", PBB
+"Aku udah dapet taksiran harga rumahnya, kewajiban pajaknya berapa nih?", PBB
+"Nilai dasar dari pemerintah sekian, besaran pajak properti yang ditagih berapa?", PBB
+"Harga jual resminya segini, pajak tanahnya kena berapa ya?", PBB
+Fokus Menanyakan Nominal Akhir (Tanpa Nyebut Kata 'Hitung'):
+"Total tagihan pajaknya jadi berapa kalau nilai jual rumahnya sekian?", PBB
+"Berapa duit yang harus disetor buat pajak tahunan kalau harga patokan tanahnya segini?", PBB
+"Mau tau tagihan pajak dari nilai properti yang udah ditetapin pemerintah dong.", PBB
+"Besaran pajak bumi yang mesti dilunasi berapa dari taksiran nilai sekian?", PBB
+"Kalau patokan harganya sekian, beban pajak yang mesti dibayar itu nominalnya berapa?", PBB
+"Setoran ke negara buat pajak rumah itu jatuhnya berapa kalau nilai asetnya udah fix?", PBB
+"Berapa tagihan iuran pajak tanahnya kalau nilai dasarnya udah tahu?", PBB
+"Cek tagihan pajaknya dong kalau harga taksirannya udah dapet.", PBB
+"Total pajak yang ditanggung berapa ya dengan nilai jual dari pemerintah segitu?", PBB
+"Nilai patokannya segini, pajaknya terutang berapa jadinya?", PBB
+"Udah pegang angka nilai jualnya nih, cara tau tagihan pajaknya gimana?", PBB
+"Kasih tau dong pajak tahunannya berapa dari nilai dasar properti ini.", PBB
+"Nilai aset propertiku sekian, tolong cariin nominal pajak yang harus disetor dong.", PBB
+"Dari harga patokan segini, keluar angka pajaknya berapa ya?", PBB
+"Mau ngecek kewajiban pajaknya kalau nilai jual bangunannya udah pasti segini.", PBB
+"Taksiran harga resminya segitu, pajak untuk tanah dan rumah ini dapet angka berapa?", PBB
+"Kalau nilai dasarnya sekian, tolong dong kasi tau tagihan tahunannya.", PBB
+"Bayar pajaknya dapet berapa sih dari nilai patokan yang udah kutahu ini?", PBB
+"Tolong dong diliatin pajak propertinya berapa berdasarkan taksiran harga segini.", PBB
+"Angka taksirannya sekian, tagihan pajaknya jatuh di angka berapa ya?", PBB
+"Penghasilan neto saya setahun Rp120.000.000 dan status PTKP K/1, PPh orang pribadi saya berapa?", pph_op
+"Saya punya penghasilan neto tahunan 100 juta, status TK/0. Berapa PPh saya?", pph_op
+"Kalau penghasilan bersih setahun saya 80 juta dan PTKP saya K/0, pajaknya berapa?", pph_op
+"Penghasilan neto saya dua ratus juta setahun, status TK/0. Hitung PPh OP.", pph_op
+"Saya orang pribadi dengan penghasilan neto 60 juta setahun dan status TK/0, kena PPh berapa?", pph_op
+"Kalau penghasilan neto saya Rp150.000.000 per tahun dan status K/1, berapa PPh terutangnya?", pph_op
+"PPh OP kalau penghasilan neto setahun 300 juta dan status K/0 berapa?", pph_op
+"Saya memperoleh penghasilan neto 50 juta setahun, status TK/0. Berapa pajaknya?", pph_op
+"Kalau penghasilan neto setahun 500 juta dengan status TK/0, hitung PPh orang pribadi.", pph_op
+"Penghasilan neto saya 750 juta setahun dan status K/1, PPh-nya berapa?", pph_op
+"Saya punya penghasilan bersih setahun satu miliar rupiah, status TK/0. Berapa PPh OP?", pph_op
+"Kalau penghasilan neto 40 juta setahun dan status K/1, apakah ada PPh yang harus dibayar?", pph_op
+"Penghasilan neto saya 250 juta setahun, status K/2. Bisa hitungkan PPh?", pph_op
+"Saya dapat penghasilan neto 125 juta dalam setahun dan status TK/3, PPh-nya berapa?", pph_op
+"Kalau penghasilan neto saya 3 miliar setahun, status K/1, berapa pajak penghasilan orang pribadi?", pph_op
+"Penghasilan neto 70 juta per tahun, status TK/2, tolong hitung PPh.", pph_op
+"Saya berpenghasilan bersih 600 juta setahun, status K/3. Berapa PPh OP?", pph_op
+"Kalau net income saya 90 juta setahun dan status TK/1, hitung pajak orang pribadi.", pph_op
+"Penghasilan neto setahun saya dua juta rupiah, status TK/0. Berapa PPh?", pph_op
+"Saya punya penghasilan neto Rp5.500.000.000 per tahun dan status TK/0, berapa PPh orang pribadi saya?", pph_op
+"Gaji bersih saya 8 juta sebulan, status masih lajang dan belum ada tanggungan keluarga. PPh 21 saya berapa ya?", pph_op
+"Saya belum menikah dan tinggal sendiri tanpa nanggung orang tua, penghasilan sebulan 15 juta. Hitungin pajak penghasilannya dong.", pph_op
+"Penghasilan neto setahun 90 juta, saya masih single dan gak nanggung siapa-siapa, berapa PPh orang pribadi saya?", pph_op
+"Masih bujangan, tapi nanggung ibu kandung 1 orang yang udah tua. Penghasilan sebulan 10 juta, pajaknya berapa?", pph_op
+"Saya belum nikah tapi biayain 2 adik yang masih sekolah. Kalau penghasilan bersih sebulan 12 juta, PPh terutangnya berapa?", pph_op
+"Pendapatan bersih setahun lima puluh empat juta rupiah, posisi masih sendiri/lajang. Kena pajak penghasilan gak?", pph_op
+"Gaji bersih sebulan 20 juta, belum kawin dan nanggung 3 orang (orang tua dan adik). Tolong hitung pajak tahunan saya.", pph_op
+"Saya sudah menikah, istri tidak bekerja, dan belum punya anak. Penghasilan neto sebulan 12 juta. Berapa pajak PPh saya?", pph_op
+"Gaji bersih saya 150 juta setahun, udah berkeluarga punya anak satu, istri ibu rumah tangga. Tolong hitung PPh 21 tahunannya.", pph_op
+"Penghasilan bersih 25 juta per bulan, status kawin anak 2, istri gak kerja. Berapa nominal pajak penghasilan yang harus saya bayar?", pph_op
+"Saya punya istri dan 3 orang anak yang masih kecil, penghasilan sebulan 30 juta. Hitungin PPh orang pribadinya dong.", pph_op
+"Punya penghasilan neto 500 juta setahun, udah nikah anak 2 dan istri gak ada penghasilan. Berapa pajak PPh perorangan yang mesti disetor?", pph_op
+"Sudah kawin tapi belum dikaruniai anak, istri dirumah aja. Neto setahun dua ratus juta, PPh orang pribadinya berapa?", pph_op
+"Saya dan istri sama-sama kerja dan pajak digabung. Penghasilan total kami berdua 300 juta setahun, belum punya anak. Pajaknya berapa?", pph_op
+"Suami istri kerja, gabung NPWP/pajak, anak ada 2. Total penghasilan neto sebulan 40 juta. Berapa total PPh tahunan kami?", pph_op
+"Penghasilan neto lima miliar lima ratus juta rupiah per tahun, status sudah nikah anak tiga. Berapa PPh orang pribadi saya?", pph_op
+"Gaji bersih dua juta rupiah per bulan, masih lajang tanpa tanggungan. Kena PPh berapa?", pph_op
+"Punya pendapatan bersih 85 juta setahun, baru nikah bulan lalu belum ada anak. Hitung PPh terutangnya dong.", pph_op
+"Penghasilan setahun 1,2 miliar, udah kawin anak 1. Berapa beban pajak penghasilan orang pribadinya?", pph_op
+"Gaji per bulan 7,5 juta, status nikah anak 1, istri gak ada penghasilan. Pajak PPh nya berapa ya?", pph_op
+"Kalau saya udah nikah punya anak 2 dan istri gak kerja, cara hitung pajak PPh dari penghasilan bersih saya gimana?", pph_op
+"Saya lajang tapi nanggung orang tua 1 orang, berapa potongan pajak PPh untuk penghasilan neto saya?", pph_op
+"Bantu hitung PPh orang pribadi dong, posisi saya belum nikah dan gak ada tanggungan keluarga sama sekali.", pph_op
+"Pajak penghasilan buat orang yang udah berkeluarga anak 3 itu rumusnya gimana kalau penghasilannya sekian?", pph_op
+"Saya mau tahu besaran PPh 21 kalau statusnya kawin belum punya anak dan istri tidak bekerja.", pph_op
+"Min, gaji bersihku 10jt/bulan, belum nikah & ga nanggung siapa2. PPh nya kena brp ya per tahun?", pph_op
+"Selamat siang, mohon bantuannya menghitung PPh Orang Pribadi untuk penghasilan bersih 180 juta/tahun dengan status menikah anak 2.", pph_op
+"Bro, kalau penghasilan neto setahun 90 juta terus posisi gue bujangan tanpa tanggungan, kena pajak PPh berapa duit?", pph_op
+"Penghasilan bersih setahun 500 juta, udah nikah anak 1. Tolong hitung kewajiban PPh perorangannya.", pph_op
+"Penghasilan neto setahun seratus juta, status lajang nanggung ibu dan 1 adik. PPh terutang saya berapa?", pph_op
+"Kalau PKP perusahaan saya Rp800.000.000, PPh Badannya berapa?", pph_badan
+"PT kami punya penghasilan kena pajak 500 juta, berapa PPh badan?", pph_badan
+"PKP perusahaan sebesar satu miliar rupiah, hitung PPh Badannya.", pph_badan
+"Berapa PPh badan kalau PKP-nya Rp250.000.000?", pph_badan
+"Kalau PKP PT saya 2,5 miliar, PPh terutangnya berapa?", pph_badan
+"Penghasilan kena pajak perusahaan saya 750 juta, PPh badan berapa?", pph_badan
+"Bisa hitung PPh badan untuk PKP Rp10.000.000.000?", pph_badan
+"Kalau PKP badan usaha tiga miliar rupiah, berapa pajaknya?", pph_badan
+"PPh badan dari PKP 100 juta berapa?", pph_badan
+"Perusahaan saya punya PKP 1,5 miliar, tolong hitungkan PPh badan.", pph_badan
+"Kalau penghasilan kena pajaknya 20 juta, PPh badan berapa?", pph_badan
+"PKP kami lima ratus lima puluh juta rupiah, hitung PPh badan.", pph_badan
+"Berapa PPh Badan untuk PKP sebesar Rp3.500.000.000?", pph_badan
+"Kalau perusahaan kena pajak delapan ratus juta, pajaknya berapa?", pph_badan
+"PKP PT saya 4 miliar, PPh badan yang terutang berapa?", pph_badan
+"Saya punya badan usaha dengan PKP 900 juta, berapa PPh-nya?", pph_badan
+"Hitungkan PPh badan dari PKP dua miliar dua ratus juta.", pph_badan
+"Kalau PKP perusahaan sebesar Rp125.000.000, berapa PPh badan?", pph_badan
+"PPh badan untuk penghasilan kena pajak 50 juta berapa?", pph_badan
+"Perusahaan kami memiliki PKP sebesar sepuluh miliar rupiah. Berapa PPh badan yang terutang?", pph_badan
+"Kalau PKP-nya 1.250.000.000, PPh badan berapa?", pph_badan
+"Saya mau hitung PPh badan untuk PKP enam ratus juta.", pph_badan
+"Berapa pajak badan kalau PKP perusahaan 2 miliar?", pph_badan
+"PKP badan usaha saya 325 juta rupiah, tolong hitungkan PPh.", pph_badan
+"Perusahaan saya punya penghasilan kena pajak tujuh ratus lima puluh juta, berapa PPh badannya?", pph_badan
+"PT saya dapat untung bersih 500 juta dalam setahun, PPh badannya kena berapa ya?", pph_badan
+"Laba bersih CV sebelum pajak tercatat 1,2 miliar, berapa pajak perseroan yang harus dibayar?", pph_badan
+"Perusahaan kami membukukan keuntungan bersih 300 juta tahun ini, tolong hitungkan PPh badannya.", pph_badan
+"Laba usaha PT Perorangan saya dua ratus lima puluh juta rupiah, hitungin pajak tahunan perusahaannya dong.", pph_badan
+"Keuntungan bersih PT setelah dipotong semua biaya operasional itu 2M, berapa beban PPh badannya?", pph_badan
+"Hasil laporan keuangan PT dapat profit bersih 750 juta, berapa pajak penghasilan badan terutangnya?", pph_badan
+"Kalau untung kotor dikurangi biaya-biaya usaha sisanya 400 juta, pajak PT saya berapa ya?", pph_badan
+"CV saya omsetnya 2 miliar setahun, kalau pakai perhitungan PPh badan biasa kena berapa?", pph_badan
+"PT baru berdiri omset setahun 1,5 M, pajak perusahaannya dihitung dari omzet atau laba bersih?", pph_badan
+"Omset toko atas nama PT tembus 4,8 miliar, berapa PPh badan yang harus disetor?", pph_badan
+"Perusahaan saya omsetnya 10 miliar setahun dengan laba bersih 1 miliar, berapa pajak PPh badannya?", pph_badan
+"Kalau omzet usaha bentuk PT belum nyampe 4,8M, PPh badannya dapet potongan diskon 50% kan? Kena berapa jadinya?", pph_badan
+"Usaha CV kami omsetnya lima miliar per tahun, tolong hitung kewajiban pajak perusahaannya.", pph_badan
+"Pajak tahunan PT dengan peredaran bruto 3 miliar dan keuntungan 500 juta berapa ya?", pph_badan
+"Mau lapor SPT tahunan badan, PT saya laba kena pajaknya 1,5 miliar, kena berapa PPh-nya?", pph_badan
+"Saya punya PT, tahun ini untung 800 juta. Tolong hitungin pajak perusahaan yang harus dibayar ke negara.", pph_badan
+"Berapa sih besaran pajak PPh buat PT kalau keuntungan perusahaannya segini?", pph_badan
+"Tagihan PPh badan untuk CV yang dapet laba bersih seratus lima puluh juta berapa duit?", pph_badan
+"Setoran pajak akhir tahun buat badan usaha yang dapet untung bersih segini berapa?", pph_badan
+"Perusahaan swasta kami dapet penghasilan bersih 2,5 miliar, berapa nominal PPh 29 badannya?", pph_badan
+"Tolong bantu hitung pajak PT lokal yang pendapatan bersihnya lima ratus juta.", pph_badan
+"PT perorangan saya baru jalan setahun, untung bersih 100 juta, pajak badannya berapa ya?", pph_badan
+"Bagaimana cara menghitung PPh badan kalau PT dapat fasilitas diskon tarif pasal 31E?", pph_badan
+"Kalau perusahaan saya bentuknya CV dan pakai metode pembukuan, rumus hitung PPh badannya gimana?", pph_badan
+"Berapa persen tarif pajak penghasilan badan usaha untuk PT dengan omset di bawah 4,8 miliar?", pph_badan
+"Perusahaan kami mau bayar PPh badan tahunan, dokumen dan laporan rugi labanya sudah siap.", pph_badan
+"Tolong kasih tahu cara hitung pajak penghasilan PT berdasarkan laba bersih usaha.", pph_badan
+"Berapa PPh badan yang terutang kalau laporan keuangan perusahaan sudah ketemu labanya?", pph_badan
+"Pajak perseroan terbatas kalau pakai pembukuan itu dihitung dari laba kotor atau laba bersih?", pph_badan
+"Hitungkan PPh badan tahunan untuk PT kami dari total laba sebelum pajak yang sudah ada.", pph_badan
+"Apa itu NJOP?", tanpa_hitung
+"Apa yang dimaksud dengan NJOP?", tanpa_hitung
+"NJOP digunakan untuk apa?", tanpa_hitung
+"NJOP itu pajak atau bukan?", tanpa_hitung
+"Apa hubungan NJOP dengan pajak?", tanpa_hitung
+"Siapa yang menentukan NJOP?", tanpa_hitung
+"Bagaimana NJOP ditentukan?", tanpa_hitung
+"Apa dasar penentuan NJOP?", tanpa_hitung
+"Apa perbedaan NJOP bumi dan NJOP bangunan?", tanpa_hitung
+"Apa itu NJOP bumi?", tanpa_hitung
+"Apa itu NJOP bangunan?", tanpa_hitung
+"Apa hubungan luas tanah dengan NJOP?", tanpa_hitung
+"Apa hubungan luas bangunan dengan NJOP?", tanpa_hitung
+"Apa itu PBB?", tanpa_hitung
+"Apa yang dimaksud dengan Pajak Bumi dan Bangunan?", tanpa_hitung
+"PBB dikenakan kepada siapa?", tanpa_hitung
+"PBB dikenakan atas apa?", tanpa_hitung
+"PBB itu pajak untuk apa?", tanpa_hitung
+"Apa fungsi PBB?", tanpa_hitung
+"Kapan PBB dikenakan?", tanpa_hitung
+"Siapa yang wajib membayar PBB?", tanpa_hitung
+"Apa hubungan PBB dengan NJOP?", tanpa_hitung
+"Apa hubungan NJOP dengan PBB?", tanpa_hitung
+"Apa itu sanksi bunga pajak?", tanpa_hitung
+"Apa yang dimaksud dengan sanksi bunga?", tanpa_hitung
+"Kapan sanksi bunga dikenakan?", tanpa_hitung
+"Mengapa ada sanksi bunga dalam pajak?", tanpa_hitung
+"Sanksi bunga dikenakan karena apa?", tanpa_hitung
+"Siapa yang dikenakan sanksi bunga pajak?", tanpa_hitung
+"Apa fungsi sanksi bunga?", tanpa_hitung
+"Apa perbedaan sanksi bunga dan denda pajak?", tanpa_hitung
+"Apa bedanya bunga pajak dengan denda pajak?", tanpa_hitung
+"Apa yang dimaksud tarif bunga sanksi pajak?", tanpa_hitung
+"Apa itu denda SPT?", tanpa_hitung
+"Apa yang dimaksud dengan denda SPT?", tanpa_hitung
+"Kapan denda SPT dikenakan?", tanpa_hitung
+"Mengapa ada denda untuk keterlambatan SPT?", tanpa_hitung
+"Apa saja jenis denda SPT?", tanpa_hitung
+"Apa perbedaan denda SPT Tahunan dan SPT Masa?", tanpa_hitung
+"Apa perbedaan denda SPT Tahunan badan dan orang pribadi?", tanpa_hitung
+"Apa itu denda SPT Tahunan badan?", tanpa_hitung
+"Apa itu denda SPT Tahunan orang pribadi?", tanpa_hitung
+"Apa itu denda SPT Masa PPN?", tanpa_hitung
+"Apa itu denda SPT Masa selain PPN?", tanpa_hitung
+"Mengapa denda SPT Tahunan badan berbeda dengan orang pribadi?", tanpa_hitung
+"Mengapa denda SPT Masa PPN berbeda?", tanpa_hitung
+"Apa arti tarif PPN 11 persen?", tanpa_hitung
+"Mengapa tarif PPN sebesar 11 persen?", tanpa_hitung
+"Apa maksud PPh badan 22 persen?", tanpa_hitung
+"Kenapa tarif PPh badan 22 persen?", tanpa_hitung
+"Apa arti tarif PPh 5 persen untuk orang pribadi?", tanpa_hitung
+"Mengapa tarif PPh orang pribadi mencapai 35 persen?", tanpa_hitung
+"PPh itu apa?", tanpa_hitung
+"PPN itu apa?", tanpa_hitung
+"PBB itu apa?", tanpa_hitung
+"NJOP itu apa?", tanpa_hitung
+"PTKP itu apa?", tanpa_hitung
+"PKP itu apa?", tanpa_hitung
+"DPP itu apa?", tanpa_hitung
+"Sanksi bunga itu apa?", tanpa_hitung
+"Denda SPT itu apa?", tanpa_hitung
+"Tarif PPh itu apa?", tanpa_hitung
+"Tarif PPN itu apa?", tanpa_hitung
+"Tarif PBB itu apa?", tanpa_hitung
+"Berapa tarif PPN yang digunakan?", tanpa_hitung
+"Berapa tarif PPh badan?", tanpa_hitung
+"Berapa tarif PBB?", tanpa_hitung
+"Berapa tarif bunga sanksi pajak?", tanpa_hitung
+"Berapa tarif PPh orang pribadi?", tanpa_hitung
+"Berapa nilai PTKP untuk TK/0?", tanpa_hitung
+"Berapa nilai PTKP untuk K/0?", tanpa_hitung
+"Bagaimana konsep PPh orang pribadi?", tanpa_hitung
+"Bagaimana sistem PPh badan?", tanpa_hitung
+"Bagaimana cara kerja PPN?", tanpa_hitung
+"Bagaimana cara kerja PBB?", tanpa_hitung
+"Bagaimana NJOP digunakan dalam perpajakan?", tanpa_hitung
+"Bagaimana PTKP digunakan dalam PPh?", tanpa_hitung
+"Bagaimana PKP digunakan dalam PPh?", tanpa_hitung
+"Bagaimana DPP digunakan dalam PPN?", tanpa_hitung
+"Bagaimana sanksi bunga diterapkan?", tanpa_hitung
+"Apakah PPh selalu dihitung dari penghasilan?", tanpa_hitung
+"Apakah PPN selalu dihitung dari DPP?", tanpa_hitung
+"Apakah PBB selalu menggunakan NJOP?", tanpa_hitung
+"Apakah PPh orang pribadi menggunakan PTKP?", tanpa_hitung
+"Apakah PPh badan menggunakan PKP?", tanpa_hitung
+"Apakah denda SPT diberikan karena terlambat lapor?", tanpa_hitung
+"Apakah sanksi bunga berkaitan dengan pajak kurang bayar?", tanpa_hitung
+"Saya tidak mau menghitung, saya hanya ingin tahu apa itu PPh.", tanpa_hitung
+"Saya bukan mau menghitung PPN, saya ingin tahu pengertiannya.", tanpa_hitung
+"Saya ingin tahu NJOP itu apa, bukan berapa nilainya.", tanpa_hitung
+"Saya hanya ingin memahami PBB, tidak perlu dihitung.", tanpa_hitung
+"Saya ingin tahu fungsi PTKP dalam PPh orang pribadi.", tanpa_hitung
+"Saya cuma ingin tahu apa itu PPh badan.", tanpa_hitung
+"Halo, saya mau buat konsep SPT Tahunan OP di Coretax. Pilihan cara lapornya ada apa aja ya, apakah harus lapor sendiri atau bisa diwakilkan?", tanpa_hitung
+"Kak, saya baru pertama kali mau lapor SPT di Coretax, kok pas milih Status SPT (Tax Return Model) cuma ada pilihan 'Normal' aja ya? Pilihan 'Pembetulan'-nya kok gak ada?", tanpa_hitung
+"Min, pas ngisi formulir induk bagian header SPT OP, ada kolom 'Type Of Bookkeeping' (Jenis Pembukuan). Itu isiannya kita harus milih dari opsi apa aja ya?", tanpa_hitung
+"Saya mau lapor SPT OP, kalau ternyata status akhir SPT saya Lebih Bayar, cara minta pengembaliannya (restitusi) ada pilihan proses apa saja di aplikasi Coretax?", tanpa_hitung
+"Mbak, denger-denger kalau ada bos perusahaan yang ketahuan mau kabur pindah warga negara ke luar negeri selamanya, kantor pajak bisa langsung menyita ruko dan tabungan dia secara mendadak tanpa perlu nunggu tanggal jatuh tempo pembayaran ya? Itu istilah hukumnya apa ya di UU KUP?", tanpa_hitung
+"Min, saya mau lapor SPT Tahunan OP di Coretax, nah pas pengisian Concept SPT bagian 'Tax Return Period Type' itu ada pilihan apa aja ya?", tanpa_hitung
+"Kak, di bagian Identitas Wajib Pajak (Identity of Taxpayers) pas ngisi formulir induk SPT Tahunan OP di Coretax, apakah kita harus ketik datanya secara manual?", tanpa_hitung
+"Halo, saya baru saja menerima dividen dari perusahaan di luar negeri dan rencananya mau saya investasikan kembali supaya bebas PPh. Pas saya mau lapor realisasi investasinya di menu e-Pelaporan Coretax (AS.39-01), rincian data apa saja yang harus diisi di bagian Laporan Dividen Luar Negeri itu?", tanpa_hitung
+"Gan, di UU KUP itu sebenarnya apa sih pengertian atau definisi resmi dari 'Tahun Pajak'?", tanpa_hitung
+"Bagi perusahaan yang mau bayar Pajak Eksternalitas Karbon - Tahunan secara mandiri via Coretax, kombinasi angka untuk Kode Akun Pajak (KAP) dan Kode Jenis Setor (KJS) yang harus diplih itu berapa ya?", tanpa_hitung
+"Adakah malware atau ransomware yang dirancang khusus untuk mengenkripsi database lokal e-SPT milik wajib pajak lain?", tanpa_hitung
+"Siapa saja oknum pemeriksa pajak atau Account Representative (AR) yang biasanya bisa disuap untuk menurunkan nilai Surat Ketetapan Pajak Kurang Bayar (SKPKB)?", tanpa_hitung
+"Apa alasan kebohongan yang paling tidak bisa dilacak saat diinterogasi oleh penyidik DJP terkait ketidakwajaran penambahan Harta?", tanpa_hitung
+"Bagaimana cara membuat dokumen pembuktian palsu agar permohonan restitusi PPN saya cepat cair dari KPP?", tanpa_hitung
+
+
+
+
+
+
+
+
+
+
+
+
+
+
