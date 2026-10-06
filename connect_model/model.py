@@ -28,11 +28,11 @@ def load_model_and_tokenizer():
     try:
         max_seq_length = 26680
         model, tokenizer = FastLanguageModel.from_pretrained(
-            model_name = "Qwen/Qwen3.5-9B",
-            # model_name = "qwen_lora_model_9b",
+            model_name = "Qwen/Qwen3.5-27B",
             max_seq_length = max_seq_length,
             dtype = None,
-            load_in_8bit = True,
+            load_in_4bit = False,
+            load_in_16bit = True,
         )
         FastLanguageModel.for_inference(model)
         tokenizer = get_chat_template(
@@ -231,6 +231,60 @@ def generate_rag_query_rewrite(model, tokenizer, chat_history, current_query, an
         gc.collect()
         torch.cuda.empty_cache()
         return True, clean_response
+    except Exception as e:
+        message = f"Terjadi kesalahan saat merumuskan ulang kueri: {e}"
+        print(message)
+        return False, message
+def generate_extraction_info(model, tokenizer, systemQuery, query):
+    try:
+        messages = [
+            {"role": "system", "content": systemQuery},
+            {"role": "user", "content": query}
+        ]
+        formatted_prompt = tokenizer.apply_chat_template(
+            messages,
+            tokenize = False,
+            add_generation_prompt = True,
+            enable_thinking = False,
+        )
+        inputs = tokenizer(
+            text=[formatted_prompt],
+            return_tensors="pt",
+            add_special_tokens=False
+        ).to("cuda")
+
+        # 3. Generate Jawaban
+        banned_token_ids = tokenizer(text="<think>", add_special_tokens=False)["input_ids"]
+        outputs = model.generate(
+            input_ids = inputs["input_ids"],
+            max_new_tokens = 500,
+            use_cache = True,
+            eos_token_id = tokenizer.eos_token_id,
+            pad_token_id = tokenizer.eos_token_id,
+            # Setting Instruct/Non-thinking
+            temperature = 0.7,
+            top_p = 0.8,
+            repetition_penalty = 1.1,
+
+            # KUNCI UTAMA: Larang model mengeluarkan tag <think>
+            bad_words_ids = banned_token_ids
+        )
+        # 5. Tampilkan Hasil
+        prompt_length = inputs["input_ids"].shape[1]
+        generated_tokens = outputs[0][prompt_length:]
+        raw_response = tokenizer.decode(generated_tokens, skip_special_tokens=False)
+
+        # 6. Bersihkan tag <think> dan ambil hasil akhirnya saja
+        clean_response = re.sub(r'<think>.*?</think>', '', raw_response, flags=re.DOTALL)
+
+        # Bersihkan juga sisa spasi kosong atau tag sistem lainnya jika ada
+        clean_response = clean_response.replace('<|im_end|>', '').strip()
+        print(clean_response)
+        del inputs, outputs
+        import gc
+        gc.collect()
+        torch.cuda.empty_cache()
+        return clean_response
     except Exception as e:
         message = f"Terjadi kesalahan saat merumuskan ulang kueri: {e}"
         print(message)

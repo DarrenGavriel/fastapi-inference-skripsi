@@ -43,6 +43,12 @@ def process_query(query: queryRequest):
         return {"status": False, "message": resultRag[0]}
     return {"status": True, "message": resultRag[0]}
 
+@app.post("/route")
+def process_route(query: queryRequest):
+    resultRoute = hybrid_rag.route(query.query)
+    if resultRoute[1] == False:
+        return {"status": False, "message": resultRoute[0]}
+    return {"status": True, "message": resultRoute[0]}
 
 if __name__ == "__main__":
     nest_asyncio.apply()

@@ -6,6 +6,7 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 from contextlib import asynccontextmanager
 import connect_model.model as model_module
+from calc.extractor import extract
 import uvicorn
 import nest_asyncio
 
@@ -36,6 +37,10 @@ class answerRequest(BaseModel):
     query: str
     RAG: str
 
+class extractionRequest(BaseModel):
+    query: str
+    flag: str
+
 @app.get("/")
 def read_root():
     return {"Hello": "World"}
@@ -63,6 +68,25 @@ def process_answer(query: answerRequest):
     if answer_query[0] == False:
         return {"status": False, "message": answer_query[1]}
     return {"status": True, "message": answer_query[1]}
+
+@app.post("/extraction")
+def process_extraction(query: extractionRequest):
+    if not model[0]:
+        return {"status": False, "message": "Gagal memuat model dan tokenizer."}
+    if query.query.strip() == "":
+        return {"status": False, "message": "Query tidak boleh kosong."}
+    if query.flag.strip() == "":
+        return {"status": False, "message": "Flag tidak boleh kosong."}
+    def generate(system_prompt, user_text):
+        return model_module.generate_extraction_info(
+            model[1],
+            model[2],
+            system_prompt,
+            user_text,
+        )
+
+    extraction_info = extract(query.flag, query.query, generate)
+    return {"status": True, "message": extraction_info}
 
 if __name__ == "__main__":
     nest_asyncio.apply()
