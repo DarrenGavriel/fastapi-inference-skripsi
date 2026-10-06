@@ -40,7 +40,7 @@ from sklearn.model_selection import GridSearchCV, StratifiedKFold, train_test_sp
 MODEL_NAME = "BAAI/bge-m3"
 TEXT_COL = "contoh"
 LABEL_COL = "flag"
-FALLBACK_LABEL = "tidak_butuh_hitungan"  # dipakai kalau confidence di bawah threshold
+FALLBACK_LABEL = "tanpa_hitung"  # dipakai kalau confidence di bawah threshold
 THRESHOLD = 0.6
 MAX_SEQ_LEN = 128
 SEED = 42
@@ -290,7 +290,7 @@ def main():
     p_train.set_defaults(func=train)
 
     p_pred = sub.add_parser("predict", help="coba prediksi satu atau beberapa kalimat")
-    p_pred.add_argument("--model", default="router_out/router.joblib")
+    p_pred.add_argument("--model", default="../router_out/router.joblib")
     p_pred.add_argument("--threshold", type=float, default=None)
     p_pred.add_argument("texts", nargs="+")
     p_pred.set_defaults(func=predict)
