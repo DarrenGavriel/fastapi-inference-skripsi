@@ -276,6 +276,7 @@ Fokus Menanyakan Nominal Akhir (Tanpa Nyebut Kata 'Hitung'):
 "Saya berpenghasilan bersih 600 juta setahun, status K/3. Berapa PPh OP?", pph_op
 "Kalau net income saya 90 juta setahun dan status TK/1, hitung pajak orang pribadi.", pph_op
 "Penghasilan neto setahun saya dua juta rupiah, status TK/0. Berapa PPh?", pph_op
+"tolong hitungkan pph saya dengan pemasukan 5 juta per bulan", pph_op
 "Saya punya penghasilan neto Rp5.500.000.000 per tahun dan status TK/0, berapa PPh orang pribadi saya?", pph_op
 "Gaji bersih saya 8 juta sebulan, status masih lajang dan belum ada tanggungan keluarga. PPh 21 saya berapa ya?", pph_op
 "Saya belum menikah dan tinggal sendiri tanpa nanggung orang tua, penghasilan sebulan 15 juta. Hitungin pajak penghasilannya dong.", pph_op
