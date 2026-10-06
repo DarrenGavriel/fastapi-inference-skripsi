@@ -1,6 +1,7 @@
 import json
 import re
 from typing import List, Dict, Any, Tuple, Optional
+from router.train_router import Router
 
 # =====================================================================
 # 1. Import Class & Helper
@@ -254,6 +255,10 @@ def main(question: str = None):
     status = True
     if question:
         query = question.strip()
+        router = Router("../router_out/router.joblib")
+        label, conf = router.route(query)
+        if label != "tanpa_hitung":
+            return label, status
         # ---------------------------------
         # BM25 SEARCH
         # ---------------------------------
