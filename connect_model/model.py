@@ -28,7 +28,8 @@ def load_model_and_tokenizer():
     try:
         max_seq_length = 26680
         model, tokenizer = FastLanguageModel.from_pretrained(
-            model_name = "Qwen/Qwen3.5-27B",
+            # model_name = "Qwen/Qwen3.5-27B",
+            model_name = "Qwen/Qwen3.5-9B",
             max_seq_length = max_seq_length,
             dtype = None,
             load_in_4bit = False,
@@ -288,4 +289,4 @@ def generate_extraction_info(model, tokenizer, systemQuery, query):
     except Exception as e:
         message = f"Terjadi kesalahan saat merumuskan ulang kueri: {e}"
         print(message)
-        return False, message
+        return {}
