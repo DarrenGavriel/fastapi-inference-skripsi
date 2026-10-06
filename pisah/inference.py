@@ -1,5 +1,6 @@
 # ini digunakan buat memanggil 2 API sekaligus, satu untuk rewrite query dan satu untuk answer query. Jadi bisa dipanggil dari 1 endpoint aja.
 import requests
+from calc.hitung import hitung_sanksi_bunga, hitung_denda_spt, hitung_ppn, hitung_njop, hitung_pbb, hitung_pph_orang_pribadi, hitung_pph_badan
 
 url_rag = "candle-spokesman-nimble.ngrok-free.dev"
 url_model = "plating-ambition-mammal.ngrok-free.dev"
@@ -20,38 +21,20 @@ while True:
     # Mengirim permintaan POST ke endpoint rewrite
     if turn == 1:
         data_rag = {"query": query}
-        response_rag = requests.post(f"http://{url_rag}/query", json=data_rag, headers=headers)
-        result_rag = response_rag.message
-        if response_rag.status == True:
-            print(f"RAG Result: {result_rag}\n")
-            data_answer = {"query": query, "RAG": result_rag}
-            response_answer = requests.post(f"http://{url_model}/answer", json=data_answer, headers=headers)
-            result_answer = response_answer.message
-            if response_answer.status == True:
-                query_history.append(query)
-                answer_history.append(result_answer)
-                turn += 1
-                print(f"Answer Result: {result_answer}\n")
-            else:
-                print(f"Answer Error: {result_answer}\n")
+        response_route = requests.post(f"http://{url_rag}/route", json=data_rag, headers=headers)
+        result_route = response_route.message
+        if result_route != "tanpa_hitung":
+            print(f"Route Result: {result_route}\n")
         else:
-            print(f"RAG Error: {result_rag}\n")
-    else:
-        data_rewrite = {"query": query, "history_query": query_history, "history_answer": answer_history}
-        response_rewrite = requests.post(f"http://{url_model}/rewrite", json=data_rewrite, headers=headers)
-        result_rewrite = response_rewrite.message
-        if response_rewrite.status == True:
-            print(f"Rewrite Result: {result_rewrite}\n")
-            data_rag = {"query": result_rewrite}
             response_rag = requests.post(f"http://{url_rag}/query", json=data_rag, headers=headers)
             result_rag = response_rag.message
             if response_rag.status == True:
                 print(f"RAG Result: {result_rag}\n")
-                data_answer = {"query": result_rewrite, "RAG": result_rag}
+                data_answer = {"query": query, "RAG": result_rag}
                 response_answer = requests.post(f"http://{url_model}/answer", json=data_answer, headers=headers)
+                result_answer = response_answer.message
                 if response_answer.status == True:
-                    result_answer = response_answer.message
-                    query_history.append(result_rewrite)
+                    query_history.append(query)
                     answer_history.append(result_answer)
                     turn += 1
                     print(f"Answer Result: {result_answer}\n")
@@ -59,3 +42,31 @@ while True:
                     print(f"Answer Error: {result_answer}\n")
             else:
                 print(f"RAG Error: {result_rag}\n")
+    else:
+        data_rewrite = {"query": query, "history_query": query_history, "history_answer": answer_history}
+        response_rewrite = requests.post(f"http://{url_model}/rewrite", json=data_rewrite, headers=headers)
+        result_rewrite = response_rewrite.message
+        if response_rewrite.status == True:
+            print(f"Rewrite Result: {result_rewrite}\n")
+            data_rag = {"query": result_rewrite}
+            response_route = requests.post(f"http://{url_rag}/route", json=data_rag, headers=headers)
+            result_route = response_route.message
+            if result_route != "tanpa_hitung":
+                print(f"Route Result: {result_route}\n")
+            else:
+                response_rag = requests.post(f"http://{url_rag}/query", json=data_rag, headers=headers)
+                result_rag = response_rag.message
+                if response_rag.status == True:
+                    print(f"RAG Result: {result_rag}\n")
+                    data_answer = {"query": result_rewrite, "RAG": result_rag}
+                    response_answer = requests.post(f"http://{url_model}/answer", json=data_answer, headers=headers)
+                    if response_answer.status == True:
+                        result_answer = response_answer.message
+                        query_history.append(result_rewrite)
+                        answer_history.append(result_answer)
+                        turn += 1
+                        print(f"Answer Result: {result_answer}\n")
+                    else:
+                        print(f"Answer Error: {result_answer}\n")
+                else:
+                    print(f"RAG Error: {result_rag}\n")
