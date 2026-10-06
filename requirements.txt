@@ -9,3 +9,7 @@ ngrok
 fastapi[standard]
 nest-asyncio
 uvicorn
+scikit-learn 
+pandas 
+joblib 
+matplotlib

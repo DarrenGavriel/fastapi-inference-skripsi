@@ -31,7 +31,6 @@ app = FastAPI(lifespan=lifespan)
 
 class queryRequest(BaseModel):
     query: str
-    turn: int
 
 @app.get("/")
 def read_root():
