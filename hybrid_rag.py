@@ -14,6 +14,10 @@ from create_chromadb.semantic_search import (
     calculate_similarity
 )
 
+# Muat model routing sekali saat modul di-import.
+# Encoder dan classifier tidak akan dibuat ulang setiap query.
+router_model = Router("router_out/router.joblib")
+
 # ==================================================
 # 2. KONFIGURASI REGEX (IGNORE CASE)
 # ==================================================
@@ -255,10 +259,6 @@ def main(question: str = None):
     status = True
     if question:
         query = question.strip()
-        router = Router("../router_out/router.joblib")
-        label, conf = router.route(query)
-        if label != "tanpa_hitung":
-            return label, status
         # ---------------------------------
         # BM25 SEARCH
         # ---------------------------------
@@ -388,6 +388,11 @@ def main(question: str = None):
             except Exception as e:
                 print(f"\n❌ Terjadi kesalahan: {e}")
                 continue
-
+def router(question: str):
+    question = question.strip()
+    if not question:
+        return "Pertanyaan kosong. Silakan masukkan pertanyaan yang valid.", False
+    label, conf = router_model.route(question)
+    return label, conf
 if __name__ == "__main__":
     main(question=None)
