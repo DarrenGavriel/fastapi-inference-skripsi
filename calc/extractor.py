@@ -322,6 +322,16 @@ def build_questions(missing, clean):
 # ----------------------------------------------------------------------------
 def parse_llm_json(text):
     text = re.sub(r"```(?:json)?", "", text)
+    stripped = text.strip()
+    try:
+        obj = json.loads(stripped)
+        if isinstance(obj, str):
+            obj = json.loads(obj)
+        if isinstance(obj, dict):
+            return obj
+    except json.JSONDecodeError:
+        pass
+
     start, end = text.find("{"), text.rfind("}")
     if start == -1 or end <= start:
         return None
@@ -329,6 +339,11 @@ def parse_llm_json(text):
         obj = json.loads(text[start:end + 1])
     except json.JSONDecodeError:
         return None
+    if isinstance(obj, str):
+        try:
+            obj = json.loads(obj)
+        except json.JSONDecodeError:
+            return None
     return obj if isinstance(obj, dict) else None
 
 
