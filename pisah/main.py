@@ -3,6 +3,7 @@ import ngrok
 from fastapi import FastAPI
 from pydantic import BaseModel
 from contextlib import asynccontextmanager
+from router.train_router import Router
 import hybrid_rag
 import uvicorn
 import nest_asyncio
@@ -32,6 +33,8 @@ app = FastAPI(lifespan=lifespan)
 class queryRequest(BaseModel):
     query: str
 
+router = Router("router_out/router.joblib")
+
 @app.get("/")
 def read_root():
     return {"Hello": "World"}
@@ -45,10 +48,10 @@ def process_query(query: queryRequest):
 
 @app.post("/route")
 def process_route(query: queryRequest):
-    resultRoute = hybrid_rag.route(query.query)
+    label, conf = router.route(query.query)
     if resultRoute[1] == False:
-        return {"status": False, "message": resultRoute[0]}
-    return {"status": True, "message": resultRoute[0]}
+        return {"status": False, "message": label}
+    return {"status": True, "message": label}
 
 if __name__ == "__main__":
     nest_asyncio.apply()

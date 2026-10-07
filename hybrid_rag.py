@@ -1,7 +1,6 @@
 import json
 import re
 from typing import List, Dict, Any, Tuple, Optional
-from router.train_router import Router
 
 # =====================================================================
 # 1. Import Class & Helper
@@ -14,9 +13,6 @@ from create_chromadb.semantic_search import (
     calculate_similarity
 )
 
-# Muat model routing sekali saat modul di-import.
-# Encoder dan classifier tidak akan dibuat ulang setiap query.
-router_model = Router("router_out/router.joblib")
 
 # ==================================================
 # 2. KONFIGURASI REGEX (IGNORE CASE)
@@ -388,11 +384,5 @@ def main(question: str = None):
             except Exception as e:
                 print(f"\n❌ Terjadi kesalahan: {e}")
                 continue
-def router(question: str):
-    question = question.strip()
-    if not question:
-        return "Pertanyaan kosong. Silakan masukkan pertanyaan yang valid.", False
-    label, conf = router_model.route(question)
-    return label, conf
 if __name__ == "__main__":
     main(question=None)
