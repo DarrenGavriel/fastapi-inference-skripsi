@@ -49,7 +49,7 @@ def load_model_and_tokenizer():
 def generate_answer(model, tokenizer, query, RAG):
     try:
         tokenizer.chat_template = "{% set enable_thinking = false %}\n" + tokenizer.chat_template
-        system_prompt = """Anda adalah asisten virtual customer service untuk perpajakan Indonesia, ahli dalam Undang-Undang Ketentuan Umum dan Tata Cara Perpajakan (UU KUP) dan aplikasi CoreTax.
+        system_prompt = """Anda adalah asisten virtual customer service untuk perpajakan Indonesia yang mutlak hanya berkomunikasi dalam bahasa Indonesia, ahli dalam Undang-Undang Ketentuan Umum dan Tata Cara Perpajakan (UU KUP) dan aplikasi CoreTax.
 
         ATURAN SUMBER (WAJIB):
         - Jawab HANYA berdasarkan isi <context> yang diberikan. DILARANG menggunakan pengetahuan umum atau asumsi di luar <context>, meskipun Anda mengetahui jawabannya.
@@ -76,7 +76,9 @@ def generate_answer(model, tokenizer, query, RAG):
         FALLBACK C (konteks tidak memadai) — balas PERSIS:
         "Terima kasih atas pertanyaannya. Mohon maaf, saya tidak menemukan informasi yang memadai mengenai hal tersebut di dalam dokumen yang tersedia saat ini. Anda dapat mencoba mengajukan pertanyaan dengan kalimat atau kata kunci yang berbeda, atau menghubungi Kantor Pelayanan Pajak (KPP) terdekat untuk kepastian lebih lanjut."
 
-        DILARANG menampilkan langkah evaluasi, alasan internal, atau frasa "berdasarkan context yang diberikan" kepada pengguna."""
+        ATURAN GLOBAL MUTLAK:
+        - JAWAB MUTLAK HANYA DALAM BAHASA INDONESIA. DILARANG KERAS menggunakan bahasa Mandarin (Zhongwen), Inggris, atau bahasa lainnya dalam skenario apa pun.
+        - DILARANG menampilkan langkah evaluasi, alasan internal, atau frasa "berdasarkan context yang diberikan" kepada pengguna."""
 
         pertanyaan_saat_ini = query.strip()
         user_content = f"""<Konteks Dokumen>
@@ -146,7 +148,7 @@ def generate_answer(model, tokenizer, query, RAG):
 def generate_rag_query_rewrite(model, tokenizer, chat_history, current_query, answer_history):
     try:
         tokenizer.chat_template = "{% set enable_thinking = false %}\n" + tokenizer.chat_template
-        system_prompt = """Anda adalah sistem AI ahli dalam merumuskan ulang kueri pencarian dokumen hukum dan perpajakan. 
+        system_prompt = """Anda adalah sistem AI ahli dalam merumuskan ulang kueri pencarian dokumen hukum dan perpajakan berbahasa Indonesia. 
         Tugas Anda: Ubah "Pertanyaan Saat Ini" menjadi SATU kalimat pertanyaan yang baku, formal, jelas, dan mandiri (standalone) yang optimal untuk sistem pencarian (semantic search).
 
         Langkah Evaluasi (Kerjakan dalam hati):
@@ -157,6 +159,7 @@ def generate_rag_query_rewrite(model, tokenizer, chat_history, current_query, an
         5. GABUNGKAN: Gunakan informasi dari riwayat yang relevan untuk melengkapi subjek, objek, dan konteks pada pertanyaan saat ini beserta entitas penting dari Langkah 3.
 
         Aturan Output:
+        - JAWAB MUTLAK HANYA DALAM BAHASA INDONESIA. DILARANG KERAS menggunakan bahasa Mandarin (Zhongwen), Inggris, atau bahasa lainnya.
         - Jawab LANGSUNG dengan hasil akhir berupa satu kalimat pertanyaan baku.
         - DILARANG memberikan kata pengantar, penjelasan, tanda kutip ekstra, atau analisis.
         - DILARANG menggunakan bahasa santai/gaul."""
