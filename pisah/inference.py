@@ -21,17 +21,21 @@ while True:
     # Mengirim permintaan POST ke endpoint rewrite
     if turn == 1:
         data_rag = {"query": query}
-        response_route = requests.post(f"http://{url_rag}/route", json=data_rag, headers=headers)
-        result_route = response_route.message
+        response_route = requests.post(f"https://{url_rag}/route", json=data_rag, headers=headers)
+        response_route.raise_for_status()
+        body_route = response_route.json()
+        if body_route.get("status") == True:
+            result_route = body_route.get("message")
+        else:
+            print(f"Route Error: {body_route.get('message')}\n")
+            continue
         if result_route != "tanpa_hitung":
             print(f"Route Result: {result_route}\n")
             data_extract = {"query": query, "flag": result_route}
-            response_extract = requests.post(f"http://{url_model}/extract", json=data_extract, headers=headers)
+            response_extract = requests.post(f"https://{url_model}/extraction", json=data_extract, headers=headers)
             response_extract.raise_for_status()
             body_extract = response_extract.json()
             if body_extract["status"] == True:
-                result_extract = response_extract.message
-                print(f"Extract Result: {result_extract}\n")
                 extraction_info = body_extract["message"]
                 if extraction_info["ok"] == True:
                     print(f"Extract Result: {extraction_info['kwargs']}\n")
@@ -45,17 +49,20 @@ while True:
                     query_history.append(query)
                     answer_history.append(message)
                     turn += 1
-                    print(f"Extract Error: {extraction_info['message']}\n")
                     continue
             continue
-        response_rag = requests.post(f"http://{url_rag}/query", json=data_rag, headers=headers)
-        result_rag = response_rag.message
-        if response_rag.status == True:
+        response_rag = requests.post(f"https://{url_rag}/query", json=data_rag, headers=headers)
+        response_rag.raise_for_status()
+        body_rag = response_rag.json()
+        result_rag = body_rag["message"]
+        if body_rag["status"] == True:
             print(f"RAG Result: {result_rag}\n")
             data_answer = {"query": query, "RAG": result_rag}
-            response_answer = requests.post(f"http://{url_model}/answer", json=data_answer, headers=headers)
-            result_answer = response_answer.message
-            if response_answer.status == True:
+            response_answer = requests.post(f"https://{url_model}/answer", json=data_answer, headers=headers)
+            response_answer.raise_for_status()
+            body_answer = response_answer.json()
+            result_answer = body_answer["message"]
+            if body_answer["status"] == True:
                 query_history.append(query)
                 answer_history.append(result_answer)
                 turn += 1
@@ -66,24 +73,29 @@ while True:
             print(f"RAG Error: {result_rag}\n")
     else:
         data_rewrite = {"query": query, "history_query": query_history, "history_answer": answer_history}
-        response_rewrite = requests.post(f"http://{url_model}/rewrite", json=data_rewrite, headers=headers)
-        result_rewrite = response_rewrite.message
-        if response_rewrite.status == True:
+        response_rewrite = requests.post(f"https://{url_model}/rewrite", json=data_rewrite, headers=headers)
+        response_rewrite.raise_for_status()
+        body_rewrite = response_rewrite.json()
+        if body_rewrite.get("status") is True:
+            result_rewrite = body_rewrite.get("message")
             print(f"Rewrite Result: {result_rewrite}\n")
             data_rag = {"query": result_rewrite}
-            response_route = requests.post(f"http://{url_rag}/route", json=data_rag, headers=headers)
-            result_route = response_route.message
+            response_route = requests.post(f"https://{url_rag}/route", json=data_rag, headers=headers)
+            response_route.raise_for_status()
+            body_route = response_route.json()
+            if body_route.get("status") is not True:
+                print(f"Route Error: {body_route.get('message')}\n")
+                continue
+            result_route = body_route.get("message")
             if result_route != "tanpa_hitung":
                 print(f"Route Result: {result_route}\n")
                 data_extract = {"query": query, "flag": result_route}
-                response_extract = requests.post(f"http://{url_model}/extract", json=data_extract, headers=headers)
+                response_extract = requests.post(f"https://{url_model}/extraction", json=data_extract, headers=headers)
                 response_extract.raise_for_status()
                 body_extract = response_extract.json()
-                if body_extract["status"] == True:
-                    result_extract = response_extract.message
-                    print(f"Extract Result: {result_extract}\n")
+                if body_extract.get("status") is True:
                     extraction_info = body_extract["message"]
-                    if extraction_info["ok"] == True:
+                    if extraction_info.get("ok") is True:
                         print(f"Extract Result: {extraction_info['kwargs']}\n")
                     else:
                         questions = extraction_info.get("questions", [])
@@ -95,18 +107,23 @@ while True:
                         query_history.append(query)
                         answer_history.append(message)
                         turn += 1
-                        print(f"Extract Error: {extraction_info['message']}\n")
                         continue
+                else:
+                    print(f"Extract Error: {body_extract.get('message')}\n")
                 continue
             else:
-                response_rag = requests.post(f"http://{url_rag}/query", json=data_rag, headers=headers)
-                result_rag = response_rag.message
-                if response_rag.status == True:
+                response_rag = requests.post(f"https://{url_rag}/query", json=data_rag, headers=headers)
+                response_rag.raise_for_status()
+                body_rag = response_rag.json()
+                result_rag = body_rag.get("message")
+                if body_rag.get("status") is True:
                     print(f"RAG Result: {result_rag}\n")
                     data_answer = {"query": result_rewrite, "RAG": result_rag}
-                    response_answer = requests.post(f"http://{url_model}/answer", json=data_answer, headers=headers)
-                    if response_answer.status == True:
-                        result_answer = response_answer.message
+                    response_answer = requests.post(f"https://{url_model}/answer", json=data_answer, headers=headers)
+                    response_answer.raise_for_status()
+                    body_answer = response_answer.json()
+                    result_answer = body_answer.get("message")
+                    if body_answer.get("status") is True:
                         query_history.append(result_rewrite)
                         answer_history.append(result_answer)
                         turn += 1
@@ -115,3 +132,5 @@ while True:
                         print(f"Answer Error: {result_answer}\n")
                 else:
                     print(f"RAG Error: {result_rag}\n")
+        else:
+            print(f"Rewrite Error: {body_rewrite.get('message')}\n")
