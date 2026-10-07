@@ -49,8 +49,6 @@ def process_query(query: queryRequest):
 @app.post("/route")
 def process_route(query: queryRequest):
     label, conf = router.route(query.query)
-    if resultRoute[1] == False:
-        return {"status": False, "message": label}
     return {"status": True, "message": label}
 
 if __name__ == "__main__":
