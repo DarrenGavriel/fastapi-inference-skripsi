@@ -49,11 +49,11 @@ SEED = 42
 # ----------------------------------------------------------------------------
 # Encoder
 # ----------------------------------------------------------------------------
-def load_encoder():
+def load_encoder(device="cpu"):
     import torch
     from sentence_transformers import SentenceTransformer
 
-    device = "cuda" if torch.cuda.is_available() else "cpu"
+    # device = "cuda" if torch.cuda.is_available() else "cpu"
     model = SentenceTransformer(MODEL_NAME, device=device)
     model.max_seq_length = MAX_SEQ_LEN
     if device == "cuda":
