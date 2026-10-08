@@ -68,6 +68,7 @@ while True:
                         result_route, extraction_info["kwargs"]
                     )
                     data_answer_calc = {"query": query, "flag": result_route, "ekstraksi": extraction_info, "nilai": calculation_result}
+                    print(f"Calculation Result: {data_answer_calc}\n")
                     response_answer_calc = requests.post(f"https://{url_model}/generate/calculation", json=data_answer_calc, headers=headers)
                     response_answer_calc.raise_for_status()
                     body_answer_calc = response_answer_calc.json()
