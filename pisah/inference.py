@@ -2,6 +2,7 @@
 import requests
 from calc.hitung import hitung_sanksi_bunga, hitung_denda_spt, hitung_ppn, hitung_njop, hitung_pbb, hitung_pph_orang_pribadi, hitung_pph_badan
 
+
 url_rag = "candle-spokesman-nimble.ngrok-free.dev"
 url_model = "plating-ambition-mammal.ngrok-free.dev"
 turn = 1
@@ -10,6 +11,30 @@ query_history = []
 answer_history = []
 
 headers = {"Content-Type": "application/json"}
+
+# Hubungkan flag dari router dengan fungsi hitung dan gunakan kwargs hasil
+# extractor secara langsung. Nilai kwargs untuk pph_op sudah disesuaikan oleh
+# calc.extractor.to_function_kwargs.
+CALCULATION_MAPPING = {
+    "sanksi_bunga": hitung_sanksi_bunga,
+    "denda_spt": hitung_denda_spt,
+    "ppn": hitung_ppn,
+    "NJOP": hitung_njop,
+    "PBB": hitung_pbb,
+    "pph_op": hitung_pph_orang_pribadi,
+    "pph_badan": hitung_pph_badan,
+}
+
+
+def calculate_from_extraction(flag, kwargs):
+    calculator = CALCULATION_MAPPING.get(flag)
+    if calculator is None:
+        raise ValueError(f"Flag perhitungan tidak didukung: {flag}")
+    if not isinstance(kwargs, dict):
+        raise ValueError(f"Kwargs extractor tidak valid untuk flag: {flag}")
+    return calculator(**kwargs)
+
+
 print("=== Program POST Berjalan ===")
 print("Ketik 'keluar' pada judul untuk menghentikan program.\n")
 
@@ -39,6 +64,21 @@ while True:
                 extraction_info = body_extract["message"]
                 if extraction_info["ok"] == True:
                     print(f"Extract Result: {extraction_info['kwargs']}\n")
+                    calculation_result = calculate_from_extraction(
+                        result_route, extraction_info["kwargs"]
+                    )
+                    data_answer_calc = {"query": query, "flag": result_route, "ekstraksi": extraction_info, "nilai": calculation_result}
+                    response_answer_calc = requests.post(f"https://{url_model}/generate/calculation", json=data_answer_calc, headers=headers)
+                    response_answer_calc.raise_for_status()
+                    body_answer_calc = response_answer_calc.json()
+                    if body_answer_calc["status"] == True:
+                        result_answer_calc = body_answer_calc["message"]
+                        query_history.append(query)
+                        answer_history.append(result_answer_calc)
+                        turn += 1
+                        print(f"Calculation Result: {result_answer_calc}\n")
+                    else:
+                        print(f"Calculation Error: {body_answer_calc['message']}\n")
                 else:
                     questions = extraction_info.get("questions", [])
                     message = "data belum lengkap. Mohon jawab:"
@@ -58,7 +98,7 @@ while True:
         if body_rag["status"] == True:
             print(f"RAG Result: {result_rag}\n")
             data_answer = {"query": query, "RAG": result_rag}
-            response_answer = requests.post(f"https://{url_model}/answer", json=data_answer, headers=headers)
+            response_answer = requests.post(f"https://{url_model}/generate/answer", json=data_answer, headers=headers)
             response_answer.raise_for_status()
             body_answer = response_answer.json()
             result_answer = body_answer["message"]
@@ -97,6 +137,22 @@ while True:
                     extraction_info = body_extract["message"]
                     if extraction_info.get("ok") is True:
                         print(f"Extract Result: {extraction_info['kwargs']}\n")
+                        calculation_result = calculate_from_extraction(
+                            result_route, extraction_info["kwargs"]
+                        )
+                        print(f"Calculation Result: {calculation_result}\n")
+                        data_answer_calc = {"query": result_rewrite, "flag": result_route, "ekstraksi": extraction_info, "nilai": calculation_result}
+                        response_answer_calc = requests.post(f"https://{url_model}/generate/calculation", json=data_answer_calc, headers=headers)
+                        response_answer_calc.raise_for_status()
+                        body_answer_calc = response_answer_calc.json()
+                        if body_answer_calc["status"] == True:
+                            result_answer_calc = body_answer_calc["message"]
+                            query_history.append(query)
+                            answer_history.append(result_answer_calc)
+                            turn += 1
+                            print(f"Calculation Result: {result_answer_calc}\n")
+                        else:
+                            print(f"Calculation Error: {body_answer_calc['message']}\n")
                     else:
                         questions = extraction_info.get("questions", [])
                         message = "data belum lengkap. Mohon jawab:"
@@ -119,7 +175,7 @@ while True:
                 if body_rag.get("status") is True:
                     print(f"RAG Result: {result_rag}\n")
                     data_answer = {"query": result_rewrite, "RAG": result_rag}
-                    response_answer = requests.post(f"https://{url_model}/answer", json=data_answer, headers=headers)
+                    response_answer = requests.post(f"https://{url_model}/generate/answer", json=data_answer, headers=headers)
                     response_answer.raise_for_status()
                     body_answer = response_answer.json()
                     result_answer = body_answer.get("message")

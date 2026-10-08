@@ -7,6 +7,7 @@ from pydantic import BaseModel
 from contextlib import asynccontextmanager
 import connect_model.model as model_module
 from calc.extractor import extract
+from calc.responder import buat_jawaban
 import uvicorn
 import nest_asyncio
 
@@ -37,6 +38,12 @@ class answerRequest(BaseModel):
     query: str
     RAG: str
 
+class calculationRequest(BaseModel):
+    query: str
+    flag: str
+    ekstraksi: str
+    nilai: float
+
 class extractionRequest(BaseModel):
     query: str
     flag: str
@@ -56,7 +63,7 @@ def process_query(query: queryRequest):
         return {"status": False, "message": rewrite_query[1]}
     return {"status": True, "message": rewrite_query[1]}
 
-@app.post("/answer")
+@app.post("/generate/answer")
 def process_answer(query: answerRequest):
     if not model[0]:
         return {"status": False, "message": "Gagal memuat model dan tokenizer."}
@@ -78,7 +85,7 @@ def process_extraction(query: extractionRequest):
     if query.flag.strip() == "":
         return {"status": False, "message": "Flag tidak boleh kosong."}
     def generate(system_prompt, user_text):
-        return model_module.generate_extraction_info(
+        return model_module.generate_plain(
             model[1],
             model[2],
             system_prompt,
@@ -88,6 +95,30 @@ def process_extraction(query: extractionRequest):
     extraction_info = extract(query.flag, query.query, generate)
     return {"status": True, "message": extraction_info}
 
+@app.post("/generate/calculation")
+def process_calculation(query: calculationRequest):
+    if not model[0]:
+        return {"status": False, "message": "Gagal memuat model dan tokenizer."}
+    if query.query.strip() == "":
+        return {"status": False, "message": "Query tidak boleh kosong."}
+    if query.flag.strip() == "":
+        return {"status": False, "message": "Flag tidak boleh kosong."}
+    if query.ekstraksi.strip() == "":
+        return {"status": False, "message": "Ekstraksi tidak boleh kosong."}
+    
+    def generate(system_prompt, user_text):
+        return model_module.generate_plain(
+            model[1],
+            model[2],
+            system_prompt,
+            user_text,
+        )
+
+    calculation_info = buat_jawaban(query.flag, query.query, generate)
+    if calculation_info.alasan.strip() == "":
+        return {"status": True, "message": calculation_info.jawaban}
+    else:
+        return {"status": False, "message": calculation_info.jawaban}
 if __name__ == "__main__":
     nest_asyncio.apply()
     uvicorn.run(app, host="0.0.0.0", port=8000)
