@@ -41,7 +41,7 @@ class answerRequest(BaseModel):
 class calculationRequest(BaseModel):
     query: str
     flag: str
-    ekstraksi: str
+    ekstraksi: dict
     nilai: float
 
 class extractionRequest(BaseModel):
@@ -103,8 +103,6 @@ def process_calculation(query: calculationRequest):
         return {"status": False, "message": "Query tidak boleh kosong."}
     if query.flag.strip() == "":
         return {"status": False, "message": "Flag tidak boleh kosong."}
-    if query.ekstraksi.strip() == "":
-        return {"status": False, "message": "Ekstraksi tidak boleh kosong."}
     
     def generate(system_prompt, user_text):
         return model_module.generate_plain(
@@ -114,11 +112,21 @@ def process_calculation(query: calculationRequest):
             user_text,
         )
 
-    calculation_info = buat_jawaban(query.flag, query.query, generate)
-    if calculation_info.alasan.strip() == "":
-        return {"status": True, "message": calculation_info.jawaban}
+    calculation_info = buat_jawaban(
+        flag=query.flag, 
+        query=query.query, 
+        ekstraksi=query.ekstraksi, 
+        nilai=query.nilai, 
+        generate_jawaban=generate
+    )
+    
+    alasan = calculation_info.get("alasan", "").strip()
+    jawaban = calculation_info.get("jawaban", "")
+    
+    if alasan == "":
+        return {"status": True, "message": jawaban}
     else:
-        return {"status": False, "message": calculation_info.jawaban}
+        return {"status": False, "message": jawaban, "alasan": alasan}
 if __name__ == "__main__":
     nest_asyncio.apply()
     uvicorn.run(app, host="0.0.0.0", port=8000)
