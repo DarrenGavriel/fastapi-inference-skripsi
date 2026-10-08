@@ -239,7 +239,7 @@ def generate_rag_query_rewrite(model, tokenizer, chat_history, current_query, an
         message = f"Terjadi kesalahan saat merumuskan ulang kueri: {e}"
         print(message)
         return False, message
-def generate_extraction_info(model, tokenizer, systemQuery, query):
+def generate_plain(model, tokenizer, systemQuery, query):
     try:
         messages = [
             {"role": "system", "content": systemQuery},
