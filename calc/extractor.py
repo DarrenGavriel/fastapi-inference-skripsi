@@ -198,15 +198,25 @@ def _interpretations(raw):
     return out
 
 
-def number_candidates(text):
-    """Himpunan angka yang bisa dibaca dari teks pengguna."""
-    cands = set()
+def number_matches(text, include_words=True):
+    """Satu himpunan interpretasi angka untuk SETIAP angka yang muncul di teks."""
+    out = []
     for m in _NUM_RE.finditer(text):
         mult = _UNIT_MULT[m.group(2).lower()] if m.group(2) else 1
-        for v in _interpretations(m.group(1)):
-            cands.add(round(v * mult, 6))
-    for m in _WORD_RE.finditer(text):
-        cands.add(float(_WORD_NUM[m.group(1).lower()]))
+        vals = {round(v * mult, 6) for v in _interpretations(m.group(1))}
+        if vals:
+            out.append(vals)
+    if include_words:
+        for m in _WORD_RE.finditer(text):
+            out.append({float(_WORD_NUM[m.group(1).lower()])})
+    return out
+
+
+def number_candidates(text):
+    """Himpunan semua angka yang bisa dibaca dari teks pengguna."""
+    cands = set()
+    for s in number_matches(text):
+        cands |= s
     return cands
 
 
@@ -347,7 +357,6 @@ def parse_llm_json(text):
     return obj if isinstance(obj, dict) else None
 
 
-
 def extract(flag, query, generate, source_text=None, retries=1):
     """
     flag        : label dari router (mis. "pph_op")
@@ -363,7 +372,7 @@ def extract(flag, query, generate, source_text=None, retries=1):
             break
     if raw is None:
         return {"ok": False, "alasan": "output LLM bukan JSON valid", "kwargs": None,
-                "missing": [], "questions": [], "problems": []}
+                "clean": None, "missing": [], "questions": [], "problems": []}
 
     clean, problems = validate_and_clean(flag, source_text or query, raw)
     kwargs = to_function_kwargs(flag, clean)
@@ -371,10 +380,30 @@ def extract(flag, query, generate, source_text=None, retries=1):
     return {
         "ok": not missing,
         "kwargs": kwargs,
+        "clean": clean,  # nilai hasil validasi (dipakai untuk menjelaskan periode bulanan/tahunan)
         "missing": missing,
         "questions": build_questions(missing, clean),
         "problems": problems,  # catat ke log: berguna untuk memperbaiki prompt/parser
     }
+
+
+def make_unsloth_generate(model, tokenizer, max_new_tokens=200):
+    """Contoh pembungkus untuk model Unsloth (BELUM diuji dengan model sungguhan)."""
+    import torch
+
+    def generate(system_prompt, user_text):
+        messages = [
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": user_text},
+        ]
+        enc = tokenizer.apply_chat_template(
+            messages, add_generation_prompt=True, return_tensors="pt", return_dict=True
+        ).to(model.device)
+        with torch.no_grad():
+            out = model.generate(**enc, max_new_tokens=max_new_tokens, do_sample=False)
+        return tokenizer.decode(out[0][enc["input_ids"].shape[1]:], skip_special_tokens=True)
+
+    return generate
 
 
 # ----------------------------------------------------------------------------
