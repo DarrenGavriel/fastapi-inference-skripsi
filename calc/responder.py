@@ -14,7 +14,7 @@ Self-test (tanpa model):  python responder.py
 
 import math
 
-from extractor import number_candidates, number_matches
+from calc.extractor import number_candidates, number_matches
 
 # ----------------------------------------------------------------------------
 # Data per flag (edit di sini)
