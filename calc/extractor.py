@@ -331,6 +331,7 @@ def build_questions(missing, clean):
 # Parsing output LLM + fungsi utama
 # ----------------------------------------------------------------------------
 def parse_llm_json(text):
+    print(f"Raw LLM output: {text}\n")
     text = re.sub(r"```(?:json)?", "", text)
     stripped = text.strip()
     try:
@@ -366,8 +367,12 @@ def extract(flag, query, generate, source_text=None, retries=1):
     """
     system = build_system_prompt(flag)
     raw = None
+    print(f"System prompt:\n{system}\n"
+          f"User query:\n{query}\n")
+    result = generate(system, query)
+    print(f"LLM output:\n{result}\n")
     for _ in range(retries + 1):
-        raw = parse_llm_json(generate(system, query))
+        raw = parse_llm_json(result)
         if raw is not None:
             break
     if raw is None:

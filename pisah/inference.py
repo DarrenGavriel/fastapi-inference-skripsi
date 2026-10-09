@@ -62,6 +62,7 @@ while True:
             body_extract = response_extract.json()
             if body_extract["status"] == True:
                 extraction_info = body_extract["message"]
+                print(f"Extract Result: {extraction_info}\n")
                 if extraction_info["ok"] == True:
                     print(f"Extract Result: {extraction_info['kwargs']}\n")
                     calculation_result = calculate_from_extraction(
