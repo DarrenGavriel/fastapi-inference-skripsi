@@ -28,12 +28,13 @@ def load_model_and_tokenizer():
     try:
         max_seq_length = 26680
         model, tokenizer = FastLanguageModel.from_pretrained(
-            # model_name = "Qwen/Qwen3.5-27B",
-            model_name = "Qwen/Qwen3.5-9B",
+            model_name = "Qwen/Qwen3.5-27B",
+            # model_name = "Qwen/Qwen3.5-9B",
             max_seq_length = max_seq_length,
-            dtype = None,
+            dtype = torch.float16,
             load_in_4bit = False,
-            load_in_16bit = True,
+            load_in_16bit = False,
+            load_in_8bit = True,
         )
         FastLanguageModel.for_inference(model)
         tokenizer = get_chat_template(
