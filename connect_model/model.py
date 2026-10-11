@@ -28,8 +28,8 @@ def load_model_and_tokenizer():
     try:
         max_seq_length = 26680
         model, tokenizer = FastLanguageModel.from_pretrained(
-            model_name = "Qwen/Qwen3.5-27B",
-            # model_name = "Qwen/Qwen3.5-9B",
+            # model_name = "Qwen/Qwen3.5-27B",
+            model_name = "Qwen/Qwen3.5-9B",
             max_seq_length = max_seq_length,
             dtype = torch.float16,
             load_in_4bit = False,
@@ -126,12 +126,22 @@ def generate_answer(model, tokenizer, query, RAG):
             bad_words_ids = banned_token_ids
         )
         # 5. Tampilkan Hasil
-        prompt_length = inputs["input_ids"].shape[1]
-        generated_tokens = outputs[0][prompt_length:]
-        raw_response = tokenizer.decode(generated_tokens, skip_special_tokens=False)
+        jumlah_token_input = inputs["input_ids"].shape[1] # Ini menggantikan prompt_length
+        generated_tokens = outputs[0][jumlah_token_input:]
+        
+        # Hitung jumlah token output dari panjang array generated_tokens
+        jumlah_token_output = len(generated_tokens) 
+        
+        # Hitung total token (T) untuk keperluan menghitung FLOPs
+        total_token = jumlah_token_input + jumlah_token_output
+        print(f"Token Input: {jumlah_token_input} | Token Output: {jumlah_token_output} | Total (T): {total_token}")
+
+        raw_response = tokenizer.decode(generated_tokens, skip_special_tokens=True)
 
         # 6. Bersihkan tag <think> dan ambil hasil akhirnya saja
         clean_response = re.sub(r'<think>.*?</think>', '', raw_response, flags=re.DOTALL)
+        clean_response = re.sub(r'</?think>\s*', '', clean_response, flags=re.IGNORECASE)
+        clean_response = re.sub(r'^assistant\s*', '', clean_response, flags=re.IGNORECASE)
 
         # Bersihkan juga sisa spasi kosong atau tag sistem lainnya jika ada
         clean_response = clean_response.replace('<|im_end|>', '').strip()
@@ -221,12 +231,22 @@ def generate_rag_query_rewrite(model, tokenizer, chat_history, current_query, an
             bad_words_ids = banned_token_ids
         )
         # 5. Tampilkan Hasil
-        prompt_length = inputs["input_ids"].shape[1]
-        generated_tokens = outputs[0][prompt_length:]
-        raw_response = tokenizer.decode(generated_tokens, skip_special_tokens=False)
+        jumlah_token_input = inputs["input_ids"].shape[1] # Ini menggantikan prompt_length
+        generated_tokens = outputs[0][jumlah_token_input:]
+        
+        # Hitung jumlah token output dari panjang array generated_tokens
+        jumlah_token_output = len(generated_tokens) 
+        
+        # Hitung total token (T) untuk keperluan menghitung FLOPs
+        total_token = jumlah_token_input + jumlah_token_output
+        print(f"Token Input: {jumlah_token_input} | Token Output: {jumlah_token_output} | Total (T): {total_token}")
+
+        raw_response = tokenizer.decode(generated_tokens, skip_special_tokens=True)
 
         # 6. Bersihkan tag <think> dan ambil hasil akhirnya saja
         clean_response = re.sub(r'<think>.*?</think>', '', raw_response, flags=re.DOTALL)
+        clean_response = re.sub(r'</?think>\s*', '', clean_response, flags=re.IGNORECASE)
+        clean_response = re.sub(r'^assistant\s*', '', clean_response, flags=re.IGNORECASE)
 
         # Bersihkan juga sisa spasi kosong atau tag sistem lainnya jika ada
         clean_response = clean_response.replace('<|im_end|>', '').strip()
@@ -275,12 +295,22 @@ def generate_plain(model, tokenizer, systemQuery, query):
             bad_words_ids = banned_token_ids
         )
         # 5. Tampilkan Hasil
-        prompt_length = inputs["input_ids"].shape[1]
-        generated_tokens = outputs[0][prompt_length:]
-        raw_response = tokenizer.decode(generated_tokens, skip_special_tokens=False)
+        jumlah_token_input = inputs["input_ids"].shape[1] # Ini menggantikan prompt_length
+        generated_tokens = outputs[0][jumlah_token_input:]
+        
+        # Hitung jumlah token output dari panjang array generated_tokens
+        jumlah_token_output = len(generated_tokens) 
+        
+        # Hitung total token (T) untuk keperluan menghitung FLOPs
+        total_token = jumlah_token_input + jumlah_token_output
+        print(f"Token Input: {jumlah_token_input} | Token Output: {jumlah_token_output} | Total (T): {total_token}")
+
+        raw_response = tokenizer.decode(generated_tokens, skip_special_tokens=True)
 
         # 6. Bersihkan tag <think> dan ambil hasil akhirnya saja
         clean_response = re.sub(r'<think>.*?</think>', '', raw_response, flags=re.DOTALL)
+        clean_response = re.sub(r'</?think>\s*', '', clean_response, flags=re.IGNORECASE)
+        clean_response = re.sub(r'^assistant\s*', '', clean_response, flags=re.IGNORECASE)
 
         # Bersihkan juga sisa spasi kosong atau tag sistem lainnya jika ada
         clean_response = clean_response.replace('<|im_end|>', '').strip()
