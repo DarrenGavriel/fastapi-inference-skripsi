@@ -101,7 +101,13 @@ while True:
             print(f"RAG Result: {result_rag}\n")
             data_answer = {"query": query, "RAG": result_rag}
             response_answer = requests.post(f"https://{url_model}/generate/answer", json=data_answer, headers=headers)
-            response_answer.raise_for_status()
+            print(f"Data Answer: {response_answer}\n")
+            try:
+                response_answer.raise_for_status()
+            except requests.exceptions.HTTPError as err:
+                print(f"Status Code: {response_answer.status_code}")
+                print(f"Pesan Error dari API: {response_answer.text}") # Ini akan menampilkan detail errornya
+                raise err
             body_answer = response_answer.json()
             result_answer = body_answer["message"]
             if body_answer["status"] == True:

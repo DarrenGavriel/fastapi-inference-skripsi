@@ -91,7 +91,8 @@ def generate_answer(model, tokenizer, query, RAG):
         </Pertanyaan Saat Ini>
 
         Hasil:"""
-
+        print(f"System Prompt:\n{system_prompt}\n")
+        print(f"User Content:\n{user_content}\n")
         # 4. Susun Struktur Pesan Menggunakan Format Standar Chat
         messages = [
             {"role": "system", "content": system_prompt},
@@ -196,7 +197,8 @@ def generate_rag_query_rewrite(model, tokenizer, chat_history, current_query, an
         </Pertanyaan Saat Ini>
 
         Hasil:"""
-
+        print(f"System Prompt:\n{system_prompt}\n")
+        print(f"User Content:\n{user_content}\n")
         # 4. Susun Struktur Pesan Menggunakan Format Standar Chat
         messages = [
             {"role": "system", "content": system_prompt},
@@ -262,6 +264,8 @@ def generate_rag_query_rewrite(model, tokenizer, chat_history, current_query, an
         return False, message
 def generate_plain(model, tokenizer, systemQuery, query):
     try:
+        print(f"System Prompt:\n{systemQuery}\n")
+        print(f"User Content:\n{query}\n")
         messages = [
             {"role": "system", "content": systemQuery},
             {"role": "user", "content": query}

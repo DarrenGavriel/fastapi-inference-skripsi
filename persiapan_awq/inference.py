@@ -103,7 +103,6 @@ while True:
             response_answer = requests.post(f"https://{url_model}/generate/answer", json=data_answer, headers=headers)
             response_answer.raise_for_status()
             body_answer = response_answer.json()
-            result_answer = body_answer["message"]
             if body_answer["status"] == True:
                 query_history.append(query)
                 answer_history.append(result_answer)
@@ -180,7 +179,6 @@ while True:
                     response_answer = requests.post(f"https://{url_model}/generate/answer", json=data_answer, headers=headers)
                     response_answer.raise_for_status()
                     body_answer = response_answer.json()
-                    result_answer = body_answer.get("message")
                     if body_answer.get("status") is True:
                         query_history.append(result_rewrite)
                         answer_history.append(result_answer)
