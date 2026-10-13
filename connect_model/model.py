@@ -148,7 +148,8 @@ def generate_answer(model, tokenizer, query, RAG):
 
         # Bersihkan juga sisa spasi kosong atau tag sistem lainnya jika ada
         clean_response = clean_response.replace('<|im_end|>', '').strip()
-        print(clean_response)
+        print(f'Clean Response (repr): """{repr(clean_response)}"""')
+        print(f'Clean Response: """{clean_response}"""')
         del inputs, outputs
         import gc
         gc.collect()
@@ -255,7 +256,8 @@ def generate_rag_query_rewrite(model, tokenizer, chat_history, current_query, an
 
         # Bersihkan juga sisa spasi kosong atau tag sistem lainnya jika ada
         clean_response = clean_response.replace('<|im_end|>', '').strip()
-        print(clean_response)
+        print(f'Clean Response (repr): """{repr(clean_response)}"""')
+        print(f'Clean Response: """{clean_response}"""')
         del inputs, outputs
         import gc
         gc.collect()
@@ -267,10 +269,8 @@ def generate_rag_query_rewrite(model, tokenizer, chat_history, current_query, an
         return False, message
 def generate_plain(model, tokenizer, systemQuery, query):
     try:
-        print(f"System Prompt:\n{systemQuery}\n")
-        print(repr(systemQuery))
-        print(repr(query))
-        print(f"User Content:\n{query}\n")
+        print(f'System Prompt (repr): """{repr(systemQuery)}"""')
+        print(f'User Content (repr): """{repr(query)}"""')
         messages = [
             {"role": "system", "content": systemQuery},
             {"role": "user", "content": query}
@@ -323,7 +323,8 @@ def generate_plain(model, tokenizer, systemQuery, query):
 
         # Bersihkan juga sisa spasi kosong atau tag sistem lainnya jika ada
         clean_response = clean_response.replace('<|im_end|>', '').strip()
-        print(clean_response)
+        print(f'Clean Response (repr): """{repr(clean_response)}"""')
+        print(f'Clean Response: """{clean_response}"""')
         del inputs, outputs
         import gc
         gc.collect()

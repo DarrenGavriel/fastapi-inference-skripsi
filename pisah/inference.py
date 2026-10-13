@@ -37,12 +37,19 @@ def calculate_from_extraction(flag, kwargs):
 
 print("=== Program POST Berjalan ===")
 print("Ketik 'keluar' pada judul untuk menghentikan program.\n")
+print("Ketik 'reset' untuk menghapus riwayat percakapan.\n") # Tambahkan info ini
 
 while True:
     query = input("Masukkan query: ")
     if query.lower() == "keluar":
         print("Program dihentikan.")
         break
+    elif query.lower() == "reset":
+        query_history.clear()
+        answer_history.clear()
+        turn = 1
+        print("Riwayat percakapan telah dihapus.\n")
+        continue
     # Mengirim permintaan POST ke endpoint rewrite
     if turn == 1:
         data_rag = {"query": query}
