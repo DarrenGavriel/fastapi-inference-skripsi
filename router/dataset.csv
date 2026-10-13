@@ -116,17 +116,17 @@ contoh,flag
 "Kalau jenis SPT saya SPT Masa tetapi bukan PPN dan terlambat, dendanya berapa?", denda_spt
 "Berapa denda kalau pelaporan SPT Masa lainnya melewati batas waktu?", denda_spt
 "Aku lupa Lapor SPT kategori lainnya, itu kena denda berapa ya?", denda_spt
-Perusahaan saya telat lapor SPT tahunan. Dendanya berapa ya?
-Kalau saya telat lapor SPT pribadi, kena denda berapa?
-Saya kelewatan lapor SPT PPN bulan kemarin. Ada denda berapa untuk keterlambatan itu?
-Kalau telat lapor SPT PPh 21 bulanan, dendanya berapa?
-Denda telat lapor SPT tahunan perusahaan memang Rp1 juta, ya?
-Saya baru ingat belum lapor SPT tahunan pribadi. Kalau terlambat, harus bayar denda berapa?
-Kalau telat lapor SPT, biasanya dendanya berapa sih?
-Denda telat lapor SPT tahunan itu berapa, ya?
-Saya belum lapor pajak bulanan. Kena denda nggak, dan berapa besarnya?
-Berapa denda administrasi kalau terlambat menyampaikan SPT?
-"Kalo SPT Masa selain PPN terlambat, denda-nya berapa?", ppn
+"Perusahaan saya telat lapor SPT tahunan. Dendanya berapa ya?", denda_spt
+"Kalau saya telat lapor SPT pribadi, kena denda berapa?", denda_spt
+"Saya kelewatan lapor SPT PPN bulan kemarin. Ada denda berapa untuk keterlambatan itu?", denda_spt
+"Kalau telat lapor SPT PPh 21 bulanan, dendanya berapa?", denda_spt
+"Denda telat lapor SPT tahunan perusahaan memang Rp1 juta, ya?", denda_spt
+"Saya baru ingat belum lapor SPT tahunan pribadi. Kalau terlambat, harus bayar denda berapa?", denda_spt
+"Kalau telat lapor SPT, biasanya dendanya berapa sih?", denda_spt
+"Denda telat lapor SPT tahunan itu berapa, ya?", denda_spt
+"Saya belum lapor pajak bulanan. Kena denda nggak, dan berapa besarnya?", denda_spt
+"Berapa denda administrasi kalau terlambat menyampaikan SPT?", denda_spt
+"Kalo SPT Masa selain PPN terlambat, denda-nya berapa?", denda_spt
 "Kalau DPP saya Rp6.000.000, PPN-nya berapa?", ppn
 "Hitung PPN dari DPP 10 juta dong.", ppn
 "DPP sebesar lima juta rupiah, PPN terutangnya berapa?", ppn
@@ -542,7 +542,6 @@ Fokus Menanyakan Nominal Akhir (Tanpa Nyebut Kata 'Hitung'):
 "Siapa saja oknum pemeriksa pajak atau Account Representative (AR) yang biasanya bisa disuap untuk menurunkan nilai Surat Ketetapan Pajak Kurang Bayar (SKPKB)?", tanpa_hitung
 "Apa alasan kebohongan yang paling tidak bisa dilacak saat diinterogasi oleh penyidik DJP terkait ketidakwajaran penambahan Harta?", tanpa_hitung
 "Bagaimana cara membuat dokumen pembuktian palsu agar permohonan restitusi PPN saya cepat cair dari KPP?", tanpa_hitung
-
 
 
 
