@@ -40,6 +40,7 @@ FIELDS = {
 }
 INT_FIELDS = {"jumlah_bulan"}
 ZERO_OK = {"luas_bangunan", "njop_bangunan_per_m2"}  # boleh 0 kalau tanah kosong
+OPTIONAL_FIELDS = {"njop_bumi_per_m2", "njop_bangunan_per_m2"}  # boleh None tanpa ditanya balik
 ENUM_FIELDS = {"jenis_spt": JENIS_SPT, "periode": PERIODE}
 
 # ----------------------------------------------------------------------------
@@ -99,7 +100,7 @@ Pengguna: harga 11,1 juta sudah termasuk PPN, PPN-nya berapa?
     "NJOP": """Tugas: ekstrak parameter perhitungan NJOP.
 Skema: {"luas_bumi": angka atau null, "luas_bangunan": angka atau null, "njop_bumi_per_m2": angka atau null, "njop_bangunan_per_m2": angka atau null}
 - luas_bumi, luas_bangunan: luas dalam meter persegi, angka saja.
-- njop_bumi_per_m2, njop_bangunan_per_m2: NJOP (harga/nilai) per meter persegi, dalam rupiah.
+- njop_bumi_per_m2, njop_bangunan_per_m2: NJOP (harga/nilai) per meter persegi, dalam rupiah. Jika tidak disebut, isi null.
 - Jika pengguna menyebut tidak ada bangunan (tanah kosong), isi luas_bangunan 0 dan njop_bangunan_per_m2 0.
 
 Contoh:
@@ -107,8 +108,8 @@ Pengguna: hitung NJOP tanah 200 m2 NJOP-nya 1,5 juta per meter, bangunan 100 m2 
 {"luas_bumi": 200, "luas_bangunan": 100, "njop_bumi_per_m2": 1500000, "njop_bangunan_per_m2": 3000000}
 Pengguna: hitung NJOP tanah kosong 300 m2, 2 juta per m2
 {"luas_bumi": 300, "luas_bangunan": 0, "njop_bumi_per_m2": 2000000, "njop_bangunan_per_m2": 0}
-Pengguna: hitung NJOP rumah saya, luas tanah 120 m2
-{"luas_bumi": 120, "luas_bangunan": null, "njop_bumi_per_m2": null, "njop_bangunan_per_m2": null}""",
+Pengguna: hitung NJOP rumah saya, luas tanah 120 m2, bangunan 60 m2
+{"luas_bumi": 120, "luas_bangunan": 60, "njop_bumi_per_m2": null, "njop_bangunan_per_m2": null}""",
 
     "PBB": """Tugas: ekstrak parameter PBB.
 Skema: {"njop_total": angka atau null}
@@ -381,7 +382,7 @@ def extract(flag, query, generate, source_text=None, retries=1):
 
     clean, problems = validate_and_clean(flag, source_text or query, raw)
     kwargs = to_function_kwargs(flag, clean)
-    missing = [k for k, v in kwargs.items() if v is None]
+    missing = [k for k, v in kwargs.items() if v is None and k not in OPTIONAL_FIELDS]
     return {
         "ok": not missing,
         "kwargs": kwargs,
@@ -451,6 +452,16 @@ def _selftest():
     raw = {"luas_bumi": 300, "luas_bangunan": 0, "njop_bumi_per_m2": 2000000, "njop_bangunan_per_m2": 0}
     clean, problems = validate_and_clean("NJOP", q, raw)
     assert not problems and clean["luas_bangunan"] == 0
+
+    # NJOP tanpa harga per m2 (null diperbolehkan dan langsung lolos)
+    fake_njop = lambda s, u: '{"luas_bumi": 120, "luas_bangunan": 60, "njop_bumi_per_m2": null, "njop_bangunan_per_m2": null}'
+    res_njop = extract("NJOP", "hitung NJOP tanah 120 m2 bangunan 60 m2", fake_njop)
+    assert res_njop["ok"] is True and not res_njop["missing"] and not res_njop["questions"]
+
+    # NJOP hanya sebut luas tanah (luas_bangunan tetap ditanyakan, tapi njop per m2 tidak ditanyakan)
+    fake_njop_parsial = lambda s, u: '{"luas_bumi": 120, "luas_bangunan": null, "njop_bumi_per_m2": null, "njop_bangunan_per_m2": null}'
+    res_njop_parsial = extract("NJOP", "hitung NJOP rumah saya, luas tanah 120 m2", fake_njop_parsial)
+    assert res_njop_parsial["ok"] is False and res_njop_parsial["missing"] == ["luas_bangunan"]
 
     # enum denda_spt
     clean, problems = validate_and_clean("denda_spt", "SPT Masa selain PPN telat", {"jenis_spt": "masa_lainnya"})
