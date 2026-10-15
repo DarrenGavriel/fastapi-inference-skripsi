@@ -308,7 +308,6 @@ Fokus Menanyakan Nominal Akhir (Tanpa Nyebut Kata 'Hitung'):
 "Tanah kosong saya punya NJOP total Rp150 juta. PBB terutangnya berapa ya?", PBB
 "Di SPPT, NJOP total properti saya tertulis Rp75.500.000. Berapa PBB yang harus saya bayar?", PBB
 "Bisa bantu hitung PBB rumah saya tahun ini? Apa perlu tahu NJOP totalnya dulu?", PBB
-"Kalau NJOP properti makin tinggi, PBB yang harus dibayar juga makin besar, ya?", PBB
 "NJOP total properti saya Rp500 juta. Bisa langsung dihitung PBB-nya atau ada data lain yang dibutuhkan?", PBB
 "Penghasilan neto saya setahun Rp120.000.000 dan status PTKP K/1, PPh orang pribadi saya berapa?", pph_op
 "Saya punya penghasilan neto tahunan 100 juta, status TK/0. Berapa PPh saya?", pph_op
@@ -435,6 +434,7 @@ Fokus Menanyakan Nominal Akhir (Tanpa Nyebut Kata 'Hitung'):
 "Kalau Penghasilan Kena Pajak perusahaan saya Rp750 juta, cara menghitung PPh Badannya bagaimana?", pph_badan
 "Laba kena pajak perusahaan saya tahun ini Rp3 miliar. Berapa PPh Badan yang perlu disiapkan?", pph_badan
 "Saya mau menghitung pajak badan untuk laporan tahunan. Data PKP yang saya punya Rp1,8 miliar, bisa bantu hitung?", pph_badan
+"Kalau NJOP properti makin tinggi, PBB yang harus dibayar juga makin besar, ya?", tanpa_hitung
 "Apa itu NJOP?", tanpa_hitung
 "Apa yang dimaksud dengan NJOP?", tanpa_hitung
 "NJOP digunakan untuk apa?", tanpa_hitung
