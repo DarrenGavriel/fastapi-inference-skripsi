@@ -144,7 +144,7 @@ while True:
             result_route = body_route.get("message")
             if result_route != "tanpa_hitung":
                 print(f"Route Result: {result_route}\n")
-                data_extract = {"query": query, "flag": result_route}
+                data_extract = {"query": result_rewrite, "flag": result_route}
                 response_extract = requests.post(f"https://{url_model}/extraction", json=data_extract, headers=headers)
                 response_extract.raise_for_status()
                 body_extract = response_extract.json()
