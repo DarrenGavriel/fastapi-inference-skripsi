@@ -13,11 +13,28 @@ from llmcompressor import oneshot
 from llmcompressor.modifiers.awq import AWQModifier
 from transformers import AutoModelForImageTextToText, AutoProcessor, AutoTokenizer
 
+import tqdm
+
+_orig_tqdm_init = tqdm.tqdm.__init__
+
+
+def _quiet_grid_search_tqdm(self, *args, **kwargs):
+  desc = kwargs.get("desc", "") or ""
+  # Sembunyikan progress bar jika ia adalah proses "Grid search" atau "Smoothing"
+  if "Grid search" in desc or "Smoothing" in desc:
+    kwargs["disable"] = True
+  # Paksa lebar bar supaya tidak melimpah ke baris baharu di terminal
+  kwargs.setdefault("dynamic_ncols", True)
+  _orig_tqdm_init(self, *args, **kwargs)
+
+
+tqdm.tqdm.__init__ = _quiet_grid_search_tqdm
+
 # ----------------------------- CONFIG -----------------------------
 MODEL_ID = "Qwen/Qwen3.5-27B"
 SAVE_DIR = "Qwen3.5-27B-AWQ-W4A16"
 
-CALIB_FILE = "dataset_kamu.jsonl"  # Ganti dengan path file JSONL kamu
+CALIB_FILE = "./merged_data.jsonl"  # Ganti dengan path file JSONL kamu
 NUM_CALIB_SAMPLES = 256  # Total sampel kalibrasi (dibagi rata ke 10 flag)
 
 # CATATAN: Jika 26680 bikin OOM saat proses AWQ, turunkan ke 4096 atau 2048.
