@@ -1,7 +1,7 @@
-from unsloth import FastLanguageModel
-from unsloth.chat_templates import get_chat_template
 import re
 import torch
+from transformers import AutoTokenizer
+from vllm import LLM, SamplingParams
 
 # def load_model_and_tokenizer_lora():
 #     try:
@@ -24,23 +24,31 @@ import torch
 #         print(message)
 #         return False, None, None
     
+
+
 def load_model_and_tokenizer():
     try:
+        model_path = "./Qwen3.5-27B-AWQ-W4A16"  # Path ke folder AWQ kamu
         max_seq_length = 26680
-        model, tokenizer = FastLanguageModel.from_pretrained(
-            # model_name = "Qwen/Qwen3.5-27B",
-            model_name = "Qwen/Qwen3.5-9B",
-            max_seq_length = max_seq_length,
-            dtype = torch.float16,
-            load_in_4bit = False,
-            load_in_16bit = False,
-            load_in_8bit = True,
+
+        # 1. Load Tokenizer (otomatis baca chat_template.jinja bawaan Qwen)
+        tokenizer = AutoTokenizer.from_pretrained(
+            model_path, trust_remote_code=True
         )
-        FastLanguageModel.for_inference(model)
-        tokenizer = get_chat_template(
-            tokenizer,
-            chat_template = "chatml",
+
+        # 2. Load Model dengan vLLM (pengganti FastLanguageModel)
+        model = LLM(
+            model=model_path,
+            quantization="compressed-tensors",  # Format AWQ dari llm-compressor
+            dtype="bfloat16",  # Gunakan bfloat16 (atau "float16")
+            max_model_len=max_seq_length,
+            gpu_memory_utilization=0.90,
+            limit_mm_per_prompt={
+                "image": 0
+            },  # Hemat VRAM karena fokus teks, bukan gambar
+            trust_remote_code=True,
         )
+
         return True, model, tokenizer
     except Exception as e:
         message = f"Terjadi kesalahan saat memuat model dan tokenizer: {e}"
@@ -106,55 +114,26 @@ def generate_answer(model, tokenizer, query, RAG):
             add_generation_prompt = True, # Otomatis menambahkan <|im_start|>assistant di akhir
             enable_thinking = False,
         )
-        inputs = tokenizer(
-            text=[formatted_prompt],
-            return_tensors="pt",
-            add_special_tokens=False
-        ).to("cuda")
+        think_token_ids = tokenizer.encode("<think>", add_special_tokens=False)
+        logit_bias_dict = {tid: -100.0 for tid in think_token_ids}
 
-        # 3. Generate Jawaban
-        banned_token_ids = tokenizer(text="<think>", add_special_tokens=False)["input_ids"]
-        outputs = model.generate(
-            input_ids = inputs["input_ids"],
-            max_new_tokens = 5000,
-            use_cache = True,
-            eos_token_id = tokenizer.eos_token_id,
-            pad_token_id = tokenizer.eos_token_id,
-            # Setting Instruct/Non-thinking
-            temperature = 0.7,
-            top_p = 0.8,
-            repetition_penalty = 1.1,
-
-            # KUNCI UTAMA: Larang model mengeluarkan tag <think>
-            bad_words_ids = banned_token_ids
+        # Pengganti parameter di dalam model.generate()
+        sampling_params = SamplingParams(
+            max_tokens=5000,  # Pengganti max_new_tokens
+            temperature=0.7,
+            top_p=0.8,
+            repetition_penalty=1.1,
+            stop_token_ids=[tokenizer.eos_token_id],  # Pengganti eos_token_id
+            bad_words=["<think>"],  # KUNCI 1: Larang string "<think>"
+            logit_bias=logit_bias_dict,  # KUNCI 2: Beri penalti -100 pada token ID "<think>"
         )
-        # 5. Tampilkan Hasil
-        jumlah_token_input = inputs["input_ids"].shape[1] # Ini menggantikan prompt_length
-        generated_tokens = outputs[0][jumlah_token_input:]
-        
-        # Hitung jumlah token output dari panjang array generated_tokens
-        jumlah_token_output = len(generated_tokens) 
-        
-        # Hitung total token (T) untuk keperluan menghitung FLOPs
-        total_token = jumlah_token_input + jumlah_token_output
-        print(f"Token Input: {jumlah_token_input} | Token Output: {jumlah_token_output} | Total (T): {total_token}")
 
-        raw_response = tokenizer.decode(generated_tokens, skip_special_tokens=True)
+        # Jalankan inferensi (use_cache=True sudah otomatis aktif di PagedAttention vLLM)
+        outputs = model.generate([formatted_prompt], sampling_params, use_tqdm=False)
 
-        # 6. Bersihkan tag <think> dan ambil hasil akhirnya saja
-        clean_response = re.sub(r'<think>.*?</think>', '', raw_response, flags=re.DOTALL)
-        clean_response = re.sub(r'</?think>\s*', '', clean_response, flags=re.IGNORECASE)
-        clean_response = re.sub(r'^assistant\s*', '', clean_response, flags=re.IGNORECASE)
-
-        # Bersihkan juga sisa spasi kosong atau tag sistem lainnya jika ada
-        clean_response = clean_response.replace('<|im_end|>', '').strip()
-        print(f'Clean Response (repr): """{repr(clean_response)}"""')
-        print(f'Clean Response: """{clean_response}"""')
-        del inputs, outputs
-        import gc
-        gc.collect()
-        torch.cuda.empty_cache()
-        return True, raw_response
+        # Ambil teks hasil generate saja (di vLLM, prompt input tidak ikut ter-output lagi!)
+        generated_text = outputs[0].outputs[0].text
+        return True, generated_text.strip()
     except Exception as e:
         message = f"Terjadi kesalahan saat merumuskan ulang kueri: {e}"
         print(message)
@@ -214,55 +193,26 @@ def generate_rag_query_rewrite(model, tokenizer, chat_history, current_query, an
             add_generation_prompt = True, # Otomatis menambahkan <|im_start|>assistant di akhir
             enable_thinking = False,
         )
-        inputs = tokenizer(
-            text=[formatted_prompt],
-            return_tensors="pt",
-            add_special_tokens=False
-        ).to("cuda")
+        think_token_ids = tokenizer.encode("<think>", add_special_tokens=False)
+        logit_bias_dict = {tid: -100.0 for tid in think_token_ids}
 
-        # 3. Generate Jawaban
-        banned_token_ids = tokenizer(text="<think>", add_special_tokens=False)["input_ids"]
-        outputs = model.generate(
-            input_ids = inputs["input_ids"],
-            max_new_tokens = 5000,
-            use_cache = True,
-            eos_token_id = tokenizer.eos_token_id,
-            pad_token_id = tokenizer.eos_token_id,
-            # Setting Instruct/Non-thinking
-            temperature = 0.7,
-            top_p = 0.8,
-            repetition_penalty = 1.1,
-
-            # KUNCI UTAMA: Larang model mengeluarkan tag <think>
-            bad_words_ids = banned_token_ids
+        # Pengganti parameter di dalam model.generate()
+        sampling_params = SamplingParams(
+            max_tokens=5000,  # Pengganti max_new_tokens
+            temperature=0.7,
+            top_p=0.8,
+            repetition_penalty=1.1,
+            stop_token_ids=[tokenizer.eos_token_id],  # Pengganti eos_token_id
+            bad_words=["<think>"],  # KUNCI 1: Larang string "<think>"
+            logit_bias=logit_bias_dict,  # KUNCI 2: Beri penalti -100 pada token ID "<think>"
         )
-        # 5. Tampilkan Hasil
-        jumlah_token_input = inputs["input_ids"].shape[1] # Ini menggantikan prompt_length
-        generated_tokens = outputs[0][jumlah_token_input:]
-        
-        # Hitung jumlah token output dari panjang array generated_tokens
-        jumlah_token_output = len(generated_tokens) 
-        
-        # Hitung total token (T) untuk keperluan menghitung FLOPs
-        total_token = jumlah_token_input + jumlah_token_output
-        print(f"Token Input: {jumlah_token_input} | Token Output: {jumlah_token_output} | Total (T): {total_token}")
 
-        raw_response = tokenizer.decode(generated_tokens, skip_special_tokens=True)
+        # Jalankan inferensi (use_cache=True sudah otomatis aktif di PagedAttention vLLM)
+        outputs = model.generate([formatted_prompt], sampling_params, use_tqdm=False)
 
-        # 6. Bersihkan tag <think> dan ambil hasil akhirnya saja
-        clean_response = re.sub(r'<think>.*?</think>', '', raw_response, flags=re.DOTALL)
-        clean_response = re.sub(r'</?think>\s*', '', clean_response, flags=re.IGNORECASE)
-        clean_response = re.sub(r'^assistant\s*', '', clean_response, flags=re.IGNORECASE)
-
-        # Bersihkan juga sisa spasi kosong atau tag sistem lainnya jika ada
-        clean_response = clean_response.replace('<|im_end|>', '').strip()
-        print(f'Clean Response (repr): """{repr(clean_response)}"""')
-        print(f'Clean Response: """{clean_response}"""')
-        del inputs, outputs
-        import gc
-        gc.collect()
-        torch.cuda.empty_cache()
-        return True, clean_response
+        # Ambil teks hasil generate saja (di vLLM, prompt input tidak ikut ter-output lagi!)
+        generated_text = outputs[0].outputs[0].text
+        return True, generated_text.strip()
     except Exception as e:
         message = f"Terjadi kesalahan saat merumuskan ulang kueri: {e}"
         print(message)
@@ -277,59 +227,30 @@ def generate_plain(model, tokenizer, systemQuery, query):
         ]
         formatted_prompt = tokenizer.apply_chat_template(
             messages,
-            tokenize = False,
-            add_generation_prompt = True,
+            tokenize = False, # Set False agar mengembalikan string, bukan angka token
+            add_generation_prompt = True, # Otomatis menambahkan <|im_start|>assistant di akhir
             enable_thinking = False,
         )
-        inputs = tokenizer(
-            text=[formatted_prompt],
-            return_tensors="pt",
-            add_special_tokens=False
-        ).to("cuda")
+        think_token_ids = tokenizer.encode("<think>", add_special_tokens=False)
+        logit_bias_dict = {tid: -100.0 for tid in think_token_ids}
 
-        # 3. Generate Jawaban
-        banned_token_ids = tokenizer(text="<think>", add_special_tokens=False)["input_ids"]
-        outputs = model.generate(
-            input_ids = inputs["input_ids"],
-            max_new_tokens = 5000,
-            use_cache = True,
-            eos_token_id = tokenizer.eos_token_id,
-            pad_token_id = tokenizer.eos_token_id,
-            # Setting Instruct/Non-thinking
-            temperature = 0.7,
-            top_p = 0.8,
-            repetition_penalty = 1.1,
-
-            # KUNCI UTAMA: Larang model mengeluarkan tag <think>
-            bad_words_ids = banned_token_ids
+        # Pengganti parameter di dalam model.generate()
+        sampling_params = SamplingParams(
+            max_tokens=5000,  # Pengganti max_new_tokens
+            temperature=0.7,
+            top_p=0.8,
+            repetition_penalty=1.1,
+            stop_token_ids=[tokenizer.eos_token_id],  # Pengganti eos_token_id
+            bad_words=["<think>"],  # KUNCI 1: Larang string "<think>"
+            logit_bias=logit_bias_dict,  # KUNCI 2: Beri penalti -100 pada token ID "<think>"
         )
-        # 5. Tampilkan Hasil
-        jumlah_token_input = inputs["input_ids"].shape[1] # Ini menggantikan prompt_length
-        generated_tokens = outputs[0][jumlah_token_input:]
-        
-        # Hitung jumlah token output dari panjang array generated_tokens
-        jumlah_token_output = len(generated_tokens) 
-        
-        # Hitung total token (T) untuk keperluan menghitung FLOPs
-        total_token = jumlah_token_input + jumlah_token_output
-        print(f"Token Input: {jumlah_token_input} | Token Output: {jumlah_token_output} | Total (T): {total_token}")
 
-        raw_response = tokenizer.decode(generated_tokens, skip_special_tokens=True)
+        # Jalankan inferensi (use_cache=True sudah otomatis aktif di PagedAttention vLLM)
+        outputs = model.generate([formatted_prompt], sampling_params, use_tqdm=False)
 
-        # 6. Bersihkan tag <think> dan ambil hasil akhirnya saja
-        clean_response = re.sub(r'<think>.*?</think>', '', raw_response, flags=re.DOTALL)
-        clean_response = re.sub(r'</?think>\s*', '', clean_response, flags=re.IGNORECASE)
-        clean_response = re.sub(r'^assistant\s*', '', clean_response, flags=re.IGNORECASE)
-
-        # Bersihkan juga sisa spasi kosong atau tag sistem lainnya jika ada
-        clean_response = clean_response.replace('<|im_end|>', '').strip()
-        print(f'Clean Response (repr): """{repr(clean_response)}"""')
-        print(f'Clean Response: """{clean_response}"""')
-        del inputs, outputs
-        import gc
-        gc.collect()
-        torch.cuda.empty_cache()
-        return clean_response
+        # Ambil teks hasil generate saja (di vLLM, prompt input tidak ikut ter-output lagi!)
+        generated_text = outputs[0].outputs[0].text
+        return True, generated_text.strip()
     except Exception as e:
         message = f"Terjadi kesalahan saat merumuskan ulang kueri: {e}"
         print(message)
