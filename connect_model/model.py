@@ -29,7 +29,7 @@ from vllm import LLM, SamplingParams
 def load_model_and_tokenizer():
     try:
         model_path = "./Qwen3.5-27B-AWQ-W4A16"  # Path ke folder AWQ kamu
-        max_seq_length = 26680
+        max_seq_length = 8192
 
         # 1. Load Tokenizer (otomatis baca chat_template.jinja bawaan Qwen)
         tokenizer = AutoTokenizer.from_pretrained(
@@ -42,7 +42,12 @@ def load_model_and_tokenizer():
             quantization="compressed-tensors",  # Format AWQ dari llm-compressor
             dtype="bfloat16",  # Gunakan bfloat16 (atau "float16")
             max_model_len=max_seq_length,
-            gpu_memory_utilization=0.90,
+            max_num_seqs=2,
+            # gpu_memory_utilization=0.95,
+            kv_cache_memory_bytes = 1.5 * 1024 * 1024 * 1024,  # Batasi cache KV ke ~1.5GB
+            kv_cache_dtype="fp8",
+            max_num_batched_tokens=2048,
+            enable_chunked_prefill=True,
             limit_mm_per_prompt={
                 "image": 0
             },  # Hemat VRAM karena fokus teks, bukan gambar
@@ -250,7 +255,7 @@ def generate_plain(model, tokenizer, systemQuery, query):
 
         # Ambil teks hasil generate saja (di vLLM, prompt input tidak ikut ter-output lagi!)
         generated_text = outputs[0].outputs[0].text
-        return True, generated_text.strip()
+        return generated_text.strip()
     except Exception as e:
         message = f"Terjadi kesalahan saat merumuskan ulang kueri: {e}"
         print(message)

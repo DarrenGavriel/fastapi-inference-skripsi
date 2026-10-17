@@ -18,7 +18,6 @@ async def connect_ngrok():
     listener = await ngrok.connect(8000, authtoken_from_env=True)
     print(f"🌍 API kamu sudah online di: {listener.url()}")
 
-model = model_module.load_model_and_tokenizer()
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -128,5 +127,6 @@ def process_calculation(query: calculationRequest):
     else:
         return {"status": False, "message": jawaban, "alasan": alasan}
 if __name__ == "__main__":
+    model = model_module.load_model_and_tokenizer()
     nest_asyncio.apply()
     uvicorn.run(app, host="0.0.0.0", port=8000)

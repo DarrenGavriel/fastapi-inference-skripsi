@@ -32,7 +32,7 @@ tqdm.tqdm.__init__ = _quiet_grid_search_tqdm
 
 # ----------------------------- CONFIG -----------------------------
 MODEL_ID = "Qwen/Qwen3.5-27B"
-SAVE_DIR = "Qwen3.5-27B-AWQ-W4A16"
+SAVE_DIR = "Qwen3.5-27B-AWQ-W4A16-full-4bit"
 
 CALIB_FILE = "./merged_data.jsonl"  # Ganti dengan path file JSONL kamu
 NUM_CALIB_SAMPLES = 256  # Total sampel kalibrasi (dibagi rata ke 10 flag)
@@ -157,8 +157,6 @@ def main():
             scheme="W4A16_ASYM",
             ignore=[
                 "lm_head",
-                "re:.*visual.*",  # vision tower
-                "re:.*linear_attn.*",  # layer GatedDeltaNet tetap BF16
                 "re:.*mtp.*",  # head multi-token prediction
             ],
         )
