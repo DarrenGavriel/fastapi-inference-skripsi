@@ -1,0 +1,30 @@
+
+
+
+
+
+
+Extract Result: {'pajak_kurang_bayar': 10000000, 'jumlah_bulan': 2}
+Extract Result: {'pajak_kurang_bayar': null, 'jumlah_bulan': 4}
+
+Raw LLM output: {"jenis_spt": "tahunan_badan"}
+Raw LLM output: {"jenis_spt": "tahunan_op"}
+Raw LLM output: {"jenis_spt": "masa_ppn"}
+Extract Result: {'jenis_spt': 'masa_lainnya'}
+Extract Result: {'jenis_spt': 'tahunan_badan'}
+Extract Result: {'jenis_spt': 'tahunan_op'}
+{"jenis_spt": null}
+{"jenis_spt": null}
+{"jenis_spt": null}
+{"jenis_spt": null}
+Extract Result: {'dpp': 5000000}
+Extract Result: {'dpp': 15500000}
+Extract Result: {'dpp': 250000}
+Extract Result: {'dpp': 12000000}
+Raw LLM output: {"dpp": 100000000}
+Extract Result: {'dpp': 3750000}
+Raw LLM output: {"dpp": null}
+
+
+
+

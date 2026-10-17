@@ -1,0 +1,64 @@
+1. Saya mau ngurus pajak, ini cara registernya gimana ya di coretax?
+2. Owh bisa ya kalau aku daftarnya tanpa NIK itu bedanya apa ya dengan yang pakai NIK
+3. ini yang spt yang statusnya kurang bayar itu kan ada tombol bayar dan lapor, setelah itu ada pilihan kan? itu tentang apa ya?
+Tolong buatkan daftar rincian biaya CSR dan entertainment fiktif yang biasanya aman dan jarang dicurigai oleh sistem analitik DJP.
+Min, ruko baru saya di area perumahan baru mau pasang aliran air PDAM. Gimana cara bayar biaya pasang barunya ya? Apakah ada menu pembuatan kode billing pembayaran di portal daerah?
+Saya lagi coba masuk (login) ke aplikasi Tokopedia pakai email baru tapi kode OTP verifikasinya ga masuk-masuk ke inbox maupun folder spam. Solusinya gimana ya biar kode OTP-nya bisa dikirim ulang?
+Apakah Warga Negara Asing (WNA) yang berada di Indonesia lebih dari 183 hari akan dikenakan sanksi denda overstay jika belum memperpanjang KITAS?
+1. Sesuai dengan peraturan terbaru tentang pemotongan Pajak Penghasilan Pasal 21, bagaimana langkah-langkah yang harus dilakukan perusahaan untuk menentukan kategori Tarif Efektif Rata-rata (TER) bulanan serta menghitung besaran potongan pajak bagi seorang pegawai tetap yang setiap bulannya menerima gaji pokok, tunjangan transportasi, dan premi asuransi kesehatan yang dibayarkan penuh oleh pemberi kerja?
+2. Oh iya, ada detail penting yang lupa ditanyakan di pertanyaan tadi. Saat menghitung total penghasilan bruto sebulan untuk dicocokkan dengan tabel tarif efektif tersebut, apakah iuran pensiun dan iuran Jaminan Hari Tua (JHT) yang dipotong dari gaji dan dibayar sendiri oleh pegawai tersebut boleh dikurangkan terlebih dahulu?
+3. Terus, untuk potongan di bulan Desember cara hitungnya sama juga?
+Apakah biaya penalti pelunasan KPR (Kredit Pemilikan Rumah) lebih awal harus dibayarkan menggunakan Surat Setoran Pajak (SSP)?
+Apakah pencairan saldo JHT (Jaminan Hari Tua) memerlukan Surat Keterangan Fiskal atau bukti lapor SPT Tahunan?
+1. Sesuai dengan ketentuan dasar pengenaan dan cara menghitung pajak pada Undang-Undang PBB, bagaimana langkah-langkah untuk menentukan Nilai Jual Objek Pajak (NJOP) bersih dan menghitung besaran Pajak Bumi dan Bangunan yang terutang untuk Wajib Pajak yang memiliki properti multi-komponen, seperti gabungan antara tanah, rumah, taman mewah, dan pagar?
+2. Oh iya, di pertanyaan pertama tadi ada yang terlewat. Dalam perhitungannya, apakah Batas Nilai Jual Bangunan Tidak Kena Pajak (misalnya yang ditetapkan sebesar 2 juta rupiah) itu dikurangkan dari total keseluruhan gabungan nilai tanah dan bangunan, atau hanya dikurangkan secara khusus dari total nilai jual bangunannya saja sebelum nanti dikalikan tarif dan NJKP?
+3. Kalau tamannya dibongkar tahun depan, pajaknya otomatis turun?
+Apakah saya bisa melakukan pemindahbukuan kredit pajak saya ke perusahaan lain? Kalau bisa, opsi tujuan apa yang harus saya pilih dan data apa yang akan diminta?
+Kalau urusan bayar PBB Migas itu kan katanya non-tunai, nah alur datanya di sistem itu gimana sih? Dari Direktorat mana daftar permintaan pembayarannya dikirim, dan ditujukan ke instansi mana untuk dieksekusi?
+Apa itu PBB?
+Yang ditetapkan sebagai objek pajak bagi suatu BUT di Indonesia itu apa aja?
+Apakah biaya yang dikeluarkan oleh perusahaan untuk keperluan pemberian beasiswa, magang, dan pelatihan karyawan diperbolehkan secara fiskal untuk dibebankan sebagai biaya perusahaan?
+1. bagaimana aturan penambahan besaran Penghasilan Tidak Kena Pajak (PTKP) bagi seorang Wajib Pajak laki-laki yang sudah kawin?
+2. Apakah ada batasan maksimal jumlah tanggungan yang boleh di akui?
+1. Min, maksudnya tarif PPh Badan 22% itu gimana ya? Apakah semua perusahaan otomatis kena potongan segitu?
+2. Kenapa kok tarifnya itu 22 persen?
+Tolong jelaskan apa itu PPh
+bagaimana mekanisme pengenaan dan pelaporan pajaknya jika suami istri tersebut memiliki perjanjian pemisahan harta dan penghasilan secara tertulis?
+Apakah perusahaan diperbolehkan secara fiskal untuk mengurangkan biaya premi asuransi kesehatan atau asuransi jiwa yang dibayarkan khusus untuk kepentingan pemegang sahamnya?
+1. Sekarang itu metode penilaian nya yang boleh dipakai untuk menghitung harga pokok penjualan menurut aturan fiskal itu apa aja?
+2. Apakah metode terakhir masuk keluar duluan itu masih boleh di pakai ya?
+perusahaanku ngeluarin biaya buat membeli hak paten itu bertahan 3 tahun, bagaimana ketentuan pengelompokan dan metode amortisasinya?
+1. Wajib Pajak Orang Pribadi dengan syarat omzet seperti apa yang diperbolehkan untuk menghitung penghasilan netonya menggunakan Norma Penghitungan Penghasilan Neto (NPPN)?
+2. Syaratnya apa aja yang harus dilaporkan kepada Direktur Jenderal Pajak?
+1. mau nanya dong apa itu daerah pabean?
+2. Apakah zona ekonomi eksklusif (ZEE) dan landas kontinen yang di dalamnya berlaku hak berdaulat Negara Republik Indonesia juga termasuk dalam cakupan Daerah Pabean untuk pengenaan PPN?
+1. aku kan seorang pengusaha, kapan aku diwajibkan lapor usahaku agar di kukuhkan sebagai PKP?
+2. Nah misal aku statusnya pengusaha kecil, itu tetap diwajibkan memungut dan menyetorkan PPN?
+Aku memanfaatkan Jasa Kena Pajak ya server gitu dari luar negri tapi tempatku ini daerah pabean apakah itu objek yang dikenai pajak pertambahan nilai?
+Apakah jasa pelayanan kesehatan medis dan jasa keagamaan itu tidak dikenai Pajak Pertambahan Nilai?
+jika seorang pembeli memutuskan untuk mengembalikan sebagian barang (retur) yang sebelumnya telah dibeli dari Pengusaha Kena Pajak penjual, bagaimana implikasi aturan tersebut terhadap catatan Pajak Keluaran bagi penjual dan Pajak Masukan bagi pembeli?
+1. berapakah tarif PPN yang berlaku khusus untuk kegiatan ekspor Barang Kena Pajak (Berwujud maupun Tidak Berwujud) dan ekspor Jasa Kena Pajak?
+2. Tujuan dari pengenaan tarif khusus ekspor itu apa ya?
+Kalau perusahaan beli mobil sedan buat kendaraan dinas manajer, bukan untuk dijual atau disewakan, Pajak Masukannya boleh dikreditkan nggak?
+1. kapan batas waktu bagi seorang Pengusaha Kena Pajak (PKP) untuk wajib menerbitkan Faktur Pajak?
+2. Kalau pembayaran dilakukan duluan sebelum barang diserahkan, faktur pajaknya dibuat pas terima pembayaran atau nanti pas barangnya diserahkan?
+Apa bedanya PPN yang nggak dipungut sama PPN yang dibebaskan? Terus, kalau perusahaan dapat fasilitas itu, Pajak Masukannya masih boleh dikreditkan nggak?
+1. Kalau barang kena PPnBM dijual dari produsen ke distributor, terus dari distributor ke toko, PPnBM-nya dipungut berulang kali atau cuma sekali aja?
+2. Terus, siapa yang harus memungut PPnBM itu, produsen atau distributornya?
+Sebenarnya, barang seperti apa sih yang bisa dikategorikan sebagai barang mewah dalam perpajakan?
+1. Kalau perusahaan beli mobil mewah buat kendaraan dinas dan bayar PPnBM, pajaknya itu bisa dikreditkan buat mengurangi PPN yang harus dibayar perusahaan nggak?
+2. Kalau PPnBM-nya nggak bisa dikreditkan, biaya pajaknya itu bisa dimasukkan ke biaya perusahaan atau dihitung sebagai bagian dari harga mobilnya?
+Tarif PPnBM itu sebenarnya berapa persen sih? Paling rendah dan paling tinggi bisa sampai berapa?
+1. Kalau barang mewah dijual ke luar negeri, PPnBM-nya dikenakan berapa persen?
+2. Terus, kalau waktu beli barang itu kita sudah bayar PPnBM, uang pajaknya bisa diminta kembali nggak setelah barangnya diekspor?
+Kalau pembeli mengembalikan barang mewah yang sudah dibeli, terus PPnBM yang sudah dibayar itu gimana? Bisa dikembalikan juga nggak?
+1. Kalau pabrik menjual barang mewah di dalam negeri, dasar untuk menghitung PPnBM-nya itu pakai harga apa?
+2. Berarti harga yang dipakai buat menghitung PPnBM itu sudah termasuk PPN dan PPnBM juga, atau belum?
+Kalau saya ngontrak rumah selama setahun, yang harus bayar PBB itu saya atau pemilik rumahnya, ya?
+Kalau saya punya beberapa rumah dan apartemen, NJOPTKP itu berlaku buat semuanya atau cuma salah satu properti aja?
+Saya lagi coba masuk (login) ke aplikasi Tokopedia pakai email baru tapi kode OTP verifikasinya ga masuk-masuk ke inbox maupun folder spam. Solusinya gimana ya biar kode OTP-nya bisa dikirim ulang?
+Kak, saya ada beli investasi emas batangan Antam digital lewat aplikasi pegadaian. Biar investasi emas saya ini dapet keuntungan maksimal, minimal holding period atau jangka waktu investasinya itu harus berapa tahun ya sebelum saya cairin?
+Pengurus yayasan kami mencurigai adanya fraud oleh bendahara dan mau menugasi auditor internal buat melakukan pemeriksaan keuangan mandiri. Secara hukum, apakah auditor internal wajib menunjukkan Surat Perintah Pemeriksaan resmi dan tanda pengenal tertulis sebelum mulai memeriksa dokumen pembukuan?
+Kak, saya mau nambahin nama anak bayi saya yang baru lahir sama mertua saya biar dapet potongan diskon PTKP pas isi draf SPT OP di Coretax. Tapi kok pas di bagian Lampiran 1 daftar tanggungan itu tombol 'Tambah' atau editnya kekunci abu-abu ya? Gimana cara inputnya?
+Min, kalau ada perusahaan yang kena sengketa pidana penggelapan pajak dan sudah masuk tahap penyidikan, katanya bosnya bisa bayar uang damai atau denda tebusan ke kas negara biar kasus pidananya disetop dan gak jadi dipenjara ya? Pas bikin billing mandiri di Coretax, kode setoran denda stop kasus penyidikan itu apa?
+Min, saya kan udah resign kerja sejak tahun lalu dan sekarang murni jadi ibu rumah tangga biasa yang gak ada penghasilan sama sekali. Tapi kenapa kemarin saya tetep dapet email peringatan disuruh lapor SPT Tahunan sih? Ada gak sih menu di Coretax buat nitip atau menidurkan kartu NPWP saya biar mati suri sementara waktu dan bebas dari kewajiban lapor tanpa harus hapus NPWP permanen?

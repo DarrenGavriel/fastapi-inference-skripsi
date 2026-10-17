@@ -1,0 +1,63 @@
+1. Saya mau ngurus pajak, ini cara registernya gimana ya di coretax?
+2. Owh bisa ya kalau aku daftarnya tanpa NIK itu bedanya apa ya dengan yang pakai NIK
+3. ini yang spt yang statusnya kurang bayar itu kan ada tombol bayar dan lapor, setelah itu ada pilihan kan? itu tentang apa ya?
+1. Sesuai dengan peraturan terbaru tentang pemotongan Pajak Penghasilan Pasal 21, bagaimana langkah-langkah yang harus dilakukan perusahaan untuk menentukan kategori Tarif Efektif Rata-rata (TER) bulanan serta menghitung besaran potongan pajak bagi seorang pegawai tetap yang setiap bulannya menerima gaji pokok, tunjangan transportasi, dan premi asuransi kesehatan yang dibayarkan penuh oleh pemberi kerja?
+2. Oh iya, ada detail penting yang lupa ditanyakan di pertanyaan tadi. Saat menghitung total penghasilan bruto sebulan untuk dicocokkan dengan tabel tarif efektif tersebut, apakah iuran pensiun dan iuran Jaminan Hari Tua (JHT) yang dipotong dari gaji dan dibayar sendiri oleh pegawai tersebut boleh dikurangkan terlebih dahulu?
+3. Terus, untuk potongan di bulan Desember cara hitungnya sama juga?
+1. Sesuai dengan ketentuan dasar pengenaan dan cara menghitung pajak pada Undang-Undang PBB, bagaimana langkah-langkah untuk menentukan Nilai Jual Objek Pajak (NJOP) bersih dan menghitung besaran Pajak Bumi dan Bangunan yang terutang untuk Wajib Pajak yang memiliki properti multi-komponen, seperti gabungan antara tanah, rumah, taman mewah, dan pagar?
+2. Oh iya, di pertanyaan pertama tadi ada yang terlewat. Dalam perhitungannya, apakah Batas Nilai Jual Bangunan Tidak Kena Pajak (misalnya yang ditetapkan sebesar 2 juta rupiah) itu dikurangkan dari total keseluruhan gabungan nilai tanah dan bangunan, atau hanya dikurangkan secara khusus dari total nilai jual bangunannya saja sebelum nanti dikalikan tarif dan NJKP?
+3. Kalau tamannya dibongkar tahun depan, pajaknya otomatis turun?
+1. bagaimana aturan penambahan besaran Penghasilan Tidak Kena Pajak (PTKP) bagi seorang Wajib Pajak laki-laki yang sudah kawin?
+2. Apakah ada batasan maksimal jumlah tanggungan yang boleh di akui?
+1. apa masut dari pph badan 22 persen?
+2. Kenapa kok tarifnya itu 22 persen?
+1. Sekarang itu metode penilaian nya yang boleh dipakai untuk menghitung harga pokok penjualan menurut aturan fiskal itu apa aja?
+2. Apakah metode terakhir masuk keluar duluan itu masih boleh di pakai ya?
+3. perusahaanku ngeluarin biaya buat membeli hak paten itu bertahan 3 tahun, bagaimana ketentuan pengelompokan dan metode amortisasinya?
+1. Wajib Pajak Orang Pribadi dengan syarat omzet seperti apa yang diperbolehkan untuk menghitung penghasilan netonya menggunakan Norma Penghitungan Penghasilan Neto (NPPN)?
+2. Syaratnya apa aja yang harus dilaporkan kepada Direktur Jenderal Pajak?
+1. mau nanya dong apa itu daerah pabean?
+2. Apakah zona ekonomi eksklusif (ZEE) dan landas kontinen yang di dalamnya berlaku hak berdaulat Negara Republik Indonesia juga termasuk dalam cakupan Daerah Pabean untuk pengenaan PPN?
+1. aku kan seorang pengusaha, kapan aku diwajibkan lapor usahaku agar di kukuhkan sebagai PKP?
+2. Nah misal aku statusnya pengusaha kecil, itu tetap diwajibkan memungut dan menyetorkan PPN?
+1. berapakah tarif PPN yang berlaku khusus untuk kegiatan ekspor Barang Kena Pajak (Berwujud maupun Tidak Berwujud) dan ekspor Jasa Kena Pajak?
+2. Tujuan dari pengenaan tarif khusus ekspor itu apa ya?
+1. Min, menurut UU KUP itu Wajib Pajak sebenarnya siapa aja sih? Apa cuma orang pribadi atau perusahaan juga termasuk?
+2. Terus, kalau NPWP sendiri sebenarnya buat apa ya? Apa cuma sebagai nomor identitas pajak aja?
+1. Min, kalau mau lapor SPT Tahunan, paling lambat kapan ya buat orang pribadi sama perusahaan?
+2. Kalau telat lapor SPT, dendanya berapa sih? Buat SPT Masa sama SPT Tahunan itu beda nggak?
+3. Oh iya, aku juga masih bingung bedanya SKPKB sama SKPLB. Bisa jelasin dengan bahasa yang gampang dipahami?
+1. Min, sebenarnya kenapa sih DJP melakukan pemeriksaan pajak? Tujuannya buat apa?
+2. Kalau hasil pemeriksaannya nggak sesuai dan aku merasa ketetapan pajaknya salah, bisa mengajukan keberatan nggak? Syaratnya apa dan batas waktunya sampai kapan?
+3. Kalau surat keberatannya sudah masuk ke DJP, biasanya mereka punya waktu berapa lama buat memberikan keputusan?
+4. Kalau keputusan keberatannya masih nggak sesuai harapan, aku bisa mengajukan banding ke mana lagi?
+1. PPN itu sebenarnya pajak apa sih? Terus, sekarang tarif PPN di Indonesia berapa persen?
+2. Kalau punya usaha, omzet setahun harus sampai berapa dulu supaya wajib jadi PKP?
+1. Aku sering dengar istilah Pajak Keluaran sama Pajak Masukan. Itu cara ngitung PPN-nya gimana sih? Yang satu dikurangi yang lain, ya?
+2. Ohh, terus semua barang dan jasa itu kena PPN nggak? Ada contoh barang atau jasa yang memang nggak dikenai PPN?
+3. Kalau dalam satu bulan Pajak Masukannya ternyata lebih besar daripada Pajak Keluarannya, kelebihan itu gimana? Bisa dibalikin atau harus dibawa ke bulan berikutnya?
+1. Faktur Pajak itu sebenarnya apa, sih? Kalau kita jual barang atau jasa, kapan paling lambat harus bikin faktur itu?
+2. Berarti kalau kita beli barang terus bayar PPN, pajaknya bisa dipakai sebagai pengurang PPN yang harus dibayar juga, dong? Ada syaratnya nggak?
+3. Kalau sudah bayar PPN dan dapat Faktur Pajak, berarti pajaknya pasti bisa dikreditkan, atau ada juga yang nggak boleh?
+4. Terus, Faktur Pajak Gabungan itu apa? Kalau transaksi ke pelanggan yang sama berkali-kali dalam sebulan, boleh digabung jadi satu faktur nggak?
+1. Aku mau tanya, PPh 21 sama PPh Final itu bedanya apa ya? Misalnya pajak gaji sama pajak dari sewa ruko.
+2. Kalau statusnya masih TK/0, gaji berapa yang mulai kena PPh 21? Ada batas penghasilan yang nggak kena pajak, kan?
+1. Kalau punya PT, pajak dari keuntungan perusahaannya berapa persen?
+2. Kalau usahanya masih UMKM dan omzet setahun belum sampai Rp4,8 miliar, cara ngitung pajaknya gimana? Apa memang lebih kecil daripada pajak PT biasa?
+3. Kalau usaha atas nama sendiri, omzet Rp500 juta pertama itu memang nggak kena pajak? Berarti kalau omzet setahun masih di bawah jumlah itu, nggak perlu bayar PPh UMKM?
+1. Setiap tahun kantor ngasih bukti potong 1721-A1. Itu nanti dipakai buat apa waktu lapor SPT Tahunan?
+2. Terus, kenapa waktu lapor SPT masih bisa kurang bayar, padahal gaji tiap bulan sudah dipotong pajak sama kantor?
+3. Di SPT kita juga harus ngisi daftar harta, termasuk rumah, motor, sama tabungan. Itu buat apa ya? Apa harta yang sudah dilaporkan bakal dikenai pajak lagi?
+4. Sekarang NIK sudah bisa dipakai sebagai NPWP, kan? Kalau begitu, orang yang sudah punya KTP, misalnya mahasiswa atau yang belum kerja, otomatis harus bayar PPh juga?
+1. Aku sudah dapat bukti potong 1721-A1 dari kantor. Berarti tinggal pakai itu buat lapor SPT Tahunan, kan?
+2. Tapi kalau setelah diisi ternyata status SPT-ku kurang bayar, padahal pajak gajiku sudah dipotong kantor, itu kenapa?
+3. Kalau memang masih kurang bayar, aku harus melunasinya dulu sebelum mengirim SPT atau boleh menyusul?
+1. Sekarang NIK sudah dipakai sebagai NPWP, ya? Kalau aku sudah punya KTP, berarti otomatis terdaftar sebagai wajib pajak?
+2. Kalau begitu, mahasiswa yang belum punya penghasilan sendiri juga harus lapor SPT tiap tahun?
+3. Terus kalau nanti mahasiswa itu mulai kerja dan dapat gaji, apa ada proses khusus supaya NIK-nya bisa dipakai untuk urusan pajak?
+1. Kalau aku telat lapor SPT Tahunan sebagai orang pribadi, dendanya berapa ya?
+2. Btw, kalau beli laptop buat kerja, PPN yang dibayar itu bisa dikreditkan nggak?
+3. Kalau punya deposito di bank, bunganya masih kena PPh lagi nggak?
+Aku baru mulai kerja dan belum punya NPWP sendiri. Kalau sudah punya NIK, perlu daftar lagi nggak?
+Kalau perusahaan rugi dalam satu tahun, tetap harus bayar PPh Badan nggak?
+Terus, kalau aku dapat hadiah undian berupa uang, pajaknya ditanggung pemenang atau penyelenggara?
