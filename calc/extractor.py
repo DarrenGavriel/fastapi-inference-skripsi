@@ -393,7 +393,7 @@ def extract(flag, query, generate, source_text=None, retries=1):
     }
 
 
-def make_unsloth_generate(model, tokenizer, max_new_tokens=200):
+def make_unsloth_generate(model, tokenizer, max_new_tokens=5000):
     """Contoh pembungkus untuk model Unsloth (BELUM diuji dengan model sungguhan)."""
     import torch
 

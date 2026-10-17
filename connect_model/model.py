@@ -116,7 +116,7 @@ def generate_answer(model, tokenizer, query, RAG):
         banned_token_ids = tokenizer(text="<think>", add_special_tokens=False)["input_ids"]
         outputs = model.generate(
             input_ids = inputs["input_ids"],
-            max_new_tokens = 2000,
+            max_new_tokens = 5000,
             use_cache = True,
             eos_token_id = tokenizer.eos_token_id,
             pad_token_id = tokenizer.eos_token_id,
@@ -224,7 +224,7 @@ def generate_rag_query_rewrite(model, tokenizer, chat_history, current_query, an
         banned_token_ids = tokenizer(text="<think>", add_special_tokens=False)["input_ids"]
         outputs = model.generate(
             input_ids = inputs["input_ids"],
-            max_new_tokens = 500,
+            max_new_tokens = 5000,
             use_cache = True,
             eos_token_id = tokenizer.eos_token_id,
             pad_token_id = tokenizer.eos_token_id,
@@ -291,7 +291,7 @@ def generate_plain(model, tokenizer, systemQuery, query):
         banned_token_ids = tokenizer(text="<think>", add_special_tokens=False)["input_ids"]
         outputs = model.generate(
             input_ids = inputs["input_ids"],
-            max_new_tokens = 500,
+            max_new_tokens = 5000,
             use_cache = True,
             eos_token_id = tokenizer.eos_token_id,
             pad_token_id = tokenizer.eos_token_id,

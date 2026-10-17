@@ -15,6 +15,7 @@ Self-test (tanpa model):  python responder.py
 import math
 
 from calc.extractor import number_candidates, number_matches
+from calc.hitung import DEFAULT_NJOP_BANGUNAN_PER_M2, DEFAULT_NJOP_BUMI_PER_M2
 
 # ----------------------------------------------------------------------------
 # Data per flag (edit di sini)
@@ -153,7 +154,14 @@ def _format_value(key, value, kind):
 
 def _param_lines(flag, kwargs, clean):
     lines = []
-    for key, value in kwargs.items():
+    display_kwargs = dict(kwargs)
+    if flag == "NJOP":
+        if display_kwargs.get("njop_bumi_per_m2") is None:
+            display_kwargs["njop_bumi_per_m2"] = DEFAULT_NJOP_BUMI_PER_M2
+        if display_kwargs.get("njop_bangunan_per_m2") is None:
+            display_kwargs["njop_bangunan_per_m2"] = DEFAULT_NJOP_BANGUNAN_PER_M2
+
+    for key, value in display_kwargs.items():
         label, kind = FIELD_INFO[key]
         text = _format_value(key, value, kind)
         if (flag == "pph_op" and key == "penghasilan_neto_setahun"
@@ -297,6 +305,14 @@ def _selftest():
                       "njop_bangunan_per_m2": 0}, "clean": None}
     f2 = build_fact_block("NJOP", "hitung NJOP tanah kosong 300 m2", ek2["kwargs"], None, 600_000_000.0)
     assert "- Luas bangunan: 0 m²" in f2 and "Rp 600.000.000" in f2
+    # NJOP per m2 null -> tampilkan default yang dipakai oleh hitung_njop
+    ek3 = {"kwargs": {"luas_bumi": 120, "luas_bangunan": 60,
+                      "njop_bumi_per_m2": None, "njop_bangunan_per_m2": None},
+           "clean": None}
+    f3 = build_fact_block("NJOP", "hitung NJOP tanah 120 m2 bangunan 60 m2",
+                          ek3["kwargs"], None, 330_000_000.0)
+    assert "- NJOP tanah per m²: Rp 2.000.000" in f3
+    assert "- NJOP bangunan per m²: Rp 1.500.000" in f3
 
     print("Semua self-test lolos.")
 
