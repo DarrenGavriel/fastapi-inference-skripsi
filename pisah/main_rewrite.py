@@ -59,8 +59,8 @@ def process_query(query: queryRequest):
         return {"status": False, "message": "Query tidak boleh kosong."}
     rewrite_query = model_module.generate_rag_query_rewrite(model[1], model[2], query.history_query, query.query, query.history_answer)
     if rewrite_query[0] == False:
-        return {"status": False, "message": rewrite_query[1]}
-    return {"status": True, "message": rewrite_query[1]}
+        return {"status": False, "message": rewrite_query[1], "query": ""}
+    return {"status": True, "message": rewrite_query[1], "query": rewrite_query[2]}
 
 @app.post("/generate/answer")
 def process_answer(query: answerRequest):
@@ -72,8 +72,8 @@ def process_answer(query: answerRequest):
         return {"status": False, "message": "RAG tidak boleh kosong."}
     answer_query = model_module.generate_answer(model[1], model[2], query.query, query.RAG)
     if answer_query[0] == False:
-        return {"status": False, "message": answer_query[1]}
-    return {"status": True, "message": answer_query[1]}
+        return {"status": False, "message": answer_query[1], "query": ""}
+    return {"status": True, "message": answer_query[1], "query": answer_query[2]}
 
 @app.post("/extraction")
 def process_extraction(query: extractionRequest):

@@ -138,7 +138,7 @@ def generate_answer(model, tokenizer, query, RAG):
 
         # Ambil teks hasil generate saja (di vLLM, prompt input tidak ikut ter-output lagi!)
         generated_text = outputs[0].outputs[0].text
-        return True, generated_text.strip()
+        return True, generated_text.strip(), repr(system_prompt)
     except Exception as e:
         message = f"Terjadi kesalahan saat merumuskan ulang kueri: {e}"
         print(message)
@@ -217,7 +217,7 @@ def generate_rag_query_rewrite(model, tokenizer, chat_history, current_query, an
 
         # Ambil teks hasil generate saja (di vLLM, prompt input tidak ikut ter-output lagi!)
         generated_text = outputs[0].outputs[0].text
-        return True, generated_text.strip()
+        return True, generated_text.strip(), repr(system_prompt)
     except Exception as e:
         message = f"Terjadi kesalahan saat merumuskan ulang kueri: {e}"
         print(message)
