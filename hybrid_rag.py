@@ -1,5 +1,6 @@
 import json
 import re
+import time
 from typing import List, Dict, Any, Tuple, Optional
 
 # =====================================================================
@@ -254,6 +255,7 @@ def main(question: str = None):
     top_k_search = 5
     status = True
     if question:
+        start_time = time.time()
         query = question.strip()
         # ---------------------------------
         # BM25 SEARCH
@@ -292,8 +294,10 @@ def main(question: str = None):
             # Output default jika tidak ada hasil
             fallback_msg = 'Terima kasih atas pertanyaannya. Mohon maaf, saya hanya dapat membantu menjawab pertanyaan seputar perpajakan Indonesia, khususnya terkait Undang-Undang KUP dan penggunaan aplikasi CoreTax. Untuk pertanyaan di luar topik tersebut, saya belum bisa membantu.'
             # print(fallback_msg)
+            end_time = time.time()
+            rag_time = end_time - start_time
             status = False
-            return fallback_msg, status
+            return fallback_msg, status, rag_time
         print("\n[*] Melakukan Reciprocal Rank Fusion (RRF)...")
         hybrid_results = rrf_fusion(bm25_results, semantic_results, top_k=top_k_search)
         print("\n" + "-"*50)
@@ -307,8 +311,10 @@ def main(question: str = None):
             chunk_outputs.append(f"Chunk {i}\\n{content_safe}")
         # Gabungkan antar chunk dengan literal '\n' juga
         final_output_string = "\\n".join(chunk_outputs)
+        end_time = time.time()
+        rag_time = end_time - start_time
         # Return hasil akhir
-        return final_output_string, status
+        return final_output_string, status, rag_time
         # print(final_output_string)
     else:
         while True:
