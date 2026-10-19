@@ -43,8 +43,8 @@ def read_root():
 def process_query(query: queryRequest):
     resultRag = hybrid_rag.main(query.query)
     if resultRag[1] == False:
-        return {"status": False, "message": resultRag[0]}
-    return {"status": True, "message": resultRag[0]}
+        return {"status": False, "message": resultRag[0], "rag_time": resultRag[2]}
+    return {"status": True, "message": resultRag[0], "rag_time": resultRag[2]}
 
 @app.post("/route")
 def process_route(query: queryRequest):
