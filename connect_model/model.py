@@ -1,4 +1,5 @@
 import re
+from time import time
 import torch
 from transformers import AutoTokenizer
 from vllm import LLM, SamplingParams
@@ -132,13 +133,17 @@ def generate_answer(model, tokenizer, query, RAG):
             bad_words=["<think>"],  # KUNCI 1: Larang string "<think>"
             logit_bias=logit_bias_dict,  # KUNCI 2: Beri penalti -100 pada token ID "<think>"
         )
-
+        start_time = time.time()
         # Jalankan inferensi (use_cache=True sudah otomatis aktif di PagedAttention vLLM)
         outputs = model.generate([formatted_prompt], sampling_params, use_tqdm=False)
-
+        end_time = time.time()
+        generation_time = end_time - start_time
         # Ambil teks hasil generate saja (di vLLM, prompt input tidak ikut ter-output lagi!)
         generated_text = outputs[0].outputs[0].text
-        return True, generated_text.strip(), repr(system_prompt)
+        generated_token = len(outputs[0].outputs[0].token_ids)
+        tps = generated_token / generation_time if generation_time > 0 else 0
+        print(f"Generated Token: {generated_token}, Generation Time: {generation_time:.2f} seconds, Tokens per Second: {tps:.2f}")
+        return True, generated_text.strip(), repr(system_prompt), tps
     except Exception as e:
         message = f"Terjadi kesalahan saat merumuskan ulang kueri: {e}"
         print(message)
@@ -211,13 +216,17 @@ def generate_rag_query_rewrite(model, tokenizer, chat_history, current_query, an
             bad_words=["<think>"],  # KUNCI 1: Larang string "<think>"
             logit_bias=logit_bias_dict,  # KUNCI 2: Beri penalti -100 pada token ID "<think>"
         )
-
+        start_time = time.time()
         # Jalankan inferensi (use_cache=True sudah otomatis aktif di PagedAttention vLLM)
         outputs = model.generate([formatted_prompt], sampling_params, use_tqdm=False)
-
+        end_time = time.time()
+        generation_time = end_time - start_time
         # Ambil teks hasil generate saja (di vLLM, prompt input tidak ikut ter-output lagi!)
         generated_text = outputs[0].outputs[0].text
-        return True, generated_text.strip(), repr(system_prompt)
+        generated_token = len(outputs[0].outputs[0].token_ids)
+        tps = generated_token / generation_time if generation_time > 0 else 0
+        print(f"Generated Token: {generated_token}, Generation Time: {generation_time:.2f} seconds, Tokens per Second: {tps:.2f}")
+        return True, generated_text.strip(), repr(system_prompt), tps
     except Exception as e:
         message = f"Terjadi kesalahan saat merumuskan ulang kueri: {e}"
         print(message)

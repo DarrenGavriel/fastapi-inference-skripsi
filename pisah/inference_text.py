@@ -14,6 +14,8 @@ global_answer_history = []
 global_query_history = []
 global_query_rewrite_history = []
 global_rewrite_history = []
+global_tps_history = []
+global_rag_time = []
 
 headers = {"Content-Type": "application/json"}
 
@@ -41,10 +43,10 @@ def calculate_from_extraction(flag, kwargs):
 print("=== Program POST Berjalan ===")
 print("Membaca input dari dataset 'file.txt'...\n")
 
-if not os.path.exists("file.txt"):
-    print("File 'file.txt' tidak ditemukan. Pastikan file dataset sudah ada.")
+if not os.path.exists("./persiapan_awq/test/pertanyaan.txt"):
+    print("File './persiapan_awq/test/pertanyaan.txt' tidak ditemukan. Pastikan file dataset sudah ada.")
 else:
-    with open("file.txt", "r", encoding="utf-8") as f:
+    with open("./persiapan_awq/test/pertanyaan.txt", "r", encoding="utf-8") as f:
         baris_query = f.readlines()
 
     for line in baris_query:
@@ -132,7 +134,8 @@ else:
                     raise err
                 body_answer = response_answer.json()
                 result_answer = body_answer["message"]
-                
+                result_query = body_answer["query"] # Menggunakan get() untuk menghindari KeyError jika 'query' tidak ada
+                result_tps = body_asnwer["tps"]
                 # Menggunakan get() untuk menghindari KeyError jika 'query' tidak ada
                 result_query = body_answer.get("query", query) 
                 
@@ -142,7 +145,8 @@ else:
                     turn += 1
                     print(f"Answer Result: {result_answer}\n")
                     global_answer_history.append(result_answer)
-                    global_query_history.append(query)
+                    global_query_history.append(result_query)
+                    global_tps_history.append(result_tps)
                 else:
                     print(f"Answer Error: {result_answer}\n")
             else:
@@ -154,6 +158,7 @@ else:
             body_rewrite = response_rewrite.json()
             if body_rewrite.get("status") is True:
                 result_rewrite = body_rewrite.get("message")
+                result_rag_time = body_rewrite.get("")
                 print(f"Rewrite Result: {result_rewrite}\n")
                 data_rag = {"query": result_rewrite}
                 response_route = requests.post(f"https://{url_rag}/route", json=data_rag, headers=headers)
@@ -168,6 +173,7 @@ else:
                 result_query_rewite = body_rewrite.get("query", query)
                 global_query_rewrite_history.append(result_query_rewite)
                 global_rewrite_history.append(result_rewrite)
+                global_rag_time.append(result_rag_time)
                 
                 if result_route != "tanpa_hitung":
                     print(f"Route Result: {result_route}\n")
@@ -214,6 +220,7 @@ else:
                     response_rag.raise_for_status()
                     body_rag = response_rag.json()
                     result_rag = body_rag.get("message")
+                    result_rag_time = body_rag.get("rag_time")
                     if body_rag.get("status") is True:
                         print(f"RAG Result: {result_rag}\n")
                         data_answer = {"query": result_rewrite, "RAG": result_rag}
@@ -221,12 +228,14 @@ else:
                         response_answer.raise_for_status()
                         body_answer = response_answer.json()
                         result_answer = body_answer.get("message")
-                        
+                        result_tps = body_answer.get("tps")
+
                         result_query = body_answer.get("query", result_rewrite)
                         
                         if body_answer.get("status") is True:
                             global_query_history.append(result_query)
                             global_answer_history.append(result_answer)
+                            global_tps_history.append(result_tps)
                             
                             query_history.append(result_rewrite)
                             answer_history.append(result_answer)
@@ -265,8 +274,20 @@ else:
             safe_item = str(item).replace('\n', ' ')
             f.write(f"{safe_item}\n")
 
-    print("Keempat file berhasil dibuat:")
+    with open("global_tps_history.txt", "w", encoding="utf-8") as f:
+        for item in global_tps_history:
+            safe_item = str(item).replace('\n', ' ')
+            f.write(f"{safe_item}\n")
+
+    with open("global_rag_time.txt", "w", encoding="utf-8") as f:
+        for item in global_rag_time:
+            safe_item = str(item).replace('\n', ' ')
+            f.write(f"{safe_item}\n")
+
+    print("keenam file berhasil dibuat:")
     print("1. global_query_history.txt")
     print("2. global_answer_history.txt")
     print("3. global_query_rewrite_history.txt")
     print("4. global_rewrite_history.txt")
+    print("5. global_tps_history.txt")
+    print("6. global_rag_time.txt")
