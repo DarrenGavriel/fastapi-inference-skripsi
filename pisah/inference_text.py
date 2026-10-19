@@ -121,6 +121,8 @@ else:
             response_rag.raise_for_status()
             body_rag = response_rag.json()
             result_rag = body_rag["message"]
+            result_rag_time = body_rag["rag_time"]
+            global_rag_time.append(result_rag_time)
             if body_rag["status"] == True:
                 print(f"RAG Result: {result_rag}\n")
                 data_answer = {"query": query, "RAG": result_rag}
@@ -135,11 +137,9 @@ else:
                 body_answer = response_answer.json()
                 result_answer = body_answer["message"]
                 result_query = body_answer["query"] # Menggunakan get() untuk menghindari KeyError jika 'query' tidak ada
-                result_tps = body_asnwer["tps"]
-                # Menggunakan get() untuk menghindari KeyError jika 'query' tidak ada
-                result_query = body_answer.get("query", query) 
                 
                 if body_answer["status"] == True:
+                    result_tps = body_answer["tps"]
                     query_history.append(query)
                     answer_history.append(result_answer)
                     turn += 1
@@ -158,7 +158,6 @@ else:
             body_rewrite = response_rewrite.json()
             if body_rewrite.get("status") is True:
                 result_rewrite = body_rewrite.get("message")
-                result_rag_time = body_rewrite.get("")
                 print(f"Rewrite Result: {result_rewrite}\n")
                 data_rag = {"query": result_rewrite}
                 response_route = requests.post(f"https://{url_rag}/route", json=data_rag, headers=headers)
@@ -173,7 +172,6 @@ else:
                 result_query_rewite = body_rewrite.get("query", query)
                 global_query_rewrite_history.append(result_query_rewite)
                 global_rewrite_history.append(result_rewrite)
-                global_rag_time.append(result_rag_time)
                 
                 if result_route != "tanpa_hitung":
                     print(f"Route Result: {result_route}\n")
@@ -221,6 +219,7 @@ else:
                     body_rag = response_rag.json()
                     result_rag = body_rag.get("message")
                     result_rag_time = body_rag.get("rag_time")
+                    global_rag_time.append(result_rag_time)
                     if body_rag.get("status") is True:
                         print(f"RAG Result: {result_rag}\n")
                         data_answer = {"query": result_rewrite, "RAG": result_rag}
