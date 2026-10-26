@@ -1,5 +1,5 @@
 import re
-from time import time
+import time
 import torch
 from transformers import AutoTokenizer
 from vllm import LLM, SamplingParams
@@ -143,7 +143,7 @@ def generate_answer(model, tokenizer, query, RAG):
         generated_token = len(outputs[0].outputs[0].token_ids)
         tps = generated_token / generation_time if generation_time > 0 else 0
         print(f"Generated Token: {generated_token}, Generation Time: {generation_time:.2f} seconds, Tokens per Second: {tps:.2f}")
-        return True, generated_text.strip(), repr(system_prompt), tps
+        return True, generated_text.strip(), repr(user_content), tps
     except Exception as e:
         message = f"Terjadi kesalahan saat merumuskan ulang kueri: {e}"
         print(message)
@@ -226,7 +226,7 @@ def generate_rag_query_rewrite(model, tokenizer, chat_history, current_query, an
         generated_token = len(outputs[0].outputs[0].token_ids)
         tps = generated_token / generation_time if generation_time > 0 else 0
         print(f"Generated Token: {generated_token}, Generation Time: {generation_time:.2f} seconds, Tokens per Second: {tps:.2f}")
-        return True, generated_text.strip(), repr(system_prompt), tps
+        return True, generated_text.strip(), repr(user_content), tps
     except Exception as e:
         message = f"Terjadi kesalahan saat merumuskan ulang kueri: {e}"
         print(message)

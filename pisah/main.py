@@ -33,6 +33,10 @@ app = FastAPI(lifespan=lifespan)
 class queryRequest(BaseModel):
     query: str
 
+class AblationRequest(BaseModel):
+    query: str
+    top_k: int = 5
+    use_threshold: bool = True
 router = Router("router_out/router.joblib")
 
 @app.get("/")
@@ -50,6 +54,23 @@ def process_query(query: queryRequest):
 def process_route(query: queryRequest):
     label, conf = router.route(query.query)
     return {"status": True, "message": label}
+
+@app.post("/ablation/{mode}")
+def process_ablation(mode: str, req: AblationRequest):
+    if mode not in ["semantic", "bm25", "hybrid"]:
+        return {"status": False, "message": "Mode harus 'semantic', 'bm25', atau 'hybrid'"}
+        
+    top_ids, avg_bm25, avg_semantic = hybrid_rag.retrieve_top_ids_ablation(
+        req.query, 
+        mode=mode,
+        use_threshold=req.use_threshold # Matikan threshold sementara untuk melihat sebaran skor asli
+    )
+    return {
+        "status": True, 
+        "message": top_ids,
+        "avg_bm25": avg_bm25,
+        "avg_semantic": avg_semantic
+    }
 
 if __name__ == "__main__":
     nest_asyncio.apply()

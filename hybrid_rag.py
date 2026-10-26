@@ -88,37 +88,36 @@ def execute_hybrid_search(query: str, q_embedding: List[float], collection, top_
     sem_results = semantic_search_custom(collection, q_embedding, top_k)
     
     # RULE 1: PASAL + AYAT (PRIORITY MERGE)
-    if pasal and ayat:
-        meta_results = metadata_search(collection, q_embedding, pasal, ayat, top_k)
-        final_docs = []
+    # if pasal and ayat:
+    #     meta_results = metadata_search(collection, q_embedding, pasal, ayat, top_k)
+    #     final_docs = []
         
-        # 1. Paksa HANYA hasil metadata yang masuk
-        sorted_meta = sorted(meta_results.values(), key=lambda x: x['similarity'], reverse=True)
-        for d in sorted_meta:
-            d['is_exact_meta'] = True
-            final_docs.append(d)
+    #     # 1. Paksa HANYA hasil metadata yang masuk
+    #     sorted_meta = sorted(meta_results.values(), key=lambda x: x['similarity'], reverse=True)
+    #     for d in sorted_meta:
+    #         d['is_exact_meta'] = True
+    #         final_docs.append(d)
             
-        # Blok kode "Sisipkan hasil semantic" HAPUS SAJA biar gak bocor ke pasal lain
+    #     # Blok kode "Sisipkan hasil semantic" HAPUS SAJA biar gak bocor ke pasal lain
                 
-        return final_docs[:top_k], "Rule 1 (Pasal+Ayat: Exact Match Only)"
+    #     return final_docs[:top_k], "Rule 1 (Pasal+Ayat: Exact Match Only)"
 
-    # RULE 2: HANYA PASAL (STANDARD MERGE)
-    elif pasal and not ayat:
-        meta_results = metadata_search(collection, q_embedding, pasal, None, top_k)
-        final_docs = []
+    # # RULE 2: HANYA PASAL (STANDARD MERGE)
+    # elif pasal and not ayat:
+    #     meta_results = metadata_search(collection, q_embedding, pasal, None, top_k)
+    #     final_docs = []
         
-        # Hanya masukkan hasil yang benar-benar match dari metadata
-        sorted_meta = sorted(meta_results.values(), key=lambda x: x['similarity'], reverse=True)
-        for d in sorted_meta:
-            d['is_exact_meta'] = True
-            final_docs.append(d)
+    #     # Hanya masukkan hasil yang benar-benar match dari metadata
+    #     sorted_meta = sorted(meta_results.values(), key=lambda x: x['similarity'], reverse=True)
+    #     for d in sorted_meta:
+    #         d['is_exact_meta'] = True
+    #         final_docs.append(d)
             
-        return final_docs[:top_k], "Rule 2 (Pasal: Exact Match Only)"
+    #     return final_docs[:top_k], "Rule 2 (Pasal: Exact Match Only)"
 
     # RULE 3 & 4: HANYA AYAT / TANPA KEDUANYA (SEMANTIC ONLY)
-    else:
-        sorted_docs = sorted(sem_results.values(), key=lambda x: x['similarity'], reverse=True)
-        return sorted_docs[:top_k], "Rule 3/4 (Semantic Only)"
+    sorted_docs = sorted(sem_results.values(), key=lambda x: x['similarity'], reverse=True)
+    return sorted_docs[:top_k], "Rule 3/4 (Semantic Only)"
 
 
 # =====================================================================
@@ -142,18 +141,6 @@ def get_bm25_results(query: str, top_k: int = 5) -> List[Dict[str, Any]]:
         # Bersihkan spasi dan nol di depan (misal " 04 " jadi "4")
         doc_pasal = str(metadata.get("pasal", "")).strip().lstrip("0")
         doc_ayat = str(metadata.get("ayat", "")).strip().lstrip("0")
-        
-        # 3. LOGIKA HARD FILTER MUTLAK
-        if pasal_target and ayat_target:
-            pasal_bersih = pasal_target.strip().lstrip("0")
-            ayat_bersih = ayat_target.strip().lstrip("0")
-            if doc_pasal != pasal_bersih or doc_ayat != ayat_bersih:
-                continue # Buang kalau gak sama persis
-                
-        elif pasal_target and not ayat_target:
-            pasal_bersih = pasal_target.strip().lstrip("0")
-            if doc_pasal != pasal_bersih:
-                continue # Buang kalau pasal gak sama persis
         
         # 4. Jika lolos filter, simpan
         teks = res.get("content", res.get("page_content", res.get("document", "")))
@@ -245,6 +232,67 @@ def rrf_fusion(bm25_results: List[Dict[str, Any]], semantic_results: List[Dict[s
     return final_results
 
 
+def retrieve_top_ids_ablation(
+    question: str, 
+    top_k: int = 5, 
+    mode: str = "hybrid",           # Pilihan: "hybrid" (RRF), "bm25", "semantic"
+    use_threshold: bool = False,    # Set False dulu saat ingin mencari/menentukan angka threshold!
+    semantic_thresh: float = 0.50,  
+    bm25_thresh: float = 6.1,       
+    verbose: bool = False           
+) -> Tuple[List[str], float, float]:
+    """
+    Mengembalikan: (top_ids, rata_rata_bm25, rata_rata_semantic)
+    """
+    if not question or not question.strip():
+        return [], 0.0, 0.0
+        
+    query = question.strip()
+    rata_rata_bm25 = 0.0
+    rata_rata_semantic = 0.0
+    
+    # ---------------------------------
+    # 1. JALANKAN BM25 SEARCH & HITUNG RATA-RATA
+    # ---------------------------------
+    bm25_results = get_bm25_results(query, top_k=10)
+    if bm25_results:
+        rata_rata_bm25 = sum(doc['score'] for doc in bm25_results) / len(bm25_results)
+        if use_threshold and rata_rata_bm25 < bm25_thresh:
+            if verbose:
+                print(f"    -> ⚠️ Rata-rata BM25 ({rata_rata_bm25:.2f}) < {bm25_thresh}, diabaikan.")
+            bm25_results = []
+
+    # ---------------------------------
+    # 2. JALANKAN SEMANTIC SEARCH & HITUNG RATA-RATA
+    # ---------------------------------
+    semantic_results = get_semantic_results(query, top_k=10)
+    if semantic_results:
+        has_exact_meta = any(doc.get("is_exact_meta", False) for doc in semantic_results)
+        rata_rata_semantic = sum(doc['score'] for doc in semantic_results) / len(semantic_results)
+        if use_threshold and rata_rata_semantic < semantic_thresh and not has_exact_meta:
+            if verbose:
+                print(f"    -> ⚠️ Rata-rata Semantic ({rata_rata_semantic*100:.2f}%) < {semantic_thresh*100}%, diabaikan.")
+            semantic_results = []
+
+    # Bulatkan 4 angka di belakang koma agar rapi di CSV
+    avg_bm25_clean = round(rata_rata_bm25, 4)
+    avg_sem_clean = round(rata_rata_semantic, 4)
+
+    # ---------------------------------
+    # 3. PENENTUAN OUTPUT BERDASARKAN MODE ABLATION
+    # ---------------------------------
+    if mode == "bm25":
+        top_ids = [doc["id"] for doc in bm25_results[:top_k]]
+    elif mode == "semantic":
+        top_ids = [doc["id"] for doc in semantic_results[:top_k]]
+    else:
+        if not semantic_results and not bm25_results:
+            top_ids = []
+        else:
+            hybrid_results = rrf_fusion(bm25_results, semantic_results, top_k=top_k)
+            top_ids = [doc["id"] for doc in hybrid_results]
+            
+    return top_ids, avg_bm25_clean, avg_sem_clean
 # =====================================================================
 # 5. MAIN LOOP
 # =====================================================================
