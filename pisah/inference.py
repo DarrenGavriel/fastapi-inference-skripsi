@@ -35,9 +35,9 @@ def calculate_from_extraction(flag, kwargs):
     return calculator(**kwargs)
 
 
-print("=== Program POST Berjalan ===")
+print("=== Assiten Pajak Berjalan ===")
 print("Ketik 'keluar' pada judul untuk menghentikan program.\n")
-print("Ketik 'reset' untuk menghapus riwayat percakapan.\n") # Tambahkan info ini
+print("Ketik 'reset' untuk menghapus riwayat percakapan.\n")
 
 while True:
     query = input("Masukkan query: ")
@@ -62,21 +62,21 @@ while True:
             print(f"Route Error: {body_route.get('message')}\n")
             continue
         if result_route != "tanpa_hitung":
-            print(f"Route Result: {result_route}\n")
+            # print(f"Route Result: {result_route}\n")
             data_extract = {"query": query, "flag": result_route}
             response_extract = requests.post(f"https://{url_model}/extraction", json=data_extract, headers=headers)
             response_extract.raise_for_status()
             body_extract = response_extract.json()
             if body_extract["status"] == True:
                 extraction_info = body_extract["message"]
-                print(f"Extract Result: {extraction_info}\n")
+                # print(f"Extract Result: {extraction_info}\n")
                 if extraction_info["ok"] == True:
-                    print(f"Extract Result: {extraction_info['kwargs']}\n")
+                    # print(f"Extract Result: {extraction_info['kwargs']}\n")
                     calculation_result = calculate_from_extraction(
                         result_route, extraction_info["kwargs"]
                     )
                     data_answer_calc = {"query": query, "flag": result_route, "ekstraksi": extraction_info, "nilai": calculation_result}
-                    print(f"Calculation Result: {data_answer_calc}\n")
+                    # print(f"Calculation Result: {data_answer_calc}\n")
                     response_answer_calc = requests.post(f"https://{url_model}/generate/calculation", json=data_answer_calc, headers=headers)
                     response_answer_calc.raise_for_status()
                     body_answer_calc = response_answer_calc.json()
@@ -85,13 +85,13 @@ while True:
                         query_history.append(query)
                         answer_history.append(result_answer_calc)
                         turn += 1
-                        print(f"Calculation Result: {result_answer_calc}\n")
+                        print(f"Assisten: {result_answer_calc}\n")
                     else:
                         print(f"Calculation Error: {body_answer_calc['message']}\n")
                 else:
                     questions = extraction_info.get("questions", [])
                     message = "data belum lengkap. Mohon jawab:"
-                    print("Data belum lengkap. Mohon jawab:")
+                    print("Assisten: Data belum lengkap. Mohon jawab")
                     for index, question in enumerate(questions, start=1):
                         message += f"\n{index}. {question}"
                         print(f"{index}. {question}")
@@ -105,10 +105,10 @@ while True:
         body_rag = response_rag.json()
         result_rag = body_rag["message"]
         if body_rag["status"] == True:
-            print(f"RAG Result: {result_rag}\n")
+            # print(f"RAG Result: {result_rag}\n")
             data_answer = {"query": query, "RAG": result_rag}
             response_answer = requests.post(f"https://{url_model}/generate/answer", json=data_answer, headers=headers)
-            print(f"Data Answer: {response_answer}\n")
+            # print(f"Data Answer: {response_answer}\n")
             try:
                 response_answer.raise_for_status()
             except requests.exceptions.HTTPError as err:
@@ -121,7 +121,7 @@ while True:
                 query_history.append(query)
                 answer_history.append(result_answer)
                 turn += 1
-                print(f"Answer Result: {result_answer}\n")
+                print(f"Assisten: {result_answer}\n")
             else:
                 print(f"Answer Error: {result_answer}\n")
         else:
@@ -133,7 +133,7 @@ while True:
         body_rewrite = response_rewrite.json()
         if body_rewrite.get("status") is True:
             result_rewrite = body_rewrite.get("message")
-            print(f"Rewrite Result: {result_rewrite}\n")
+            # print(f"Rewrite Result: {result_rewrite}\n")
             data_rag = {"query": result_rewrite}
             response_route = requests.post(f"https://{url_rag}/route", json=data_rag, headers=headers)
             response_route.raise_for_status()
@@ -143,7 +143,7 @@ while True:
                 continue
             result_route = body_route.get("message")
             if result_route != "tanpa_hitung":
-                print(f"Route Result: {result_route}\n")
+                # print(f"Route Result: {result_route}\n")
                 data_extract = {"query": result_rewrite, "flag": result_route}
                 response_extract = requests.post(f"https://{url_model}/extraction", json=data_extract, headers=headers)
                 response_extract.raise_for_status()
@@ -151,11 +151,11 @@ while True:
                 if body_extract.get("status") is True:
                     extraction_info = body_extract["message"]
                     if extraction_info.get("ok") is True:
-                        print(f"Extract Result: {extraction_info['kwargs']}\n")
+                        # print(f"Extract Result: {extraction_info['kwargs']}\n")
                         calculation_result = calculate_from_extraction(
                             result_route, extraction_info["kwargs"]
                         )
-                        print(f"Calculation Result: {calculation_result}\n")
+                        # print(f"Calculation Result: {calculation_result}\n")
                         data_answer_calc = {"query": result_rewrite, "flag": result_route, "ekstraksi": extraction_info, "nilai": calculation_result}
                         response_answer_calc = requests.post(f"https://{url_model}/generate/calculation", json=data_answer_calc, headers=headers)
                         response_answer_calc.raise_for_status()
@@ -165,13 +165,13 @@ while True:
                             query_history.append(query)
                             answer_history.append(result_answer_calc)
                             turn += 1
-                            print(f"Calculation Result: {result_answer_calc}\n")
+                            print(f"Assisten: {result_answer_calc}\n")
                         else:
                             print(f"Calculation Error: {body_answer_calc['message']}\n")
                     else:
                         questions = extraction_info.get("questions", [])
                         message = "data belum lengkap. Mohon jawab:"
-                        print("Data belum lengkap. Mohon jawab:")
+                        print("Assisten: Data belum lengkap. Mohon jawab:")
                         for index, question in enumerate(questions, start=1):
                             message += f"\n{index}. {question}"
                             print(f"{index}. {question}")
@@ -188,7 +188,7 @@ while True:
                 body_rag = response_rag.json()
                 result_rag = body_rag.get("message")
                 if body_rag.get("status") is True:
-                    print(f"RAG Result: {result_rag}\n")
+                    # print(f"RAG Result: {result_rag}\n")
                     data_answer = {"query": result_rewrite, "RAG": result_rag}
                     response_answer = requests.post(f"https://{url_model}/generate/answer", json=data_answer, headers=headers)
                     response_answer.raise_for_status()
@@ -198,7 +198,7 @@ while True:
                         query_history.append(result_rewrite)
                         answer_history.append(result_answer)
                         turn += 1
-                        print(f"Answer Result: {result_answer}\n")
+                        print(f"Assisten: {result_answer}\n")
                     else:
                         print(f"Answer Error: {result_answer}\n")
                 else:

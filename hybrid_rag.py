@@ -21,11 +21,9 @@ from create_chromadb.semantic_search import (
 RE_PASAL = re.compile(r'pasal\s+([0-9]+[a-zA-Z]*)\b', re.IGNORECASE)
 RE_AYAT = re.compile(r'ayat\s+([0-9]+[a-zA-Z]*)\b', re.IGNORECASE)
 
-print("[*] Menyiapkan Semantic Search...")
 semantic_model = load_embedding_model()
 chroma_collection = connect_chromadb()
 
-print("[*] Memuat index BM25 (harap tunggu)...")
 bm25_retriever = TaxBM25Retriever()
 
 try:
@@ -127,9 +125,6 @@ def get_bm25_results(query: str, top_k: int = 5) -> List[Dict[str, Any]]:
     # 1. Ekstrak target pasal dan ayat dari query pengguna
     pasal_target, ayat_target = extract_metadata(query)
     
-    # 🐛 DEBUGGING: Cek apakah Regex berhasil nangkap angkanya!
-    print(f"    -> [Filter Target] Mencari Pasal: '{pasal_target}', Ayat: '{ayat_target}'")
-    
     fetch_size = 50 if pasal_target else top_k 
     raw_results = bm25_retriever.search(query, top_k=fetch_size)
     
@@ -155,7 +150,6 @@ def get_bm25_results(query: str, top_k: int = 5) -> List[Dict[str, Any]]:
         if len(formatted_results) >= top_k:
             break
             
-    print(f"    -> [BM25] Lolos filter: {len(formatted_results)} dokumen.")
     return formatted_results
 
 def get_semantic_results(query: str, top_k: int = 5) -> List[Dict[str, Any]]:
@@ -168,7 +162,6 @@ def get_semantic_results(query: str, top_k: int = 5) -> List[Dict[str, Any]]:
     
     # 2. Panggil fungsi hybrid lokal yang mengintegrasikan Regex (Rule 1-4)
     final_docs, strategy = execute_hybrid_search(query, query_embedding, chroma_collection, top_k)
-    print(f"    -> [Semantic Strategy]: {strategy}")
     
     # 3. Format hasil ke bentuk yang kompatibel dengan RRF script
     formatted_results = []
@@ -308,32 +301,29 @@ def main(question: str = None):
         # ---------------------------------
         # BM25 SEARCH
         # ---------------------------------
-        print("[*] Menjalankan BM25 Search...")
+        print("[*] Menjalankan Search BM25...")
         bm25_results = get_bm25_results(query, 10)
         if bm25_results:
             total_bm25_score = sum(doc['score'] for doc in bm25_results)
             rata_rata_bm25 = total_bm25_score / len(bm25_results)
-            print(f"    -> Rata-rata Skor BM25: {rata_rata_bm25:.2f}")
+            print(f"-> Rata-rata Skor BM25: {rata_rata_bm25:.2f}")
             # Menggunakan threshold dari kodemu
-            if rata_rata_bm25 < 6.1:
-                print("    -> ⚠️ Rata-rata di bawah 6.1, hasil BM25 tidak digunakan.")
-                bm25_results = []  
+            if rata_rata_bm25 < 11.0:
+                print("-> ⚠️ Rata-rata di bawah 11.0, hasil BM25 tidak digunakan.")
+                bm25_results = []   
         # ---------------------------------
         # SEMANTIC (REGEX HYBRID) SEARCH
         # ---------------------------------
-        print("\n[*] Menjalankan Semantic (Regex) Search...")
         semantic_results = get_semantic_results(query, 10)
         if semantic_results:
             has_exact_meta = any(doc.get("is_exact_meta", False) for doc in semantic_results)
             total_semantic_score = sum(doc['score'] for doc in semantic_results)
             rata_rata_semantic = total_semantic_score / len(semantic_results)
-            print(f"    -> Rata-rata Skor Semantic: {rata_rata_semantic * 100:.2f}%")
+            print(f"-> Rata-rata Skor Semantic: {rata_rata_semantic * 100:.2f}%")
             # Menggunakan threshold dari kodemu
             if rata_rata_semantic < 0.50 and not has_exact_meta:
-                print("    -> ⚠️ Rata-rata di bawah 50%, hasil Semantic tidak digunakan.")
+                print("-> ⚠️ Rata-rata di bawah 50%, hasil Semantic tidak digunakan.")
                 semantic_results = []  
-            else:
-                print("    -> ✅ Hasil Semantic diterima untuk RRF.")
         # ---------------------------------
         # RRF FUSION
         # ---------------------------------
@@ -346,11 +336,7 @@ def main(question: str = None):
             rag_time = end_time - start_time
             status = False
             return fallback_msg, status, rag_time
-        print("\n[*] Melakukan Reciprocal Rank Fusion (RRF)...")
         hybrid_results = rrf_fusion(bm25_results, semantic_results, top_k=top_k_search)
-        print("\n" + "-"*50)
-        print("HASIL AKHIR UNTUK DATASET LORA")
-        print("-"*50)
         # 3. Kumpulkan semua chunk menjadi SATU BARIS dengan literal '\n'
         chunk_outputs = []
         for i, doc in enumerate(hybrid_results, start=1):
