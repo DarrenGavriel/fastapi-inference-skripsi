@@ -301,14 +301,14 @@ def main(question: str = None):
         # ---------------------------------
         # BM25 SEARCH
         # ---------------------------------
-        print("[*] Menjalankan Search BM25...")
+        print("[*] Menjalankan BM25 Search...")
         bm25_results = get_bm25_results(query, 10)
         if bm25_results:
             total_bm25_score = sum(doc['score'] for doc in bm25_results)
             rata_rata_bm25 = total_bm25_score / len(bm25_results)
-            print(f"-> Rata-rata Skor BM25: {rata_rata_bm25:.2f}")
+            print(f"    -> Rata-rata Skor BM25: {rata_rata_bm25:.2f}")
             # Menggunakan threshold dari kodemu
-            if rata_rata_bm25 < 11.0:
+            if rata_rata_bm25 < 10.0:
                 print("-> ⚠️ Rata-rata di bawah 11.0, hasil BM25 tidak digunakan.")
                 bm25_results = []   
         # ---------------------------------
@@ -319,10 +319,10 @@ def main(question: str = None):
             has_exact_meta = any(doc.get("is_exact_meta", False) for doc in semantic_results)
             total_semantic_score = sum(doc['score'] for doc in semantic_results)
             rata_rata_semantic = total_semantic_score / len(semantic_results)
-            print(f"-> Rata-rata Skor Semantic: {rata_rata_semantic * 100:.2f}%")
+            print(f"    -> Rata-rata Skor Semantic: {rata_rata_semantic * 100:.2f}%")
             # Menggunakan threshold dari kodemu
             if rata_rata_semantic < 0.50 and not has_exact_meta:
-                print("-> ⚠️ Rata-rata di bawah 50%, hasil Semantic tidak digunakan.")
+                print("    -> ⚠️ Rata-rata di bawah 50%, hasil Semantic tidak digunakan.")
                 semantic_results = []  
         # ---------------------------------
         # RRF FUSION
@@ -339,16 +339,19 @@ def main(question: str = None):
         hybrid_results = rrf_fusion(bm25_results, semantic_results, top_k=top_k_search)
         # 3. Kumpulkan semua chunk menjadi SATU BARIS dengan literal '\n'
         chunk_outputs = []
+        chunk_id = []
         for i, doc in enumerate(hybrid_results, start=1):
             # Ubah enter asli di dalam page_content menjadi teks literal '\n' (aman untuk JSON)
             content_safe = doc['page_content'].replace('\n', '\\n').replace('\r', '')
             chunk_outputs.append(f"Chunk {i}\\n{content_safe}")
+            chunk_id.append(doc['id'])
         # Gabungkan antar chunk dengan literal '\n' juga
+        chunk_id_string = "\\n".join(chunk_id)
         final_output_string = "\\n".join(chunk_outputs)
         end_time = time.time()
         rag_time = end_time - start_time
         # Return hasil akhir
-        return final_output_string, status, rag_time
+        return final_output_string, status, rag_time, chunk_id_string
         # print(final_output_string)
     else:
         while True:
