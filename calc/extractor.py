@@ -390,7 +390,7 @@ def extract(flag, query, generate, source_text=None, retries=1):
         "missing": missing,
         "questions": build_questions(missing, clean),
         "problems": problems,  # catat ke log: berguna untuk memperbaiki prompt/parser
-    }
+    }, result
 
 
 def make_unsloth_generate(model, tokenizer, max_new_tokens=5000):

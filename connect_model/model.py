@@ -141,9 +141,9 @@ def generate_answer(model, tokenizer, query, RAG):
         # Ambil teks hasil generate saja (di vLLM, prompt input tidak ikut ter-output lagi!)
         generated_text = outputs[0].outputs[0].text
         generated_token = len(outputs[0].outputs[0].token_ids)
-        tps = generated_token / generation_time if generation_time > 0 else 0
+        # tps = generated_token / generation_time if generation_time > 0 else 0
         print(f"Generated Token: {generated_token}, Generation Time: {generation_time:.2f} seconds, Tokens per Second: {tps:.2f}")
-        return True, generated_text.strip(), repr(user_content), tps
+        return True, generated_text.strip(), repr(user_content), generated_token
     except Exception as e:
         message = f"Terjadi kesalahan saat merumuskan ulang kueri: {e}"
         print(message)
@@ -225,13 +225,13 @@ def generate_rag_query_rewrite(model, tokenizer, chat_history, current_query, an
         # Ambil teks hasil generate saja (di vLLM, prompt input tidak ikut ter-output lagi!)
         generated_text = outputs[0].outputs[0].text
         generated_token = len(outputs[0].outputs[0].token_ids)
-        tps = generated_token / generation_time if generation_time > 0 else 0
+        # tps = generated_token / generation_time if generation_time > 0 else 0
         print(f"Generated Token: {generated_token}, Generation Time: {generation_time:.2f} seconds, Tokens per Second: {tps:.2f}")
-        return True, generated_text.strip(), repr(user_content), tps
+        return True, generated_text.strip(), repr(user_content), generated_token
     except Exception as e:
         message = f"Terjadi kesalahan saat merumuskan ulang kueri: {e}"
         print(message)
-        return False, message
+        return False, message, None, 0
 def generate_plain(model, tokenizer, systemQuery, query):
     try:
         print(f'System Prompt (repr): """{repr(systemQuery)}"""')
@@ -265,8 +265,9 @@ def generate_plain(model, tokenizer, systemQuery, query):
 
         # Ambil teks hasil generate saja (di vLLM, prompt input tidak ikut ter-output lagi!)
         generated_text = outputs[0].outputs[0].text
-        return generated_text.strip()
+        generated_token = len(outputs[0].outputs[0].token_ids)
+        return generated_text.strip(), generated_token
     except Exception as e:
         message = f"Terjadi kesalahan saat merumuskan ulang kueri: {e}"
         print(message)
-        return {}
+        return {}, 0

@@ -91,8 +91,8 @@ def process_extraction(query: extractionRequest):
             user_text,
         )
 
-    extraction_info = extract(query.flag, query.query, generate)
-    return {"status": True, "message": extraction_info}
+    extraction_info, raw_output = extract(query.flag, query.query, generate)
+    return {"status": True, "message": extraction_info, "raw_output": raw_output}
 
 @app.post("/generate/calculation")
 def process_calculation(query: calculationRequest):
