@@ -27,6 +27,38 @@ from vllm import LLM, SamplingParams
     
 
 
+# def load_model_and_tokenizer():
+#     try:
+#         model_path = "Qwen/Qwen3.5-9B"  # Path ke folder AWQ kamu
+#         max_seq_length = 8192
+
+#         # 1. Load Tokenizer (otomatis baca chat_template.jinja bawaan Qwen)
+#         tokenizer = AutoTokenizer.from_pretrained(
+#             model_path, trust_remote_code=True
+#         )
+
+#         # 2. Load Model dengan vLLM (pengganti FastLanguageModel)
+#         model = LLM(
+#             model=model_path,
+#             dtype="bfloat16",  # Gunakan bfloat16 (atau "float16")
+#             max_model_len=max_seq_length,
+#             max_num_seqs=2,
+#             # gpu_memory_utilization=0.95,
+#             kv_cache_memory_bytes = 1.5 * 1024 * 1024 * 1024,  # Batasi cache KV ke ~1.5GB
+#             kv_cache_dtype="fp8",
+#             max_num_batched_tokens=2048,
+#             enable_chunked_prefill=True,
+#             limit_mm_per_prompt={
+#                 "image": 0
+#             },  # Hemat VRAM karena fokus teks, bukan gambar
+#             trust_remote_code=True,
+#         )
+
+#         return True, model, tokenizer
+#     except Exception as e:
+#         message = f"Terjadi kesalahan saat memuat model dan tokenizer: {e}"
+#         print(message)
+#         return False, None, None
 def load_model_and_tokenizer():
     try:
         model_path = "./Qwen3.5-27B-AWQ-W4A16"  # Path ke folder AWQ kamu
