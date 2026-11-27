@@ -248,7 +248,7 @@ def buat_jawaban(flag, query, ekstraksi, nilai, generate_jawaban=None):
     if generate_jawaban is None:
         return {"ok": False, "jawaban": template, "sumber": "template", "fakta": fakta}
 
-    teks = (generate_jawaban(ANSWER_PROMPT, fakta) or "").strip()
+    teks, generated_token = (generate_jawaban(ANSWER_PROMPT, fakta) or "").strip()
     if not teks or len(teks) > 1200:
         return {"jawaban": template, "sumber": "template_fallback", "fakta": fakta,
                 "alasan": "jawaban LLM kosong atau terlalu panjang"}
@@ -256,7 +256,7 @@ def buat_jawaban(flag, query, ekstraksi, nilai, generate_jawaban=None):
     if not ok:
         return {"jawaban": template, "sumber": "template_fallback", "fakta": fakta,
                 "alasan": alasan, "jawaban_llm": teks}
-    return {"jawaban": teks, "sumber": "llm", "fakta": fakta, "alasan": ""}
+    return {"jawaban": teks, "sumber": "llm", "fakta": fakta, "alasan": "", "generated_token": generated_token}
 
 
 # ----------------------------------------------------------------------------

@@ -370,7 +370,7 @@ def extract(flag, query, generate, source_text=None, retries=1):
     raw = None
     print(f"System prompt:\n{system}\n"
           f"User query:\n{query}\n")
-    result = generate(system, query)
+    result, generated_token = generate(system, query)
     print(f"LLM output:\n{result}\n")
     for _ in range(retries + 1):
         raw = parse_llm_json(result)
@@ -390,7 +390,7 @@ def extract(flag, query, generate, source_text=None, retries=1):
         "missing": missing,
         "questions": build_questions(missing, clean),
         "problems": problems,  # catat ke log: berguna untuk memperbaiki prompt/parser
-    }, result
+    }, result, generated_token
 
 
 def make_unsloth_generate(model, tokenizer, max_new_tokens=5000):
