@@ -7,6 +7,7 @@ from router.train_router import Router
 import hybrid_rag
 import uvicorn
 import nest_asyncio
+import time
 
 listener = None
 
@@ -45,17 +46,21 @@ def read_root():
 
 @app.post("/query")
 def process_query(query: queryRequest):
+    t0 = time.perf_counter()
     resultRag = hybrid_rag.main(query.query)
+    server_time = time.perf_counter() - t0
     if resultRag[1] == False:
-        return {"status": False, "message": resultRag[0], "rag_time": resultRag[2]}
-    return {"status": True, "message": resultRag[0], "rag_time": resultRag[2]}
+        return {"status": False, "message": resultRag[0], "server_time": server_time}
+    return {"status": True, "message": resultRag[0], "server_time": server_time}
 
 @app.post("/query/test")
 def process_query(query: queryRequest):
+    t0 = time.perf_counter()
     resultRag = hybrid_rag.main(query.query)
+    server_time = time.perf_counter() - t0
     if resultRag[1] == False:
-        return {"status": False, "message": resultRag[3], "rag_time": resultRag[2]}
-    return {"status": True, "message": resultRag[3], "rag_time": resultRag[2]}
+        return {"status": False, "message": resultRag[3], "server_time": server_time}
+    return {"status": True, "message": resultRag[3], "server_time": server_time}
 
 @app.post("/route")
 def process_route(query: queryRequest):
@@ -66,17 +71,19 @@ def process_route(query: queryRequest):
 def process_ablation(mode: str, req: AblationRequest):
     if mode not in ["semantic", "bm25", "hybrid"]:
         return {"status": False, "message": "Mode harus 'semantic', 'bm25', atau 'hybrid'"}
-        
+    t0 = time.perf_counter()
     top_ids, avg_bm25, avg_semantic = hybrid_rag.retrieve_top_ids_ablation(
         req.query, 
         mode=mode,
         use_threshold=req.use_threshold # Matikan threshold sementara untuk melihat sebaran skor asli
     )
+    server_time = time.perf_counter() - t0
     return {
         "status": True, 
         "message": top_ids,
         "avg_bm25": avg_bm25,
-        "avg_semantic": avg_semantic
+        "avg_semantic": avg_semantic,
+        "server_time": server_time
     }
 
 if __name__ == "__main__":

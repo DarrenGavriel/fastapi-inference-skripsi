@@ -176,6 +176,8 @@ def stop_benchmark():
         "total_co2_grams": total_co2_kg * 1000,     # Konversi kg ke gram CO2e
     }
 if __name__ == "__main__":
+    t_load = time.perf_counter()
     model = model_module.load_model_and_tokenizer()
+    benchmark_state["model_load_time"] = time.perf_counter() - t_load
     nest_asyncio.apply()
     uvicorn.run(app, host="0.0.0.0", port=8000)
